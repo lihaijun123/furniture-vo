@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-3.0.xsd
+         http://www.springframework.org/schema/aspect
+         http://www.springframework.org/schema/context/spring-aspect-3.0.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/context/spring-aop-3.0.xsd">
+	<!--文件服务器地址信息配置-->
+	<bean id="cfsClientNode" class="com.focustech.cief.filemanage.core.remoting.api.ClientNode">
+		<property name="regClientName" value="${cfs.nameserver.name}" />
+		<property name="zookeeperClient" ref="zookeeperClient"/>
+		<property name="directVisitServer" value="${cfs.webserver.url}"/>
+	</bean>
+	<!-- 注册中心 -->
+	<bean id="zookeeperClient" class="com.focustech.focus3d.bundle.zk.cluser.Focus3DZookeeperClient" init-method="init">
+		<property name="timeout" value="${zk.client.timeout}"/>
+		<property name="cluser">
+			<bean class="com.focustech.focus3d.bundle.zk.cluser.ZkCluser">
+				<property name="nodesStr" value="${zk.server.nodes}"/>
+			</bean>
+		</property>
+	</bean>
+
+	<bean class="com.focustech.common.utils.SpringContextUtil"/>
+
+	<bean id="encryptComponent" class="com.focustech.common.codec.encrypter.DefaultEncryptComponentImpl"
+		init-method="initialize">
+		<property name="encryptHandlerClass"
+			value="${encryptcomponent.encrypthandlerclass}" />
+		<property name="encryptPosMap"
+			value="${encryptcomponent.encryptposmap}" />
+		<property name="encryptWheelMap"
+			value="${encryptcomponent.encryptwheelmap}" />
+		<property name="encryptPosMap4Image"
+			value="${encryptcomponent.encryptposmap4image}" />
+		<property name="encryptWheelMap4Image"
+			value="${encryptcomponent.encryptwheelmap4image}" />
+		<property name="unEncryptMinLen" value="${encryptcomponent.unencryptminlen}" />
+		<property name="unEncryptMaxLen" value="${encryptcomponent.unencryptmaxlen}" />
+		<property name="encryptLen" value="${encryptcomponent.encryptlen}" />
+	</bean>
+
+	<bean id="configPropertiesBean" class="com.focustech.focus3d.agent.component.ConfigPropertiesBean" init-method="init">
+		 <property name="configResource" value="classpath:/context/properties/config.properties"/>
+	</bean>
+</beans>

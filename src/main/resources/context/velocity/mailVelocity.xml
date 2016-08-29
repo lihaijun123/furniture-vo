@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<velocities>
+	<velocity id="contactUsEmail" location="mail/contact_us_email.html">
+      <senderAddress>service@3d-focus.com</senderAddress>
+      <senderDispaly>Focus3D-svn图片监控</senderDispaly>
+      <subject>svn图片监控</subject>
+   </velocity>
+</velocities>

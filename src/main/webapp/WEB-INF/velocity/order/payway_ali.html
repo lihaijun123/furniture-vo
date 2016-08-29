@@ -1,0 +1,25 @@
+#set($layout="layout/layout.html")
+
+<!--main begin-->
+<input type="hidden" id="orderId" value="$!order.encryptSn"/>
+<div class="ser_main mar0">
+  <div class="container left_spe">
+  	<div class="col-md-12 mar0">
+      <div class="mar0 ser_right">
+        <div class="main_body">
+			<br><br>
+			正在跳转......
+			<form id="payForm" action="$!payUrl" method="get">
+				$!data
+			</form>
+		</div>
+	  </div>
+	 </div>
+	</div>
+</div>
+<script>
+	$(function(){
+		$("#payForm").submit();
+	});
+</script>
+<!--main end-->

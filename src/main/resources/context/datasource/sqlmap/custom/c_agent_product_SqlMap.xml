@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="agent_product">
+
+  <resultMap class="com.focustech.focus3d.agent.model.AgentProduct" id="ibatorgenerated_BaseResultMap">
+    <result column="SN" jdbcType="BIGINT" property="sn" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="TAG_NAME" jdbcType="VARCHAR" property="tagName" />
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ADDER_SN" jdbcType="BIGINT" property="adderSn" />
+    <result column="ADDER_NAME" jdbcType="VARCHAR" property="adderName" />
+    <result column="ADD_TIME" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="UPDATER_SN" jdbcType="BIGINT" property="updaterSn" />
+    <result column="UPDATER_NAME" jdbcType="VARCHAR" property="updaterName" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+	<select id="getUniqProdNameList"  resultClass="java.util.HashMap">
+		SELECT  NAME FROM biz_agent_product WHERE 1=1
+		<isNotNull property="status">
+			and STATUS=#status#
+		</isNotNull>
+		AND tag_name != ''
+		GROUP BY NAME
+	</select>
+
+</sqlMap>

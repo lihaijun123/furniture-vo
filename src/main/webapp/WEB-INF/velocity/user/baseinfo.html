@@ -1,0 +1,87 @@
+#set($layout="layout/layout.html")
+<!--main begin-->
+<input id="navCmpIndex" type="hidden" value="1" />
+<input type="hidden" id="tabIdx" value="1"/>
+<div class="ser_main mar0">
+  <div class="container left_spe">
+  	<div class="col-md-12 mar0">
+      <div class="mar0 ser_right">
+        <div class="main_body">
+		<br><br><br>
+			<ul id="cTab" class="nav nav-tabs nav-justified">
+			   <li><a href="/account/baseinfo">基本信息</a></li>
+			   <li><a href="/account/pwdmgr">密码管理</a></li>
+			   <li><a href="/account/revaddress">收货地址</a></li>
+			</ul>
+			<div class="tab-content">
+				  <br><br>
+				<form id="baseinfoForm" action="/account/baseinfo" method="post" class="form-horizontal mar_t40">
+				 	<div  class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">合作伙伴编号</label>
+							    <div class="col-sm-10">
+							      <input type="text" id="partnerId" name="partnerId" value="$!agentUser.partnerId" disabled class="form-control"  maxlength=30  placeholder="取区号+日期+协议编号">
+							    </div>
+							  </div>
+							  <div  class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+							    <div class="col-sm-10">
+							      <input type="text" id="userName" name="userName" value="$!agentUser.userName"  class="form-control"  maxlength=30  placeholder="个人全名">
+							    </div>
+							  </div>
+							  <div  class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">公司名</label>
+							    <div class="col-sm-10">
+							      <input type="text" id="companyName" name="companyName" value="$!agentUser.companyName"  class="form-control"  maxlength=30  placeholder="公司全称">
+							    </div>
+							  </div>
+							  <div  class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">联系方式</label>
+							    <div class="col-sm-10">
+							      <input type="text" id="mobilePhone" name="mobilePhone" value="$!agentUser.mobilePhone" readonly class="form-control"  maxlength=30  placeholder="手机号">
+							    </div>
+							  </div>
+							 <div class="form-group">
+							    <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
+								<div class="col-sm-10">
+							      <div class='col-sm-2 mar0'>
+							      	<select id="province" name="province" value="$!agentUser.province"  class="form-control">
+								        <option></option>
+								      </select>
+								  </div>
+
+								  <div class="col-sm-2 mar0">
+								  	<select id="city" name="city" value="$!agentUser.city"  class="form-control">
+								         <option></option>
+								      </select>
+								  </div>
+								  <div class="col-sm-8 mar0">
+								  	<input type="text" id="street" name="street" value="$!agentUser.street"  class="form-control" maxlength=90  placeholder="请输入街道">
+								  </div>
+							    </div>
+							  </div>
+							  <div  class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label"></label>
+							    <div class="col-sm-10">
+							    	<font color="blue">手机号码作为重要身份识别信息，若发生变更，请联系您的厂家对接人员！</font>
+							    </div>
+							  </div>
+
+							  <div class="form-group">
+							    <div class="col-sm-offset-2 col-sm-10">
+							      <button type="submit" class="btn btn-primary font_s20 w200">提交修改</button>&nbsp;&nbsp;<span style="color:red;display:none;" id="result"  class="hui2"><span style='color:green;'>√ </span>提交成功，我们将尽快与您联系！</span>
+							  	  <font color="red">$!message</font>
+							    </div>
+							  </div>
+				</form>
+
+			</div>
+		</div>
+	  </div>
+	 </div>
+	</div>
+</div>
+<!--main end-->
+<script type="text/javascript" src="/script/province_city.js"></script>
+<script type="text/javascript" src="/script/account_tab.js"></script>
+<script type="text/javascript" src="/script/account.js"></script>
+<script type="text/javascript" src="/script/verifycode.js"></script>

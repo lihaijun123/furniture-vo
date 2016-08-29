@@ -1,0 +1,54 @@
+@charset "utf-8"
+/* Css Document */
+*{margin:0;padding:0;}
+body{line-height:1;font:12px '微软雅黑','Arial';}
+ul,ol,dl{list-style:none;}
+img{vertical-align:middle;border:0;}
+
+/* 链接 */
+a{cursor:pointer;color:#333;}
+a:link,a:visited{text-decoration:none;}
+a:hover{color:#9c2f35;}
+
+/* 布局 */
+.dis_inb{display:inline-block;*display:inline;*zoom:1;vertical-align:top;letter-spacing:normal;}
+.dis_block{ display:block;}
+.float_l{ float:left;}
+.float_r{ float:right}
+.float_c{margin:0 auto;padding:0 auto;}
+
+/* 清除左右浮动 */
+.clearfix:after{content:"."; display:block; height:0;clear:both; visibility:hidden;}
+.clearfix{display:inline-block;}
+.clr{clear:both;padding:0ox;margin:0px;overflow:hidden;width:100%;height:1px;font-size:0px; line-height:0px;}
+.column{display:block;float:left;}/*列*/
+.colgroup{float:left;width:100%}/*组*/
+.first{margin-left:0;clear:left;}/*左边距为零，清除左浮动*/
+
+/* 对齐方式 */
+.text_c{ text-align:center;}
+.text_l{ text-align:left;}
+.text_r{ text-align:right;}
+
+/* 间距 */
+.mar_t20{ margin-top:20px;}
+.mar_t10{ margin-top:10px;}
+.mar_b20{ margin-bottom:20px;}
+
+/* 字体大小，颜色，加粗 */
+.yahei{ font-family:'微软雅黑'}
+.font_s12{font-size:12px;}
+.font_s14{font-size:14px;}
+.font_s16{font-size:16px;}
+.font_s18{font-size:18px;}
+.font_s20{font-size:20px;}
+.black{ color:#000;}
+.red{color:#F00}
+.blue{color:#00C;}
+.white{color:#fff;}
+.font_weight{font-weight:bold;}
+.line-h25{ line-height:25px;}
+
+/*字体宽度*/
+.w100{widht:100px;}
+

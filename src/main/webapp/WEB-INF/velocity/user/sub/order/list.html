@@ -1,0 +1,96 @@
+#set($layout="layout/layout.html")
+
+<!--main begin-->
+<input id="navCmpIndex" type="hidden" value="3" />
+<input type="hidden" id="tabIdx" value="3"/>
+<div class="ser_main mar0">
+  <div class="container left_spe">
+  	<div class="col-md-12 mar0">
+      <div class="mar0 ser_right">
+        <div class="main_body">
+		<br><br><br>
+
+			<ul id="cTab" class="nav nav-tabs nav-justified">
+			   <li><a href="/accountsub/view/$!agentUser.encryptSn">账户信息</a></li>
+			   <li ><a href="/accountsuborder/create/$!agentUser.encryptSn">立即下单</a></li>
+			   <li><a href="/accountsuborder/list/$!agentUser.encryptSn/0">订单信息</a></li>
+			</ul>
+			<div class="tab-content">
+				<br>
+				<ul class="nav nav-pills">
+				   <li><a href="/accountsuborder/list/$!agentUser.encryptSn/0">全部<span class="badge">$!agentUser.orderList.size()</span></a></li>
+				   <li><a href="/accountsuborder/list/$!agentUser.encryptSn/2">未支付<span class="badge">$!agentUser.waitPayList.size()</span></a></li>
+				   <li><a href="/accountsuborder/list/$!agentUser.encryptSn/5">收款确认<span class="badge">$!agentUser.waitConfirmList.size()</span></a></li>
+				   <li><a href="/accountsuborder/list/$!agentUser.encryptSn/3">已完成<span class="badge">$!agentUser.confirmedList.size()</span></a></li>
+				</ul>
+					<div class="table-responsive">
+					   <table class="table">
+					      <caption></caption>
+					      <thead>
+					         <tr>
+					            <th>序号</th>
+					            <th>订单号</th>
+					            <th>金额（元）</th>
+					            <th>下单时间</th>
+					            <th>付款时间</th>
+					            <th>状态</th>
+					            <th>是否发货</th>
+					            <th>&nbsp;</th>
+					         </tr>
+					      </thead>
+					      <tbody>
+							#if($!status == 2)
+								#set($ol = $!agentUser.waitPayList)
+							#elseif($!status == 5)
+								#set($ol = $!agentUser.waitConfirmList)
+							#elseif($!status == 3)
+								#set($ol = $!agentUser.confirmedList)
+							#else
+								#set($ol = $!agentUser.orderList)
+							#end
+					      	#foreach($!order in $ol)
+					         <tr>
+					            <td>$!velocityCount</td>
+					            <td>$!order.orderNum</td>
+					            <td>$!order.totalPrice</td>
+					            <td>$!date.format("yyyy-MM-dd HH:mm:ss", $!order.orderTime)</td>
+					            <td>$!date.format("yyyy-MM-dd HH:mm:ss", $!order.payTime)</td>
+					            <td>
+									#if($!order.status == 3)
+										已完成
+									#elseif($!order.status == 5)
+										收款确认
+									#else
+										未付款
+									#end
+								</td>
+								<td>
+									#if($!order.orderLogtc.isSend == 1)
+										<a href="/accountsuborder/logtc?id=$!order.encryptSn&subUserId=$!agentUser.encryptSn">已发货</a>
+									#else
+										#if($!order.status == 3)
+											<a href="/accountsuborder/logtc?id=$!order.encryptSn&subUserId=$!agentUser.encryptSn">未发货<a>
+										#else
+											未发货
+										#end
+									#end
+								</td>
+					            <td>
+									<a href="/accountsuborder/confirm?id=$!order.encryptSn&subUserId=$!agentUser.encryptSn">查看</a>
+					            </td>
+					         </tr>
+							#end
+					      </tbody>
+					   </table>
+					</div>
+			</div>
+		</div>
+	  </div>
+	 </div>
+	</div>
+</div>
+
+
+<!--main end-->
+<script type="text/javascript" src="/script/order_tab.js"></script>
+<script type="text/javascript" src="/script/order.js"></script>

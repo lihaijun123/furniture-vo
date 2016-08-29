@@ -1,0 +1,31 @@
+<!--响应式导航 begin-->
+
+<div class="navbar navbar-inverse navbar-fixed-top font_s16" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button id="nvBtn" class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+		  <span class="sr-only">导航条</span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+	  </button>
+      <a class="navbar-brand" href="/account"><img class="logo_style" src="/images/new_logo.png" width="150" height="33"></a>
+	</div>
+    <div class="navbar-collapse collapse" role="navigation">
+      <ul id="navCmp" class="nav navbar-nav">
+		#foreach($!resource in $!resourceList)
+			<li><a href="$!resource.resourceInterface">$!resource.resourceDisplay</a></li>
+		#end
+      </ul>
+	  <ul class="nav navbar-nav navbar-right">
+		<li><a href="/logout">退出</a></li>
+	  </ul>
+	</div>
+  </div>
+</div>
+<!--响应式导航 end-->
+<div class="slide_container mar0 slide_container_spe hidden-xs">
+  <ul class="rslides mar0" id="slider">
+    <li> <img class="mar_t50" src="/images/service_ban.jpg" alt=""> </li>
+  </ul>
+</div>

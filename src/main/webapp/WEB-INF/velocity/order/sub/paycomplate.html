@@ -1,0 +1,26 @@
+#set($layout="layout/layout.html")
+<!--main begin-->
+<input type="hidden" id="tabIdx" value="1"/>
+<input type="hidden" id="orderId" value="$!order.encryptSn"/>
+<div class="ser_main mar0">
+  <div class="container left_spe">
+  	<div class="col-md-12 mar0">
+      <div class="mar0 ser_right">
+        <div class="main_body">
+		<br><br>
+			<div class="container">
+					<h2 class="text-success"><b>成功支付   $!order.totalPrice 元</b></h2>
+					<a href="#" class="list-group-item active">
+					   您可以继续点击这里
+					</a>
+					<a href="/ordersub/list" class="list-group-item">查看我的订单</a>
+					<a href="/ordersub/create" class="list-group-item">继续订购</a>
+					<a href="/accountsub" class="list-group-item">查看账户信息</a>
+					<div class="alert alert-warning">请保管好支付凭据，等待收款人确认收款。</div>
+			</div>
+		</div>
+	  </div>
+	 </div>
+	</div>
+</div>
+

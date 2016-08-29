@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta content="小小梦想家代理" name="keywords">
+<meta content="小小梦想家代理" name="description">
+<title>小小梦想家微商代理</title>
+<link rel="shortcut icon" type="image/x-icon"  href="http://file2.3d-focus.com/favicon.ico"/>
+<link href="/style/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/style/focus3d.css" rel="stylesheet" type="text/css">
+<link href="/script/fresco/css/fresco/fresco.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/script/jquery-1.11.1.min.js"></script>
+<style>
+	/* Image style */
+	#scrollUp {
+		background-image: url("/images/top.png");
+		bottom: 200px;
+		right: 20px;
+		width: 38px;    /* Width of image */
+		height: 38px;   /* Height of image */
+	}
+
+</style>
+</head>
+
+<body class="home-template">
+	#parse("layout/layout_apply_top.html")
+	$screen_content
+</body>
+
+<script type="text/javascript" src="/script/bootstrap.min.js"></script>
+<script type="text/javascript" src="/script/jquery.extend.url.js"></script>
+<script type="text/javascript" src="/script/fresco/js/fresco/fresco.js"></script>
+<script type="text/javascript" src="/script/scrollup.js"></script>
+<script type="text/javascript" src="/script/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="/script/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/script/jquery.validate.extend.js"></script>
+<script>
+	$(function (){
+		$.scrollUp({
+			animation:"fade",
+			scrollImg: {
+			active: true,
+			type: 'background',
+			src: '/images/top.png'
+		}
+	});
+	 $(".home-template")
+                    .mousewheel(function(event, delta) {
+                       if(delta > 0){
+							var cls = $("#myNav").attr("class");
+							$("#myNav").attr("class", cls + " navbar-fixed-top");
+
+							var cls2 = $(".home-template").attr("class");
+							$(".home-template").attr("class", cls2 + " bd_mt_80");
+					   } else {
+					   		$("#myNav").removeClass("navbar-fixed-top");
+							$(".home-template").removeClass("bd_mt_80");
+					   }
+
+                    });
+	});
+
+</script>
+</html>

@@ -1,0 +1,65 @@
+#set($layout="layout/layout.html")
+<!--main begin-->
+<input id="navCmpIndex" type="hidden" value="1" />
+<input type="hidden" id="tabIdx" value="2"/>
+<div class="ser_main mar0">
+  <div class="container left_spe">
+  	<div class="col-md-12 mar0">
+      <div class="mar0 ser_right">
+        <div class="main_body">
+		<br><br><br>
+			<ul id="cTab" class="nav nav-tabs nav-justified">
+			   <li><a href="/account/baseinfo">基本信息</a></li>
+			   <li><a href="/account/pwdmgr">密码管理</a></li>
+			   <li><a href="/account/revaddress">收货地址</a></li>
+			</ul>
+			<div class="tab-content">
+				  <br><br>
+				  	<input type="hidden" id="mobilePhone" name="mobilePhone" value="$!agentUser.mobilePhone"/>
+					<form id="infomodifyForm" action="/account/pwdmgr" method="post" class="form-horizontal mar_t40">
+						  <div  class="form-group">
+						    <label for="inputEmail3" class="col-sm-2 control-label">原始密码</label>
+						    <div class="col-sm-10">
+						      <input type="password" id="password" name="password" class="form-control"  maxlength=30 placeholder="请输入原始密码">
+						    </div>
+						  </div>
+						  <div  class="form-group">
+						    <label for="inputEmail3" class="col-sm-2 control-label">新密码</label>
+						    <div class="col-sm-10">
+						      <input type="password" id="passwordNew" name="passwordNew"  class="form-control"  maxlength=30  placeholder="请输入新密码">
+						    </div>
+						  </div>
+						  <div  class="form-group">
+						    <label for="inputEmail3" class="col-sm-2 control-label">确认新密码</label>
+						    <div class="col-sm-10">
+						      <input type="password" id="passwordNewS" name="passwordNewS"  class="form-control"  maxlength=30  placeholder="请再次输入新密码">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputEmail3" class="col-sm-2 control-label">&nbsp;</label>
+						    <div class="col-sm-10">
+								<div class="input-group" style="width:200px;">
+							      <input class="form-control" id="smsCode" name="smsCode" type="text" maxlength=6 placeholder="短信验证码"/>
+							      <span class="input-group-btn">
+							        	<button id="smsCodeBtn" type="button" class="btn btn-info">获取验证码</button>
+							      </span>
+							    </div>
+						    </div>
+						  </div>
+						   <div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <button type="submit" class="btn btn-primary font_s20 w200">提交修改</button>&nbsp;&nbsp;<span style="color:red;display:none;" id="result"  class="hui2"><span style='color:green;'>√ </span>提交成功，我们将尽快与您联系！</span>
+						  	  <font id="message" color="red">$!message</font>
+						    </div>
+						  </div>
+					</form>
+			</div>
+		</div>
+	  </div>
+	 </div>
+	</div>
+</div>
+<!--main end-->
+<script type="text/javascript" src="/script/account_tab.js"></script>
+<script type="text/javascript" src="/script/account_pwd.js"></script>
+<script type="text/javascript" src="/script/verifycode.js"></script>

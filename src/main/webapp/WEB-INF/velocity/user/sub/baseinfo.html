@@ -1,0 +1,126 @@
+#set($layout="layout/layout.html")
+<!--main begin-->
+<input id="navCmpIndex" type="hidden" value="3" />
+<input type="hidden" id="tabIdx" value="1"/>
+<div class="ser_main mar0">
+  <div class="container left_spe">
+  	<div class="col-md-12 mar0">
+      <div class="mar0 ser_right">
+        <div class="main_body">
+		<br><br><br>
+			<ul id="cTab" class="nav nav-tabs nav-justified">
+			   <li><a href="/accountsub/view/$!agentUser.encryptSn">账户信息</a></li>
+			   <li ><a href="/accountsuborder/create/$!agentUser.encryptSn">立即下单</a></li>
+			   <li><a href="/accountsuborder/list/$!agentUser.encryptSn/0">订单信息</a></li>
+			</ul>
+			<div class="tab-content">
+				  <br><br>
+				  <div class="panel panel-default">
+					   <div class="panel-heading">
+					      <h3 class="panel-title">
+					        	账户信息
+					      </h3>
+					   </div>
+					   <div class="panel-body">
+					   		  <div  class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">合作编号</label>
+							    <div class="col-sm-10">
+							      <input type="text" id="partnerId" name="partnerId" value="$!agentUser.partnerId" disabled class="form-control"  >
+							    </div>
+							  </div>
+							  <div  class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+							    <div class="col-sm-10">
+							      <input type="text" id="userName" name="userName" value="$!agentUser.userName" disabled class="form-control" >
+							    </div>
+							  </div>
+							  <div  class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">公司名</label>
+							    <div class="col-sm-10">
+							      <input type="text" id="companyName" name="companyName" value="$!agentUser.companyName" disabled class="form-control" >
+							    </div>
+							  </div>
+							  <div  class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">联系方式</label>
+							    <div class="col-sm-10">
+							      <input type="text" id="mobilePhone" name="mobilePhone" value="$!agentUser.mobilePhone" disabled class="form-control">
+							    </div>
+							  </div>
+							   <div class="form-group">
+							    <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
+								<div class="col-sm-10">
+							      <div class='col-sm-2 mar0'>
+									  <input type="text" id="province" name="province" value="$!agentUser.province" disabled class="form-control">
+								  </div>
+
+								  <div class="col-sm-2 mar0">
+									 	<input type="text" id="city" name="city" value="$!agentUser.city" disabled class="form-control">
+
+								  </div>
+								  <div class="col-sm-8 mar0">
+								  	<input type="text" id="street" name="street" value="$!agentUser.street" disabled class="form-control">
+								  </div>
+							    </div>
+							  </div>
+							  <div  class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">备注</label>
+							    <div class="col-sm-10">
+							      <input type="text" id="remark" name="remark" value="$!agentUser.remark" disabled class="form-control">
+							    </div>
+							  </div>
+
+					   </div>
+				  </div>
+
+				  <div class="panel panel-default">
+					   <div class="panel-heading">
+					      <h3 class="panel-title">
+					        	收货地址
+					      </h3>
+					   </div>
+					   <div class="panel-body">
+							<div  class="form-group">
+						    <label class="col-sm-2 control-label">收件人</label>
+						    <div class="col-sm-10">
+						      <input type="text" value="$!receiveAddress.userName" disabled class="form-control">
+						    </div>
+						  </div>
+						  <div  class="form-group">
+						    <label class="col-sm-2 control-label">手机号码</label>
+						    <div class="col-sm-10">
+						      <input type="text" value="$!receiveAddress.mobilePhone"  disabled class="form-control">
+						    </div>
+						  </div>
+						 <div class="form-group">
+						    <label class="col-sm-2 control-label">地址</label>
+							<div class="col-sm-10">
+						      <div class='col-sm-2 mar0'>
+						      		<input type="text" value="$!receiveAddress.province"  disabled class="form-control">
+							  </div>
+
+							  <div class="col-sm-2 mar0">
+							  	<input type="text" value="$!receiveAddress.city"  disabled class="form-control">
+							  </div>
+							  <div class="col-sm-8 mar0">
+							  	<input type="text" value="$!receiveAddress.street" disabled class="form-control">
+							  </div>
+						    </div>
+						  </div>
+					   </div>
+					</div>
+					<!--
+					<div class="text-center">
+						<button id="backBtn" type="button" class="btn btn-primary font_s20 w200">返回</button>
+					</div>
+					-->
+					<br>
+			</div>
+		</div>
+	  </div>
+	 </div>
+	</div>
+</div>
+<!--main end-->
+<script type="text/javascript" src="/script/province_city.js"></script>
+<script type="text/javascript" src="/script/account_sub_baseinfo.js"></script>
+<script type="text/javascript" src="/script/account_tab.js"></script>

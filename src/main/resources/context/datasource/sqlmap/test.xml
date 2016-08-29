@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "file:/home/sql-map-config-xml.dtd">
+<sqlMap namespace="test" >
+  
+</sqlMap>
