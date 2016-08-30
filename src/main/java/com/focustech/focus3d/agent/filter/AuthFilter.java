@@ -50,7 +50,8 @@ public class AuthFilter implements Filter {
 				AgentLogin agentLogin = (AgentLogin)sessinObj;
 				Long userId = agentLogin.getUserId();
 				if(userId != null){
-					List<AgentUserRole> roles = agentUserRoleService.getListByUserId(userId);
+					
+					/*List<AgentUserRole> roles = agentUserRoleService.getListByUserId(userId);
 					if(ListUtils.isNotEmpty(roles)){
 						List<AgentRoleResource> resources = agentRoleResourceService.getListByRoleId(roles.get(0).getRoleSn());
 						for (AgentRoleResource agentRoleResource : resources) {
@@ -63,7 +64,8 @@ public class AuthFilter implements Filter {
 					} else {
 						//没有分配任何权限，无权访问菜单
 						isPass = false;
-					}
+					}*/
+					
 				}
 			}
 

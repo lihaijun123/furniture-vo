@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="MenuTreeModel">
+	<statement id="selectMenuTreeList" remapResults="true" resultClass="java.util.HashMap">
+		SELECT
+			cast(re.ADMIN_RESOURCE_SN AS char) AS ADMIN_RESOURCE_SN,
+			re.RESOURCE_CODE AS RESOURCE_CODE,
+			re.RESOURCE_DISPLAY_NAME AS RESOURCE_DISPLAY_NAME,
+			re.RESOURCE_NAME AS RESOURCE_NAME,
+			re.RESOURCE_URL AS RESOURCE_URL,
+			re.RESOURCE_LINK_ID AS RESOURCE_LINK_ID,
+			cast(re.RESOURCE_PARENT_SN AS char) AS RESOURCE_PARENT_SN,
+			cast(re.RESOURCE_TYPE AS char) AS RESOURCE_TYPE,
+			cast(re.PERM_FLAG AS char) AS PERM_FLAG,
+			cast(re.ACTIVE AS char) AS ACTIVE
+		FROM com_admin_resource re
+		WHERE 1=1
+		AND re.ACTIVE = '1'
+		<isNotEmpty prepend="and" property="parentSN">
+        	re.RESOURCE_PARENT_SN = #parentSN#
+      	</isNotEmpty>
+		<isNotEmpty prepend="and" property="permFlag">
+        	re.PERM_FLAG in ($permFlag$)
+      	</isNotEmpty>
+	    ORDER BY re.RESOURCE_ORDER
+	</statement>
+
+	<statement id="selectAllNodeList" remapResults="true" resultClass="java.util.HashMap">
+		SELECT
+			cast(re.ADMIN_RESOURCE_SN AS char) AS ADMIN_RESOURCE_SN,
+			re.RESOURCE_CODE AS RESOURCE_CODE,
+			re.RESOURCE_DISPLAY_NAME AS RESOURCE_DISPLAY_NAME,
+			re.RESOURCE_NAME AS RESOURCE_NAME,
+			re.RESOURCE_URL AS RESOURCE_URL,
+			re.RESOURCE_LINK_ID AS RESOURCE_LINK_ID,
+			cast(re.RESOURCE_PARENT_SN AS char) AS RESOURCE_PARENT_SN,
+			cast(re.RESOURCE_TYPE AS char) AS RESOURCE_TYPE,
+			cast(re.PERM_FLAG AS char) AS PERM_FLAG,
+			cast(re.ACTIVE AS char) AS ACTIVE
+		FROM com_admin_resource re
+		WHERE 1=1
+		<isNotEmpty prepend="and" property="parentSN">
+        	re.RESOURCE_PARENT_SN = #parentSN#
+      	</isNotEmpty>
+		<isNotEmpty prepend="and" property="permFlag">
+        	re.PERM_FLAG = #permFlag#
+      	</isNotEmpty>
+	    ORDER BY re.RESOURCE_ORDER
+	</statement>
+
+
+	<statement id="selectRoleList" remapResults="true" resultClass="java.util.HashMap">
+		SELECT
+			cast(role_.ADMIN_ROLE_SN AS char) AS ADMIN_ROLE_SN,
+			role_.ROLE_ID AS ROLE_ID,
+			role_.ROLE_NAME AS ROLE_NAME
+		FROM com_admin_role role_
+	</statement>
+
+	<statement id="selectMenuTreeByRoleIdList" remapResults="true" resultClass="java.util.HashMap">
+		SELECT
+			cast(re.ADMIN_RESOURCE_SN AS char) AS ADMIN_RESOURCE_SN,
+			re.RESOURCE_CODE AS RESOURCE_CODE,
+			re.RESOURCE_DISPLAY_NAME AS RESOURCE_DISPLAY_NAME,
+			re.RESOURCE_NAME AS RESOURCE_NAME,
+			re.RESOURCE_URL AS RESOURCE_URL,
+			re.RESOURCE_LINK_ID AS RESOURCE_LINK_ID,
+			cast(re.RESOURCE_PARENT_SN AS char) AS RESOURCE_PARENT_SN,
+			cast(re.RESOURCE_TYPE AS char) AS RESOURCE_TYPE,
+			cast(re.PERM_FLAG AS char) AS PERM_FLAG,
+			cast(re.ACTIVE AS char) AS ACTIVE
+		FROM com_admin_resource re
+		LEFT JOIN com_admin_role_resource role_re
+		ON role_re.RESOURCE_SN = re.ADMIN_RESOURCE_SN
+		WHERE 1=1
+		AND re.ACTIVE = '1'
+		<isNotEmpty prepend="and" property="permFlag">
+        	re.PERM_FLAG in ($permFlag$)
+      	</isNotEmpty>
+		<isNotEmpty prepend="and" property="roleSN">
+        	role_re.ROLE_SN = #roleSN#
+      	</isNotEmpty>
+		<isNotEmpty prepend="and" property="parentSN">
+        	re.RESOURCE_PARENT_SN = #parentSN#
+      	</isNotEmpty>
+	    ORDER BY  re.RESOURCE_PARENT_SN, re.RESOURCE_ORDER
+	</statement>
+
+	<statement id="selectAuthMenuTreeList" remapResults="true" resultClass="java.util.HashMap">
+		SELECT
+			cast(re.ADMIN_RESOURCE_SN AS char) AS ADMIN_RESOURCE_SN,
+			re.RESOURCE_CODE AS RESOURCE_CODE,
+			re.RESOURCE_DISPLAY_NAME AS RESOURCE_DISPLAY_NAME,
+			re.RESOURCE_NAME AS RESOURCE_NAME,
+			re.RESOURCE_URL AS RESOURCE_URL,
+			re.RESOURCE_LINK_ID AS RESOURCE_LINK_ID,
+			cast(re.RESOURCE_PARENT_SN AS char) AS RESOURCE_PARENT_SN,
+			cast(re.RESOURCE_TYPE AS char) AS RESOURCE_TYPE,
+			cast(re.PERM_FLAG AS char) AS PERM_FLAG,
+			cast(re.ACTIVE AS char) AS ACTIVE,
+			r_m.SUMMARY
+		FROM
+			biz_exb_person_perms exb_pers
+		LEFT JOIN com_admin_resource_mapping r_m
+		ON r_m.MAPPING_KEY = exb_pers.ASSIGN_VALUE
+		LEFT JOIN com_admin_resource re
+		ON re.RESOURCE_CODE = r_m.ADMIN_RESOURCE_CODE
+		WHERE exb_pers.ASSIGN_TYPE = 1
+		<isNotEmpty prepend="and" property="userSN">
+        	exb_pers.SUB_USER_SN = #userSN#
+      	</isNotEmpty>
+		<isNotEmpty prepend="and" property="exbSN">
+        	exb_pers.EXB_INFO_SN = #exbSN#
+      	</isNotEmpty>
+		AND exb_pers.IS_DELETE = '0'
+	</statement>
+
+	<statement id="selectParentNodeWithFirstChildUrlList" remapResults="true" resultClass="java.util.HashMap">
+		SELECT
+			DISTINCT(p_re.ADMIN_RESOURCE_SN),
+		    p_re.ADMIN_RESOURCE_SN AS PARENT_ADMIN_RESOURCE_SN,
+			p_re.RESOURCE_NAME AS PARENT_RESOURCE_DISPLAY_NAME,
+			re.RESOURCE_DISPLAY_NAME AS RESOURCE_DISPLAY_NAME,
+			re.RESOURCE_URL AS RESOURCE_URL
+		FROM com_admin_resource re
+		LEFT JOIN com_admin_role_resource role_re
+		ON role_re.RESOURCE_SN = re.ADMIN_RESOURCE_SN
+		LEFT JOIN com_admin_role _role
+        ON role_re.ROLE_SN = _role.ADMIN_ROLE_SN
+        LEFT JOIN com_admin_resource p_re
+		ON re.RESOURCE_PARENT_SN = p_re.ADMIN_RESOURCE_SN
+		WHERE 1=1
+		AND re.ACTIVE = '1'
+		AND re.PERM_FLAG = 1
+        AND re.resource_url != -1
+		AND re.RESOURCE_PARENT_SN != -1
+		<isNotEmpty prepend="and" property="roleID">
+        	_role.ROLE_ID = #roleID#
+      	</isNotEmpty>
+	    order by p_re.RESOURCE_ORDER, re.RESOURCE_ORDER
+	</statement>
+</sqlMap>

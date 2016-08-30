@@ -24,6 +24,8 @@
 		<sqlMap resource="context/datasource/sqlmap/biz_agent_role_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/biz_agent_role_resource_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/biz_agent_user_role_SqlMap.xml"/>
-
 		<sqlMap resource="context/datasource/sqlmap/custom/c_agent_product_SqlMap.xml"/>
+		<!-- 菜单管理 -->
+		<sqlMap resource="context/datasource/sqlmap/custom/c_menu_tree_SqlMap.xml"/>
+		
 </sqlMapConfig>

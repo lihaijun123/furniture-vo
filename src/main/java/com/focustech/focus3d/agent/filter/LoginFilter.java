@@ -100,7 +100,8 @@ public class LoginFilter implements Filter {
 				if(servletPath.equals("/index")){
 					isPass = true;
 				} else {
-					AgentLogin agentLogin = (AgentLogin)sessinObj;
+					isPass = true;
+					/*AgentLogin agentLogin = (AgentLogin)sessinObj;
 					Long userId = agentLogin.getUserId();
 					if(userId != null){
 						List<AgentUserRole> roles = agentUserRoleService.getListByUserId(userId);
@@ -115,6 +116,7 @@ public class LoginFilter implements Filter {
 							}
 						}
 					}
+					*/
 				}
 			}
 		}

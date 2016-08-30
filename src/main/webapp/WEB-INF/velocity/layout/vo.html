@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员中心</title>
+<link href="/style/vo_common.css" rel="stylesheet" type="text/css" />
+<link href="/style/vo_page.css" rel="stylesheet" type="text/css" />
+<link href="/style/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/style/focus3d.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/script/jquery-1.11.1.min.js"></script>
+<script src="/script/member/home.js"></script>
+</head>
+<body>
+<div>
+	<div id="voTop-re" class="clearfix">
+		<div class="voTopWrap-re clearfix">
+			<div id="tfl" class="myfuac-er">
+				<h1 class="logo-rewe">
+					<a href="" class="vo-logobg"><img  src="/images/vo-logo2.png" alt="江苏工业数字虚拟展览馆" width="119" height="53" /></a>
+					<span class="vo-lines"></span>
+					<a href="javascript:gotoVoIndex('$http.voDomain()')" class="vo-centers"><span class="sub-titlecen">会员中心</span></a>
+				</h1>
+			</div>
+			$!head.printVoHead($request)
+		</div>
+		<p class="welcome-txt"><a href="/logout" id="logout">退出</a></p>
+	</div>
+<div id="middle" class="clearfix">
+    <div class="middleWrap clearfix">
+      <div class="sideleft">
+        <div id="treel" class="treel"></div>
+      </div>
+      <div class="voMain clearfix">
+		$screen_content
+      </div>
+
+  </div>
+#parse("layout/footer.html")
+</div>
+</body>
+</html>

@@ -48,4 +48,6 @@
 	<bean id="configPropertiesBean" class="com.focustech.focus3d.agent.component.ConfigPropertiesBean" init-method="init">
 		 <property name="configResource" value="classpath:/context/properties/config.properties"/>
 	</bean>
+	
+	<bean id="permissionManager" class="com.focustech.focus3d.agent.permission.extend.composite.PermissionManager" init-method="init"/>
 </beans>
