@@ -1,7 +1,6 @@
 package com.focustech.focus3d.agent.filter;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.focustech.cief.cop.ws.auth.Auth;
 import com.focustech.cief.cop.ws.auth.AuthHolder;
-import com.focustech.common.utils.ListUtils;
 import com.focustech.focus3d.agent.auth.service.AgentResourceService;
 import com.focustech.focus3d.agent.auth.service.AgentRoleResourceService;
 import com.focustech.focus3d.agent.auth.service.AgentUserRoleService;
@@ -37,7 +35,7 @@ public class LoginFilter implements Filter {
 	public static final String[] STATIC_RESOURCES = {"script", "images", "style", "fonts", "monitor.html", "index.html", "html", "favicon.ico"};
 	public static final String[] DYNAMIC_RESOURCES = {
 		"/sms/send"
-		, "/register"
+		, "/register*"
 		, "/apply/complate"
 		, "/wxpay/scanpay/notify"
 		, "/wxpay/scanpay/pay"

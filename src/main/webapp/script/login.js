@@ -20,10 +20,6 @@ $(function(){
 	    		maxlength: 40
 
 	    	},
-	    	smsCode:{
-	    		required: true,
-	    		minlength: 6
-	    	},
 	    	validCode:{
 	    		required: true,
 	    		minlength: 4
@@ -39,10 +35,6 @@ $(function(){
 	    		required: "请输入您的密码",
 	    		maxlength: "请输入{0}个字以内"
 	    	},
-	    	smsCode: {
-				required: "请输入短信验证码",
-				minlength: "请输入{0}位短信验证码"
-			},
 			validCode: {
 	    		required: "请输入验证码",
 	    		minlength: "请输入{0}位验证码"

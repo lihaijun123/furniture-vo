@@ -90,7 +90,7 @@ public class ApplyController extends CommonController{
 				    AgentLogin agentLogin = new AgentLogin();
 					agentLogin.setUserId(agentUser.getSn());
 					agentLogin.setLoginName(agentUser.getMobilePhone());
-					password = MD5Util.MD5Encode(agentUser.getPartnerId(), "");
+					password = MD5Util.MD5Encode(passwordConfirm, "");
 					agentLogin.setPassword(password);
 					agentLogin.setStatus(1);
 					agentLoginService.insert(agentLogin);

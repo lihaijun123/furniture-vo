@@ -1,7 +1,6 @@
 package com.focustech.focus3d.agent.login.controller;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +12,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.focustech.common.utils.ListUtils;
 import com.focustech.common.utils.MD5Util;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
@@ -22,7 +20,6 @@ import com.focustech.focus3d.agent.filter.LoginFilter;
 import com.focustech.focus3d.agent.filter.RequestThreadLocal;
 import com.focustech.focus3d.agent.login.service.AgentLoginService;
 import com.focustech.focus3d.agent.model.AgentLogin;
-import com.focustech.focus3d.agent.model.AgentResource;
 import com.focustech.focus3d.agent.model.MessageValidate;
 
 /**
@@ -67,11 +64,11 @@ public class LoginController extends CommonController{
 		String view = "/login";
 		String loginName = reqLogin.getLoginName();
 		String password = reqLogin.getPassword();
-		String smsCode = reqLogin.getSmsCode();
+		//String smsCode = reqLogin.getSmsCode();
 		String validCode = reqLogin.getValidCode();
 		int status = 0;
 		if(StringUtils.isNotEmpty(loginName) && StringUtils.isNotEmpty(password) && StringUtils.isNotEmpty(validCode)){
-			boolean isTestAccount = isTestAccount(loginName, password, smsCode);
+			boolean isTestAccount = true;//isTestAccount(loginName, password, smsCode);
 			MessageValidate messageValidate = null;
 			if(!isTestAccount){
 				//messageValidate = messageValidateService.selectByMobilePhone(loginName, smsCode);
@@ -89,10 +86,10 @@ public class LoginController extends CommonController{
 								req.getSession().setAttribute(LoginFilter.SESSION_KEY, agentLogin);
 								RequestThreadLocal.setLoginInfo(agentLogin);
 
-								List<AgentResource> agentResources = getUserResourceList();
+								/*List<AgentResource> agentResources = getUserResourceList();
 								if(ListUtils.isNotEmpty(agentResources)){
-									view = redirect(agentResources.get(0).getResourceInterface());
-								}
+								}*/
+								view = redirect("/account");
 								//删除短信验证码
 								/*if(messageValidate != null){
 									messageValidateService.setStatus(messageValidate, 0);
