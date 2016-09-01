@@ -96,8 +96,8 @@ public class AccountController extends CommonController{
 		AgentLogin currentLogin = RequestThreadLocal.getLoginInfo();
 		String loginName = currentLogin.getLoginName();
 		String password = login.getPassword();
-		String passwordNew = login.getPasswordNew();
-		String passwordNewS = login.getPasswordNewS();
+		String passwordNew = login.getPassword();
+		String passwordNewS = login.getPasswordConfirm();
 		String verifyCode = login.getSmsCode();
 		String msg = "";
 		String view = "/account/pwdmgr";
