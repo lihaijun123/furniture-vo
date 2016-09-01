@@ -25,6 +25,7 @@ public class AgentUser extends BizAgentUser<AgentUser, BizAgentUserCriteria> imp
 	private List<AgentOrder> confirmedList = new ArrayList<AgentOrder>();//卖家已经确认买家付款3
 	private List<AgentOrder> waitPayList = new ArrayList<AgentOrder>();//等待买家付款2
 	private List<AgentOrder> orderList = new ArrayList<AgentOrder>();//全部
+	private AgentLogin loginInfo;
 	public String getSmsCode() {
 		return smsCode;
 	}
@@ -97,4 +98,12 @@ public class AgentUser extends BizAgentUser<AgentUser, BizAgentUserCriteria> imp
 		this.orderList = orderList;
 	}
 
+	public AgentLogin getLoginInfo() {
+		return loginInfo;
+	}
+
+	public void setLoginInfo(AgentLogin loginInfo) {
+		this.loginInfo = loginInfo;
+	}
+	
 }

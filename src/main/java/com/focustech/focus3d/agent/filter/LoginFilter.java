@@ -37,7 +37,7 @@ public class LoginFilter implements Filter {
 	public static final String[] STATIC_RESOURCES = {"script", "images", "style", "fonts", "monitor.html", "index.html", "html", "favicon.ico"};
 	public static final String[] DYNAMIC_RESOURCES = {
 		"/sms/send"
-		, "/apply"
+		, "/register"
 		, "/apply/complate"
 		, "/wxpay/scanpay/notify"
 		, "/wxpay/scanpay/pay"

@@ -12,9 +12,8 @@ public class AgentLogin extends BizAgentLogin<AgentLogin, BizAgentLoginCriteria>
 
 	private String smsCode;//短信验证码
 	private String validCode;//验证码
-	private String passwordNew;//新密码
-	private String passwordNewS;//确认新密码
-
+	private String password;
+	private String passwordConfirm;//确认新密码
 	/**
 	 *
 	 */
@@ -27,21 +26,21 @@ public class AgentLogin extends BizAgentLogin<AgentLogin, BizAgentLoginCriteria>
 	public void setSmsCode(String smsCode) {
 		this.smsCode = smsCode;
 	}
-
-	public String getPasswordNew() {
-		return passwordNew;
+	
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasswordNew(String passwordNew) {
-		this.passwordNew = passwordNew;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getPasswordNewS() {
-		return passwordNewS;
+	public String getPasswordConfirm() {
+		return passwordConfirm;
 	}
 
-	public void setPasswordNewS(String passwordNewS) {
-		this.passwordNewS = passwordNewS;
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	public String getValidCode() {

@@ -21,7 +21,6 @@ import com.focustech.focus3d.agent.common.controller.CommonController;
 import com.focustech.focus3d.agent.filter.LoginFilter;
 import com.focustech.focus3d.agent.filter.RequestThreadLocal;
 import com.focustech.focus3d.agent.login.service.AgentLoginService;
-import com.focustech.focus3d.agent.message.service.MessageValidateService;
 import com.focustech.focus3d.agent.model.AgentLogin;
 import com.focustech.focus3d.agent.model.AgentResource;
 import com.focustech.focus3d.agent.model.MessageValidate;
@@ -37,8 +36,8 @@ import com.focustech.focus3d.agent.model.MessageValidate;
 public class LoginController extends CommonController{
 	@Autowired
 	private AgentLoginService<AgentLogin> agentLoginService;
-	@Autowired
-	private MessageValidateService<MessageValidate> messageValidateService;
+/*	@Autowired
+	private MessageValidateService<MessageValidate> messageValidateService;*/
 	@Value(value = "${test.account}")
 	private String testAccount;
 	private int testAccountLoginCount = 0;
@@ -71,13 +70,13 @@ public class LoginController extends CommonController{
 		String smsCode = reqLogin.getSmsCode();
 		String validCode = reqLogin.getValidCode();
 		int status = 0;
-		if(StringUtils.isNotEmpty(loginName) && StringUtils.isNotEmpty(password) && StringUtils.isNotEmpty(smsCode) && StringUtils.isNotEmpty(validCode)){
+		if(StringUtils.isNotEmpty(loginName) && StringUtils.isNotEmpty(password) && StringUtils.isNotEmpty(validCode)){
 			boolean isTestAccount = isTestAccount(loginName, password, smsCode);
 			MessageValidate messageValidate = null;
 			if(!isTestAccount){
-				messageValidate = messageValidateService.selectByMobilePhone(loginName, smsCode);
+				//messageValidate = messageValidateService.selectByMobilePhone(loginName, smsCode);
 			}
-			if(messageValidate != null || isTestAccount){
+			if(isTestAccount){
 				//验证验证码是否正确
 				String sValidCode = TCUtil.sv(req.getSession().getAttribute("captcha"));
 				if(sValidCode.equalsIgnoreCase(validCode)){
@@ -95,9 +94,9 @@ public class LoginController extends CommonController{
 									view = redirect(agentResources.get(0).getResourceInterface());
 								}
 								//删除短信验证码
-								if(messageValidate != null){
+								/*if(messageValidate != null){
 									messageValidateService.setStatus(messageValidate, 0);
-								}
+								}*/
 								Integer loginTimes = TCUtil.iv(agentLogin.getLoginTimes());
 								agentLogin.setLoginTimes(++ loginTimes);
 								agentLogin.setLastLoginTime(new Date());
@@ -158,23 +157,6 @@ public class LoginController extends CommonController{
 			}
 		}
 		return isTestAccount;
-	}
-	/**
-	 *
-	 * *
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test(ModelMap modelMap){
-		String digest = MD5Util.MD5Encode("123456", "");
-		AgentLogin login = new AgentLogin();//z1xD2KBrMt8Xah3mi6wLZO5k43vO5p6S
-		login.setLoginName("13451836990");
-		login.setPassword(digest);
-		login.setUserId(-1L);
-		login.setStatus(1);
-		//agentLoginService.insert(login);
-		return "/login";
 	}
 
 	public String getTestAccount() {
