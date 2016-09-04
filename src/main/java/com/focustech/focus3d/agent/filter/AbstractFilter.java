@@ -18,7 +18,7 @@ public class AbstractFilter implements Filter {
 	public static final String SESSION_KEY = "loginInfo";
 	public static final String LOGIN_PAGE_NAME = "login";
 	//静态目录
-	protected static String[] STATIC_FILE_DIR = new String[]{"index.html", "css", "style", "images", "fileUpload", "fonts", "font-awesome", "script", "js", "html"};
+	protected static String[] STATIC_FILE_DIR = new String[]{"/index.html", "css", "style", "images", "fileUpload", "fonts", "font-awesome", "script", "js", "html"};
 	//动态链接
 	protected static final String[] DYNAMIC_RESOURCES = {
 		"/index"
@@ -46,7 +46,7 @@ public class AbstractFilter implements Filter {
 		boolean flag = false;
 		servletUrl = servletUrl.toLowerCase();
 		for(String dir : STATIC_FILE_DIR){
-			if(servletUrl.startsWith("/" + dir)){
+			if(servletUrl.startsWith("/" + dir) || servletUrl.startsWith(dir)){
 				flag = true;
 				break;
 			}
