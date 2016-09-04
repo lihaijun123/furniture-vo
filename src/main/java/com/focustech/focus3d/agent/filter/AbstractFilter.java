@@ -1,8 +1,6 @@
 package com.focustech.focus3d.agent.filter;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,24 +15,68 @@ import javax.servlet.ServletResponse;
  *
  */
 public class AbstractFilter implements Filter {
-	//静态文件目录
-	protected static String[] STATIC_FILE_DIR = new String[]{"css", "style", "images", "fileUpload", "fonts", "font-awesome", "script", "js", "html"};
+	public static final String SESSION_KEY = "loginInfo";
+	public static final String LOGIN_PAGE_NAME = "login";
+	//静态目录
+	protected static String[] STATIC_FILE_DIR = new String[]{"index.html", "css", "style", "images", "fileUpload", "fonts", "font-awesome", "script", "js", "html"};
+	//动态链接
+	protected static final String[] DYNAMIC_RESOURCES = {
+		"/index"
+		,"/sms/send"
+		, "/register*"
+		, "/apply/complate"
+		, "/wxpay/scanpay/notify"
+		, "/wxpay/scanpay/pay"
+		, "/agent/rpc/search"
+		, "/alipayh5/notifyCallback"
+		, "/alipayh5/returnCallback"
+		, "/ylpay/backCallback"
+		, "/ylpay/frontCallback"
+		, "/captchas/*"
+		, "/" + LOGIN_PAGE_NAME
+		, "/logout"
+	};
 	/**
-	 * 是否是静态资源url
+	 * 
 	 * *
-	 * @param url
+	 * @param servletUrl
 	 * @return
 	 */
-	protected boolean isStaticResourceUrl(String url){
-		url = url.toLowerCase();
+	public boolean isStaticResourceUrl(String servletUrl){
+		boolean flag = false;
+		servletUrl = servletUrl.toLowerCase();
 		for(String dir : STATIC_FILE_DIR){
-			if(url.startsWith("/" + dir)){
-				Pattern pattern = Pattern.compile("^/" + dir + "(/?([a-zA-Z]|[0-9]|[-]|[_]|[.])+)+");
-				Matcher matcher = pattern.matcher(url);
-				return !matcher.matches();
+			if(servletUrl.startsWith("/" + dir)){
+				flag = true;
+				break;
 			}
 		}
-		return false;
+		return flag;
+	}
+	/**
+	 * 是否是不需要登录的url
+	 * *
+	 * @param servletPath
+	 * @return
+	 */
+	public boolean isNotNeedAuthCheckUrl(String servletPath){
+		boolean flag = isStaticResourceUrl(servletPath);
+		if(!flag){
+			for(String resource : DYNAMIC_RESOURCES){
+				if(resource.endsWith("*")){
+					String substring = resource.substring(0, resource.indexOf("*"));
+					if(servletPath.startsWith(substring)){
+						flag = true;
+						break;
+					}
+				} else if(servletPath.equalsIgnoreCase(resource)){
+					flag = true;
+					break;
+				}
+			}
+		}
+	
+		return flag;
 	}
 	@Override
 	public void destroy() {

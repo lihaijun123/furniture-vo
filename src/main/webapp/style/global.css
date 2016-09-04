@@ -1,14 +1,19 @@
 @charset "utf-8"
 /* Css Document */
 *{margin:0;padding:0;}
-body{line-height:1;font:12px '微软雅黑','Arial';}
+body{line-height:1;color:#676767;font:12px '微软雅黑','Arial';margin:0 atuo;padding:0;}
 ul,ol,dl{list-style:none;}
 img{vertical-align:middle;border:0;}
+
+/*去除链接虚线 */
+a {blr:expression(this.onFocus=this.blur());}
+a {outline: none;}
+a:focus {outline: none;}
 
 /* 链接 */
 a{cursor:pointer;color:#333;}
 a:link,a:visited{text-decoration:none;}
-a:hover{color:#9c2f35;}
+a:hover{color:#fff;}
 
 /* 布局 */
 .dis_inb{display:inline-block;*display:inline;*zoom:1;vertical-align:top;letter-spacing:normal;}
@@ -31,6 +36,7 @@ a:hover{color:#9c2f35;}
 .text_r{ text-align:right;}
 
 /* 间距 */
+.mar0{margin:0px; padding:0px;}
 .mar_t20{ margin-top:20px;}
 .mar_t10{ margin-top:10px;}
 .mar_b20{ margin-bottom:20px;}
@@ -44,11 +50,15 @@ a:hover{color:#9c2f35;}
 .font_s20{font-size:20px;}
 .black{ color:#000;}
 .red{color:#F00}
-.blue{color:#00C;}
+.blue{color:#00468e;}
 .white{color:#fff;}
 .font_weight{font-weight:bold;}
 .line-h25{ line-height:25px;}
 
 /*字体宽度*/
-.w100{widht:100px;}
+.w100{width:100px;}
+.w4{ width:340px;}
 
+.pad_r15{padding-right:15px;}
+.pad_l15{padding-left:15px;}
+.pad_r10{padding-right:10px;}

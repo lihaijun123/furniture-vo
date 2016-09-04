@@ -17,7 +17,8 @@ public class IndexController extends CommonController{
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap modelMap){
-		String userResourceOfFirst = getUserResourceOfFirst();
-		return redirect(userResourceOfFirst);
+		//String userResourceOfFirst = getUserResourceOfFirst();
+		//return redirect(userResourceOfFirst);
+		return "/home/index";
 	}
 }
