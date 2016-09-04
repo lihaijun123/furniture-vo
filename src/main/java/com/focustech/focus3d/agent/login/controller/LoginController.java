@@ -89,7 +89,7 @@ public class LoginController extends CommonController{
 								/*List<AgentResource> agentResources = getUserResourceList();
 								if(ListUtils.isNotEmpty(agentResources)){
 								}*/
-								view = redirect("/account");
+								view = redirect("/user");
 								//删除短信验证码
 								/*if(messageValidate != null){
 									messageValidateService.setStatus(messageValidate, 0);
@@ -120,8 +120,8 @@ public class LoginController extends CommonController{
 			} else {
 				msg = "用户名或者密码错误";
 			}
+			modelMap.addAttribute("message", msg);
 		}
-		modelMap.addAttribute("message", msg);
 		return view;
 	}
 	/**

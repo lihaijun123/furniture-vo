@@ -2,7 +2,6 @@ package com.focustech.focus3d.agent.filter;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
@@ -12,27 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.focustech.cief.cop.ws.auth.Auth;
 import com.focustech.cief.cop.ws.auth.AuthHolder;
-import com.focustech.focus3d.agent.auth.service.AgentResourceService;
-import com.focustech.focus3d.agent.auth.service.AgentRoleResourceService;
-import com.focustech.focus3d.agent.auth.service.AgentUserRoleService;
 import com.focustech.focus3d.agent.model.AgentLogin;
-import com.focustech.focus3d.agent.model.AgentResource;
-import com.focustech.focus3d.agent.model.AgentRoleResource;
-import com.focustech.focus3d.agent.model.AgentUserRole;
 /**
  *
  * *
  * @author lihaijun
  *
  */
-public class LoginFilter implements Filter {
+public class LoginFilter extends AbstractFilter {
 	public static final String SESSION_KEY = "loginInfo";
 	public static final String LOGIN_PAGE_NAME = "login";
-	public static final String[] STATIC_RESOURCES = {"script", "images", "style", "fonts", "monitor.html", "index.html", "html", "favicon.ico"};
 	public static final String[] DYNAMIC_RESOURCES = {
 		"/sms/send"
 		, "/register*"
@@ -49,12 +39,12 @@ public class LoginFilter implements Filter {
 	};
 	public static Auth auth = new Auth();
 
-	@Autowired
+	/*@Autowired
 	private AgentUserRoleService<AgentUserRole> agentUserRoleService;
 	@Autowired
 	private AgentRoleResourceService<AgentRoleResource> agentRoleResourceService;
 	@Autowired
-	private AgentResourceService<AgentResource> agentResourceService;
+	private AgentResourceService<AgentResource> agentResourceService;*/
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain fc) throws IOException, ServletException {
@@ -64,14 +54,14 @@ public class LoginFilter implements Filter {
 		Object sessinObj = session.getAttribute(SESSION_KEY);
 		String servletPath = request.getServletPath();
 		boolean isPass = false;
-		if(isIncludePassPath(servletPath)){
+		if(isNotNeedLoginUrl(servletPath)){
 			isPass = true;
 		} else {
 			if(sessinObj == null) {
 				response.sendRedirect("/" + LOGIN_PAGE_NAME);
 			} else {
 				RequestThreadLocal.setLoginInfo(sessinObj);
-				isPass = isIncludeAuthPath(servletPath, sessinObj);
+				isPass = isAuthedUrl(servletPath, sessinObj);
 			}
 		}
 		if(isPass){
@@ -85,12 +75,12 @@ public class LoginFilter implements Filter {
 		}
 	}
 	/**
-	 * 是否已经授权了访问的菜单
+	 * 是否已经授权了的url
 	 * *
 	 * @param servletPath
 	 * @return
 	 */
-	public boolean isIncludeAuthPath(String servletPath, Object sessinObj){
+	public boolean isAuthedUrl(String servletPath, Object sessinObj){
 		boolean isPass = false;
 		if(sessinObj != null) {
 			//登录用户验证功能菜单权限
@@ -121,22 +111,17 @@ public class LoginFilter implements Filter {
 		return isPass;
 	}
 	/**
-	 *
+	 * 是否是不需要登录的url
 	 * *
 	 * @param servletPath
 	 * @return
 	 */
-	public boolean isIncludePassPath(String servletPath){
+	public boolean isNotNeedLoginUrl(String servletPath){
 		boolean flag = false;
 		if(servletPath.equalsIgnoreCase("/" + LOGIN_PAGE_NAME)){
 			flag = true;
 		} else {
-			for(String resource : STATIC_RESOURCES){
-				if(servletPath.equalsIgnoreCase("/" + resource)){
-					flag = true;
-					break;
-				}
-			}
+			flag = isStaticResourceUrl(servletPath);
 			if(!flag){
 				for(String resource : DYNAMIC_RESOURCES){
 					if(resource.endsWith("*")){
@@ -155,18 +140,10 @@ public class LoginFilter implements Filter {
 		return flag;
 	}
 
-
-
-	@Override
-	public void destroy() {
-
-	}
-
 	@Override
 	public void init(FilterConfig fcg) throws ServletException {
 		auth.setUsername("system");
 		auth.setUserSn(-1L);
 		auth.setFromSubSystem("focus3d_agent");
 	}
-
 }

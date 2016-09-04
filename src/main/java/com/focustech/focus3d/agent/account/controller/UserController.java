@@ -30,8 +30,8 @@ import com.focustech.focus3d.agent.user.service.AgentUserService;
  *
  */
 @Controller
-@RequestMapping(value = "/account")
-public class AccountController extends CommonController{
+@RequestMapping(value = "/user")
+public class UserController extends CommonController{
 	@Autowired
 	private AgentUserService<AgentUser> agentUserService;
 	@Autowired
@@ -47,10 +47,9 @@ public class AccountController extends CommonController{
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(ModelMap modelMap){
-		return redirect("/account/baseinfo");
+	public String home(ModelMap modelMap){
+		return "/user/home";
 	}
-
 	/**
 	 *
 	 * *
@@ -136,7 +135,7 @@ public class AccountController extends CommonController{
 		}
 		return view;
 	}
-
+	
 	/**
 	 *
 	 * *
