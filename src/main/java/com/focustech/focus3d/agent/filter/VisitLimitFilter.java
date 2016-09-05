@@ -54,18 +54,18 @@ public class VisitLimitFilter extends AbstractFilter {
 	 */
 	public boolean validateStaticResource(String url, HttpServletRequest request){
 		boolean flag = true;
-		int make = 0;
+		int type = 0;
 		url = url.toLowerCase();
 		for(String dir : STATIC_FILE){
 			if(url.startsWith("/" + dir)){
 				Pattern pattern = Pattern.compile("^/" + dir + "(/?([a-zA-Z]|[0-9]|[-]|[_]|[.])+)+");
 				Matcher matcher = pattern.matcher(url);
 				flag = matcher.matches();
-				make = 1;
+				type = 1;
 				break;
 			}
 		}
-		request.setAttribute("resourceType", make);
+		request.setAttribute("resourceType", type);
 		return flag;
 	}
 }
