@@ -151,6 +151,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	</servlet-mapping>
 	<servlet-mapping>
 	    <servlet-name>resin-file</servlet-name>
+	    <url-pattern>/htmlhome/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>resin-file</servlet-name>
 	    <url-pattern>/monitor.html</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>

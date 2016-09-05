@@ -4,8 +4,8 @@
 .float_r{ float:right}
 .float_c{margin:0 auto;padding:0 auto;}
 
-.clearfix:after{content:"."; display:block; height:0;clear:both; visibility:hidden;}
-.clearfix{display:inline-block;}
+
+
 .clr{clear:both;padding:0ox;margin:0px;overflow:hidden;width:100%;height:1px;font-size:0px; line-height:0px;}
 .column{display:block;float:left;}/*列*/
 .colgroup{float:left;width:100%}/*组*/

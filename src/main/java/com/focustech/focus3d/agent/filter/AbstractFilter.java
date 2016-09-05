@@ -18,7 +18,7 @@ public class AbstractFilter implements Filter {
 	public static final String SESSION_KEY = "loginInfo";
 	public static final String LOGIN_PAGE_NAME = "login";
 	//静态目录
-	protected static String[] STATIC_FILE_DIR = new String[]{"/index.html", "css", "style", "images", "fileUpload", "fonts", "font-awesome", "script", "js", "html"};
+	protected static String[] STATIC_FILE_DIR = new String[]{"/index.html", "css", "style", "images", "fileUpload", "fonts", "font-awesome", "script", "js", "html", "htmlhome"};
 	//动态链接
 	protected static final String[] DYNAMIC_RESOURCES = {
 		"/index"
