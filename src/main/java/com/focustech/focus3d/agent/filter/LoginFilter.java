@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.focustech.cief.cop.ws.auth.Auth;
 import com.focustech.cief.cop.ws.auth.AuthHolder;
+import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.model.AgentLogin;
 /**
  *
@@ -21,7 +22,26 @@ import com.focustech.focus3d.agent.model.AgentLogin;
  *
  */
 public class LoginFilter extends AbstractFilter {
-	
+	public static final String SESSION_KEY = "loginInfo";
+	public static final String LOGIN_PAGE_NAME = "login";
+	//动态链接
+	protected static final String[] DYNAMIC_RESOURCES = {
+		"/index.html"
+		,"/index"
+		,"/sms/send"
+		, "/register*"
+		, "/apply/complate"
+		, "/wxpay/scanpay/notify"
+		, "/wxpay/scanpay/pay"
+		, "/agent/rpc/search"
+		, "/alipayh5/notifyCallback"
+		, "/alipayh5/returnCallback"
+		, "/ylpay/backCallback"
+		, "/ylpay/frontCallback"
+		, "/captchas/*"
+		, "/" + LOGIN_PAGE_NAME
+		, "/logout"
+	};
 	public static Auth auth = new Auth();
 
 	/*@Autowired
@@ -39,7 +59,7 @@ public class LoginFilter extends AbstractFilter {
 		Object sessinObj = session.getAttribute(SESSION_KEY);
 		String servletPath = request.getServletPath();
 		boolean isPass = false;
-		if(isNotNeedAuthCheckUrl(servletPath)){
+		if(isNotNeedAuthCheckUrl(servletPath, request)){
 			isPass = true;
 		} else {
 			if(sessinObj == null) {
@@ -58,6 +78,32 @@ public class LoginFilter extends AbstractFilter {
 			response.setContentType("text/html;charset=utf-8");
 			response.getOutputStream().print("禁止访问");
 		}
+	}
+	
+	/**
+	 * 是否是不需要登录的url
+	 * *
+	 * @param servletPath
+	 * @return
+	 */
+	public boolean isNotNeedAuthCheckUrl(String servletPath, HttpServletRequest request){
+		int resourceType = TCUtil.iv(request.getAttribute("resourceType"));
+		boolean flag = (resourceType == 1);
+		if(!flag){
+			for(String resource : DYNAMIC_RESOURCES){
+				if(resource.endsWith("*")){
+					String substring = resource.substring(0, resource.indexOf("*"));
+					if(servletPath.startsWith(substring)){
+						flag = true;
+						break;
+					}
+				} else if(servletPath.equalsIgnoreCase(resource)){
+					flag = true;
+					break;
+				}
+			}
+		}
+		return flag;
 	}
 	/**
 	 * 是否已经授权了的url

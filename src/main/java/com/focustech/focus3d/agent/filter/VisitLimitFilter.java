@@ -17,12 +17,27 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public class VisitLimitFilter extends AbstractFilter {
+	//静态目录
+	protected static String[] STATIC_FILE = new String[]
+	{
+		"css"
+		, "style"
+		, "images"
+		, "fileUpload"
+		, "fonts"
+		, "font-awesome"
+		, "script"
+		, "js"
+		, "html"
+		, "htmlhome"
+	};
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc) throws ServletException, IOException {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse resp = (HttpServletResponse)response;
 		String url = req.getRequestURI();
-		boolean isLimitVisitUrl = isStaticResourceUrl(url);
+		//只验证静态资源
+		boolean isLimitVisitUrl = validateStaticResource(url, req);
 		if(!isLimitVisitUrl){
 			//静态资源非法访问
 			resp.setStatus(403);
@@ -37,16 +52,20 @@ public class VisitLimitFilter extends AbstractFilter {
 	 * @param url
 	 * @return
 	 */
-	public boolean isStaticResourceUrl(String url){
+	public boolean validateStaticResource(String url, HttpServletRequest request){
 		boolean flag = true;
+		int make = 0;
 		url = url.toLowerCase();
-		for(String dir : STATIC_FILE_DIR){
+		for(String dir : STATIC_FILE){
 			if(url.startsWith("/" + dir)){
 				Pattern pattern = Pattern.compile("^/" + dir + "(/?([a-zA-Z]|[0-9]|[-]|[_]|[.])+)+");
 				Matcher matcher = pattern.matcher(url);
 				flag = matcher.matches();
+				make = 1;
+				break;
 			}
 		}
+		request.setAttribute("resourceType", make);
 		return flag;
 	}
 }
