@@ -27,6 +27,10 @@ public class LoginFilter extends AbstractFilter {
 	//动态链接
 	protected static final String[] DYNAMIC_RESOURCES = {
 		"/index.html"
+		,"/monitor.html"
+		,"/crossdomain.xml"
+		,"/cross-domain-policy.xml"
+		,"/cross-domain-policy.dtd"
 		,"/index"
 		,"/sms/send"
 		, "/register*"

@@ -155,6 +155,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	</servlet-mapping>
 	<servlet-mapping>
 	    <servlet-name>resin-file</servlet-name>
+	    <url-pattern>/unity3d/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>resin-file</servlet-name>
 	    <url-pattern>/monitor.html</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -164,6 +168,18 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<servlet-mapping>
 	    <servlet-name>resin-file</servlet-name>
 	    <url-pattern>/index.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>resin-file</servlet-name>
+	    <url-pattern>/crossdomain.xml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>resin-file</servlet-name>
+	    <url-pattern>/cross-domain-policy.xml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>resin-file</servlet-name>
+	    <url-pattern>/cross-domain-policy.dtd</url-pattern>
 	</servlet-mapping>
 	 <session-config>
  		<session-timeout>30</session-timeout>

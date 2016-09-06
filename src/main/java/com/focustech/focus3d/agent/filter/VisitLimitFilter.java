@@ -30,6 +30,7 @@ public class VisitLimitFilter extends AbstractFilter {
 		, "js"
 		, "html"
 		, "htmlhome"
+		, "unity3d"
 	};
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc) throws ServletException, IOException {
