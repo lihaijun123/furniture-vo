@@ -1,5 +1,94 @@
-﻿  #set($layout="layout/layout_home.html")
-  
+﻿#set($layout="layout/layout_home.html")
+<style type="text/css">
+		<!--
+		body {
+			font-family: Helvetica, Verdana, Arial, sans-serif;
+			background-color: white;
+			color: black;
+			text-align: center;
+		}
+		a:link, a:visited {
+			color: #000;
+		}
+		a:active, a:hover {
+			color: #666;
+		}
+		p.header {
+			font-size: small;
+		}
+		p.header span {
+			font-weight: bold;
+		}
+		p.footer {
+			font-size: x-small;
+		}
+		div.broken,
+		div.missing {
+			margin: auto;
+			position: relative;
+			top: 50%;
+			width: 193px;
+		}
+		div.broken a,
+		div.missing a {
+			height: 63px;
+			position: relative;
+			top: -31px;
+		}
+		div.broken img,
+		div.missing img {
+			border-width: 0px;
+		}
+		div.broken {
+			display: none;
+		}
+		-->
+		</style>
+		
+<div class="container float_c mar_b20">
+	<div class="row">
+		<div class="col-sm-8">
+		    <div class="in_unity float_l">
+		    	<div class="content">
+					<div id="unityPlayer">
+						<div class="missing">
+							<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+								<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+							</a>
+						</div>
+						<div class="broken">
+							<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install.">
+								<img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" />
+							</a>
+						</div>
+					</div>
+				</div>
+		    </div>
+		</div>
+		<div class="col-sm-4">
+		    <div class="in_sjll float_r">
+			    <div class="bs-example bs-example-tabs mar0">
+				    <ul id="myTab" class="nav nav-tabs" role="tablist">
+				      <li role="presentation" class="active"><a href="#sjll" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">设计理念</a></li>
+				      <li class="" role="presentation"><a aria-expanded="false" href="#cpqd" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">产品清单</a></li>
+				      
+				    </ul>
+				    <div id="myTabContent" class="tab-content">
+				      <div role="tabpanel" class="tab-pane fade active in" id="sjll" aria-labelledby="home-tab">
+				        <p><img src="/images/5.png" class="img-responsive"/></p>
+				      </div>
+				      <div role="tabpanel" class="tab-pane fade" id="cpqd" aria-labelledby="profile-tab">
+				        <p>459</p>
+				      </div>
+				      
+				    </div>
+			   </div>
+		    </div>
+		
+		
+		</div>
+	</div>
+  <div class="clr"></div>
   <div class="in_case mar_t20">
     <div class="col-md-2 mar0"><img src="/images/incase.png" width="180" height="252"/></div>
     <div class="col-md-10 in_case_list mar0">
@@ -38,3 +127,7 @@
     </div>
   </div>
 </div>
+<script type="text/javascript" src="/script/UnityObject2.js"></script>
+<script type="text/javascript" src="/script/home/unityobject_size.js"></script>
+<script type="text/javascript" src="/script/home/index.js"></script>
+
