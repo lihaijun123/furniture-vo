@@ -11,13 +11,13 @@ window.onresize = function(){
 
 $(function() {
 	$(".in_top a:eq(2)").click(function(){
-		$(".in_sjll").hide();
-		$(".in_case").hide();
+		$(".in_sjll").fadeOut(1000);
+		$(".in_case").fadeOut(1000);
 		$("#unityPlayer").fullScreenSize();
 	});
 	$(".in_top a:eq(3)").click(function(){
-		$(".in_sjll").show();
-		$(".in_case").show();
+		$(".in_sjll").fadeIn(1000);
+		$(".in_case").fadeIn(1000);
 		$("#unityPlayer").initSize();
 	});
 	//alert("width:" + upW + ",height:" + window.innerHeight);
