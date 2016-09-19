@@ -16,7 +16,7 @@ public class Generate {
 	 */
 	public static void main(String[] args) throws Exception{
 		//String projectPath = System.getProperty("user.dir");
-		String projectPath = "F:\\cief_workspace_focus3d_portals3\\focus3d-agent";
+		String projectPath = "F:\\furniture_workspace\\furniture\\furniture-vo";
 		Focus3dGenerate.generate(projectPath);
 	}
 }

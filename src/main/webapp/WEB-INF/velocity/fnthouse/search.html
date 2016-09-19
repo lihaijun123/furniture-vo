@@ -1,0 +1,87 @@
+#set($layout="layout/layout_empty.html")
+
+<div class="container">
+
+<form class="form-inline" role="form">
+	
+  <div class="form-group">
+	<select  class="form-control" id="province" name="province" value1="全国">
+		<option></option>
+ 	</select>
+	<select  class="form-control" id="city" name="city" value1="" style="display: none;">
+		<option></option>
+	</select>
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="keyword">关键字</label>
+    <input type="text" class="form-control" id="name" placeholder="请输入关键字">
+  </div>
+  <button type="submit" class="btn btn-default">搜索</button>
+  
+<div style="margin-top: 10px;">
+  <label for="name">类型</label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox1" value="option1">小区房
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox2" value="option2">别墅
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3">自建房
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3">两限房
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3">经适房
+  </label>
+</div>
+<div style="margin-top: 10px;">
+  <label for="name">面积 </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox1" value="option1">40㎡以下
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox2" value="option2">40-70㎡
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3">70-100㎡
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3">100-140㎡
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3">140㎡以上
+  </label>
+</div>
+<div style="margin-top: 10px;">
+  <label for="name">户型 </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox1" value="option1">一居室
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox2" value="option2">两居室
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3">三居室
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3">四居室
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3">五居室
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3">五居室以上
+  </label>
+</div>
+</form>
+</div>
+<script src="/script/province_city.js"></script>
+<script>
+	$(function(){
+		var province = $("#province").attr("value1")=="" ? "请选择" : $("#province").attr("value1");
+		var city = $("#city").attr("value1")=="" ? "请选择" : $("#city").attr("value1");
+	   	setup(province, city);
+	});
+</script>

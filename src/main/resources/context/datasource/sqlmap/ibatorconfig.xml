@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE ibatorConfiguration PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN" "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd" >
 <ibatorConfiguration>
-	<classPathEntry location="F:\cief_ws_workspace\ibator\lib\mysql-connector-java-5.1.16.jar"/>
+	<classPathEntry location="F:\furniture_workspace\resin-3.0.25_ptl\lib\mysql-connector-java-5.0.4-bin.jar"/>
 	<ibatorContext id="context1">
 		<ibatorPlugin
 			type="org.apache.ibatis.ibator.plugins.RenameExampleClassPlugin">
@@ -9,19 +9,19 @@
 			<property name="replaceString" value="Criteria"/>
 		</ibatorPlugin>
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://192.168.52.158:3307/focus3d_04_dev?useUnicode=true&amp;characterEncoding=UTF-8"
-			userId="root" password="ve123" />
+			connectionURL="jdbc:mysql://139.196.173.139:3306/furniture?useUnicode=true&amp;characterEncoding=UTF-8"
+			userId="root" password="unity" />
 		<javaModelGenerator targetPackage="com.focustech.focus3d.agent.model.ibator"
-			targetProject="focus3d-agent/src/main/java/" />
+			targetProject="furniture-vo/src/main/java/" />
 		<sqlMapGenerator targetPackage="context.datasource.sqlmap"
-			targetProject="focus3d-agent/src/main/resources/" />
+			targetProject="furniture-vo/src/main/resources/" />
 		<daoGenerator targetPackage="com.focustech.focus3d.agent.dao"
-			targetProject="focus3d-agent/src/main/java/" type="SPRING" >
+			targetProject="furniture-vo/src/main/java/" type="SPRING" >
 
 		</daoGenerator>
 
 
-		<table schema="ibatis" tableName="biz_agent_order_logtc"
+		<table schema="ibatis" tableName="fnt_house"
 			enableCountByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" enableUpdateByExample="true">
 			<generatedKey column="SN" sqlStatement="select last_insert_id()"

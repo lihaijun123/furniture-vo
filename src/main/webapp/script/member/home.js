@@ -1,5 +1,4 @@
 $(function(){
-	//xuxuegang vo里头部的二级菜单
 	var menuList = ['voexhibitions','vofunction_room','voexhibition_order','vohelp'];
 	for(var i = 0;i<menuList.length;i++){
 		(function(el){

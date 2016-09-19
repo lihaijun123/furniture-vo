@@ -27,5 +27,7 @@
 		<sqlMap resource="context/datasource/sqlmap/custom/c_agent_product_SqlMap.xml"/>
 		<!-- 菜单管理 -->
 		<sqlMap resource="context/datasource/sqlmap/custom/c_menu_tree_SqlMap.xml"/>
+		<!-- 户型 -->
+		<sqlMap resource="context/datasource/sqlmap/fnt_house_SqlMap.xml"/>
 		
 </sqlMapConfig>

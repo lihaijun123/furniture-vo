@@ -8,7 +8,7 @@ var config = {
 window.onresize = function(){
 	$("#unityPlayer").initSize();
 }
-
+var dialogObj;
 $(function() {
 	$(".in_top a:eq(2)").click(function(){
 		$(".in_sjll").fadeOut(1000);
@@ -20,6 +20,17 @@ $(function() {
 		$(".in_case").fadeIn(1000);
 		$("#unityPlayer").initSize();
 	});
+	
+	$(".in_top a:eq(4)").click(function(){
+		dialogObj = $("#dialog-listLk" ).dialog({
+		      resizable: true,
+		      height:$(".in_top").width() - 500,
+		      width:$(".in_top").width() - 200,
+		      modal: true
+		  });
+	});
+	
+	
 	//alert("width:" + upW + ",height:" + window.innerHeight);
 	$("#unityPlayer").initSize();
 	//alert("width:" + $("#unityPlayer").width() + ",height:" + $("#unityPlayer").height());
