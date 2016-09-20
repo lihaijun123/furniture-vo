@@ -111,7 +111,8 @@
 	   		var js = {};
 	   		js["url"] = url;
 	   		js["version"] = version;
-	   		window.parent.houseSelect_dialogCallbak(js);
+	   		var rv = '{"url":"' + url + '","version":' + version + '}';
+	   		window.parent.houseSelect_dialogCallbak(rv);
 	   	});
 	});
 </script>
