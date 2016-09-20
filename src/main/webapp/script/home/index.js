@@ -37,7 +37,10 @@ $(function() {
 });
 //打开户型选择窗口
 function houseSelect_dialogOpen(){
-	$("iframe").attr("src", "/fnthouse/search");
+	if(dialogObj){
+		dialogObj = null;
+	}
+	//$("iframe").attr("src", "/fnthouse/search");
 	dialogObj = $("#dialog-listLk" ).dialog({
 	      resizable: true,
 	      height:$(".in_top").width() - 500,
