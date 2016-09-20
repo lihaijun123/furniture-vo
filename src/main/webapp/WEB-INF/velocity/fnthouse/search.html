@@ -107,7 +107,7 @@
 	   	//返回值给父窗口
 	   	$("a[id^='house_select_']").click(function(){
 	   		var url = $(this).attr("val");
-	   		var version = $(this).attr("version");
+	   		var version = parseInt($(this).attr("version"));
 	   		var js = {};
 	   		js["url"] = url;
 	   		js["version"] = version;

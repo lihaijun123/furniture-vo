@@ -22,7 +22,6 @@ $(function() {
 	});
 	
 	$("#houseDialogLk").click(function(){
-		$("iframe").attr("src", "/fnthouse/search");
 		houseSelect_dialogOpen();
 	});
 	
@@ -38,6 +37,7 @@ $(function() {
 });
 //打开户型选择窗口
 function houseSelect_dialogOpen(){
+	$("iframe").attr("src", "/fnthouse/search");
 	dialogObj = $("#dialog-listLk" ).dialog({
 	      resizable: true,
 	      height:$(".in_top").width() - 500,
@@ -47,14 +47,15 @@ function houseSelect_dialogOpen(){
 }
 //户型选择框返回的url
 function houseSelect_dialogCallbak(jsonStr){
-	alert("户型选择框返回的url:" + jsonStr);
+	//alert("户型选择框返回的url:" + jsonStr);
 	if(dialogObj){
 		dialogObj.dialog("close");
 	}
+	LoadUnit(jsonStr);
 }
-
+var u;
 function createUnityObject(){
-	var u = new UnityObject2(config);
+	u = new UnityObject2(config);
 	var $missingScreen = jQuery("#unityPlayer").find(".missing");
 	var $brokenScreen = jQuery("#unityPlayer").find(".broken");
 	$missingScreen.hide();
@@ -86,5 +87,9 @@ function createUnityObject(){
 			break;
 		}
 	});
-	u.initPlugin(jQuery("#unityPlayer")[0], "/unity3d/fru.unity3d");
+	u.initPlugin(jQuery("#unityPlayer")[0], "/unity3d/fru.unity3d?v=3");
+}
+
+function LoadUnit(json){
+	u.getUnity().SendMessage("control","LoadUnitAssetBundle",json);
 }
