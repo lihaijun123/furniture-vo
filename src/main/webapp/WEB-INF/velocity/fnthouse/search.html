@@ -2,7 +2,7 @@
 
 <div class="container">
 
-<form class="form-inline" role="form">
+<form class="form-inline" role="form" action="/fnthouse/search" method="post">
 	
   <div class="form-group">
 	<select  class="form-control" id="province" name="province" value1="全国">
@@ -14,68 +14,88 @@
   </div>
   <div class="form-group">
     <label class="sr-only" for="keyword">关键字</label>
-    <input type="text" class="form-control" id="name" placeholder="请输入关键字">
+    <input type="text" class="form-control" id="keyWord" name="keyWord" placeholder="请输入关键字">
   </div>
   <button type="submit" class="btn btn-default">搜索</button>
   
 <div style="margin-top: 10px;">
   <label for="name">类型</label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox1" value="option1">小区房
+    <input type="checkbox" id="type1" name="type" value="1">小区房
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox2" value="option2">别墅
+    <input type="checkbox" id="type2" name="type" value="2">别墅
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3">自建房
+    <input type="checkbox" id="type3" name="type" value="3">自建房
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3">两限房
+    <input type="checkbox" id="type4" name="type" value="4">两限房
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3">经适房
+    <input type="checkbox" id="type5" name="type" value="5">经适房
   </label>
 </div>
 <div style="margin-top: 10px;">
   <label for="name">面积 </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox1" value="option1">40㎡以下
+    <input type="checkbox" id="areaRange1" name="areaRange" value="0-40">40㎡以下
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox2" value="option2">40-70㎡
+    <input type="checkbox" id="areaRange2" name="areaRange" value="40-70">40-70㎡
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3">70-100㎡
+    <input type="checkbox" id="areaRange3" name="areaRange" value="70-100">70-100㎡
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3">100-140㎡
+    <input type="checkbox" id="areaRange4" name="areaRange" value="100-140">100-140㎡
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3">140㎡以上
+    <input type="checkbox" id="areaRange5" name="areaRange" value="140-9999">140㎡以上
   </label>
 </div>
 <div style="margin-top: 10px;">
   <label for="name">户型 </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox1" value="option1">一居室
+    <input type="checkbox" id="roomType1" name="roomType" value="1">一居室
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox2" value="option2">两居室
+    <input type="checkbox" id="roomType2" name="roomType"  value="2">两居室
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3">三居室
+    <input type="checkbox" id="roomType3" name="roomType"  value="3">三居室
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3">四居室
+    <input type="checkbox" id="roomType4" name="roomType" value="4">四居室
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3">五居室
+    <input type="checkbox" id="roomType5" name="roomType"  value="5">五居室
   </label>
   <label class="checkbox-inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3">五居室以上
+    <input type="checkbox" id="roomType6" name="roomType" value="6">五居室以上
   </label>
 </div>
 </form>
+
+<div class="row" style="margin-top: 50px;">
+	#foreach($!house in $!list)
+    <div class="col-sm-6 col-md-3">
+         <div class="thumbnail">
+            <img  src="$!house.picFileUrl" alt="">
+            <div class="caption">
+                <h3>$!house.name</h3>
+                <p>$!house.area ㎡  $!house.roomNum室$!house.livingRoomNum厅</p>
+                <p>
+                    <a id="house_select_$!house.sn" val="$!house.modelFileUrl" href="#" class="btn btn-primary" role="button">
+                       	使用
+                    </a> 
+                </p>
+            </div>
+         </div>
+    </div>
+    #end
+</div>
+
 </div>
 <script src="/script/province_city.js"></script>
 <script>
@@ -83,5 +103,11 @@
 		var province = $("#province").attr("value1")=="" ? "请选择" : $("#province").attr("value1");
 		var city = $("#city").attr("value1")=="" ? "请选择" : $("#city").attr("value1");
 	   	setup(province, city);
+	   	
+	   	//返回值给父窗口
+	   	$("a[id^='house_select_']").click(function(){
+	   		var url = $(this).attr("val");
+	   		window.parent.houseSelect_dialogCallbak(url);
+	   	});
 	});
 </script>

@@ -29,7 +29,9 @@ import com.focustech.focus3d.agent.filter.RequestThreadLocal;
 import com.focustech.focus3d.agent.model.AgentLogin;
 import com.focustech.focus3d.agent.model.AgentResource;
 import com.focustech.focus3d.agent.model.AgentRoleResource;
+import com.focustech.focus3d.agent.model.AgentUser;
 import com.focustech.focus3d.agent.model.AgentUserRole;
+import com.focustech.focus3d.agent.user.service.AgentUserService;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -50,31 +52,35 @@ public abstract class CommonController {
 	private AgentRoleResourceService<AgentRoleResource> agentRoleResourceService;
 	@Autowired
 	private AgentResourceService<AgentResource> agentResourceService;
-
+	@Autowired
+	private AgentUserService<AgentUser> agentUserService;
 	@ModelAttribute
 	public void setAuthInfo(ModelMap modelMap){
-		List<AgentResource> resourceList = getUserResourceList();
-		modelMap.put("resourceList", resourceList);
+		AgentLogin currentLogin = RequestThreadLocal.getLoginInfo();
+		if(currentLogin != null){
+			Long userId = currentLogin.getUserId();
+			List<AgentResource> resourceList = getUserResourceList(userId);
+			modelMap.put("resourceList", resourceList);
+			AgentUser user = agentUserService.selectBySn(userId, AgentUser.class);
+			modelMap.put("user", user);
+		}
 	}
 	/**
 	 *
 	 * *
 	 * @return
 	 */
-	protected List<AgentResource> getUserResourceList() {
+	protected List<AgentResource> getUserResourceList(Long userId) {
 		List<AgentResource> resourceList = new ArrayList<AgentResource>();
-		AgentLogin currentLogin = RequestThreadLocal.getLoginInfo();
-		if(currentLogin != null){
-			Long userId = currentLogin.getUserId();
-			List<AgentUserRole> roles = agentUserRoleService.getListByUserId(userId);
-			if(ListUtils.isNotEmpty(roles)){
-				List<AgentRoleResource> resources = agentRoleResourceService.getListByRoleId(roles.get(0).getRoleSn());
-				for (AgentRoleResource agentRoleResource : resources) {
-					AgentResource resource = agentResourceService.selectBySn(agentRoleResource.getResourceSn(), AgentResource.class);
-					resourceList.add(resource);
-				}
+		List<AgentUserRole> roles = agentUserRoleService.getListByUserId(userId);
+		if(ListUtils.isNotEmpty(roles)){
+			List<AgentRoleResource> resources = agentRoleResourceService.getListByRoleId(roles.get(0).getRoleSn());
+			for (AgentRoleResource agentRoleResource : resources) {
+				AgentResource resource = agentResourceService.selectBySn(agentRoleResource.getResourceSn(), AgentResource.class);
+				resourceList.add(resource);
 			}
 		}
+	
 		Collections.sort(resourceList, new Comparator<AgentResource>() {
 			@Override
 			public int compare(AgentResource o1, AgentResource o2) {
@@ -95,7 +101,7 @@ public abstract class CommonController {
 	 */
 	protected String getUserResourceOfFirst(){
 		String rv = "";
-		List<AgentResource> userResourceList = getUserResourceList();
+		List<AgentResource> userResourceList = getUserResourceList(null);
 		if(ListUtils.isNotEmpty(userResourceList)){
 			rv = userResourceList.get(0).getResourceInterface();
 		}

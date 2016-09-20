@@ -22,6 +22,7 @@ $(function() {
 	});
 	
 	$(".in_top a:eq(4)").click(function(){
+		$("iframe").attr("src", "/fnthouse/search");
 		dialogObj = $("#dialog-listLk" ).dialog({
 		      resizable: true,
 		      height:$(".in_top").width() - 500,
@@ -41,7 +42,13 @@ $(function() {
 	*/
 	createUnityObject();
 });
-
+//户型选择框返回的url
+function houseSelect_dialogCallbak(unity3dUrl){
+	alert("户型选择框返回的url:" + unity3dUrl);
+	if(dialogObj){
+		dialogObj.dialog("close");
+	}
+}
 
 function createUnityObject(){
 	var u = new UnityObject2(config);

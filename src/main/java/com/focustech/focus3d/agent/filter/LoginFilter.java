@@ -45,6 +45,7 @@ public class LoginFilter extends AbstractFilter {
 		, "/captchas/*"
 		, "/" + LOGIN_PAGE_NAME
 		, "/logout"
+		//, "/fnthouse/*"
 	};
 	public static Auth auth = new Auth();
 
