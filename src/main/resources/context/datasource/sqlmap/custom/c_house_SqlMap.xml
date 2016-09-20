@@ -15,6 +15,7 @@
     <result column="LIVING_ROOM_NUM" jdbcType="INTEGER" property="livingRoomNum" />
     <result column="MODEL_NAME" jdbcType="VARCHAR" property="modelName" />
     <result column="MODEL_FILE_SN" jdbcType="BIGINT" property="modelFileSn" />
+    <result column="MODEL_FILE_VERSION" jdbcType="INTEGER" property="modelFileVersion" />
     <result column="BUILDING_NAME" jdbcType="VARCHAR" property="buildingName" />
     <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
     <result column="CITY" jdbcType="VARCHAR" property="city" />
@@ -32,7 +33,7 @@
   
   
   <select id="getFntHouseList"  resultMap="ibatorgenerated_BaseResultMap">
-	select SN, NAME, TYPE, AREA, PIC_FILE_SN, ROOM_NUM, LIVING_ROOM_NUM, MODEL_NAME, MODEL_FILE_SN,
+	select SN, NAME, TYPE, AREA, PIC_FILE_SN, ROOM_NUM, LIVING_ROOM_NUM, MODEL_NAME, MODEL_FILE_SN,MODEL_FILE_VERSION,
       BUILDING_NAME, PROVINCE, CITY, STREET, BUILDING_NO, STATUS, REMARK, ADDER_SN, ADDER_NAME,
       ADD_TIME, UPDATER_SN, UPDATER_NAME, UPDATE_TIME
     from fnt_house

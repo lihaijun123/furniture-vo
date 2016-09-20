@@ -15,7 +15,7 @@ Dsy.prototype.Exists = function(id)
 	return true;
 }
 
-function change(v){debugger;
+function change(v){
 	var str="0";
 	for(i=0;i<v;i++)
 	{

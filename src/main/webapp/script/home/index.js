@@ -32,6 +32,7 @@ $(function() {
 	});
 	
 	
+	
 	//alert("width:" + upW + ",height:" + window.innerHeight);
 	$("#unityPlayer").initSize();
 	//alert("width:" + $("#unityPlayer").width() + ",height:" + $("#unityPlayer").height());
@@ -42,6 +43,8 @@ $(function() {
 	*/
 	createUnityObject();
 });
+
+
 //户型选择框返回的url
 function houseSelect_dialogCallbak(unity3dUrl){
 	alert("户型选择框返回的url:" + unity3dUrl);

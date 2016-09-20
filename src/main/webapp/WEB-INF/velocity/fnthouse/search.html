@@ -86,7 +86,7 @@
                 <h3>$!house.name</h3>
                 <p>$!house.area ㎡  $!house.roomNum室$!house.livingRoomNum厅</p>
                 <p>
-                    <a id="house_select_$!house.sn" val="$!house.modelFileUrl" href="#" class="btn btn-primary" role="button">
+                    <a id="house_select_$!house.sn" val="$!house.modelFileUrl" version="$!house.modelFileVersion" href="#" class="btn btn-primary" role="button">
                        	使用
                     </a> 
                 </p>
@@ -107,7 +107,11 @@
 	   	//返回值给父窗口
 	   	$("a[id^='house_select_']").click(function(){
 	   		var url = $(this).attr("val");
-	   		window.parent.houseSelect_dialogCallbak(url);
+	   		var version = $(this).attr("version");
+	   		var js = {};
+	   		js["url"] = url;
+	   		js["version"] = version;
+	   		window.parent.houseSelect_dialogCallbak(js);
 	   	});
 	});
 </script>
