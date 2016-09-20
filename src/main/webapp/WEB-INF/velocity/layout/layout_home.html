@@ -11,8 +11,8 @@
 <link href="/style/global.css" rel="stylesheet" type="text/css">
 <link href="/style/stlye.css" rel="stylesheet" type="text/css" />
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <link rel="stylesheet" href="/style/jquery-ui.min.css">
+  <script src="/script/jquery-1.11.1.min.js"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,11 +28,11 @@
     <p class="float_l"><img src="/images/logo.png" width="191" height="86" /></p>
     <p class="float_r top_r_lj">
     	#if($!user.sn)
-    	<a href="/logout" class="lj">退出</a>
+    	<a href="/logout" class="lj"><span class="glyphicon glyphicon-log-out"></span>退出</a>
     	#else
     	<a href="/login" class="lj">登录</a>|<a href="/register">注册</a>
     	#end
-    	|<a  href="#"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>|<a href="#"><span class="glyphicon glyphicon-star"></span>收藏夹</a>|<a href="#"><span class="glyphicon glyphicon-star"></span>弹出层</a>
+    	|<a  href="#"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>|<a href="#"><span class="glyphicon glyphicon-star"></span>收藏夹</a>|<a id="houseDialogLk" href="#"><span class="glyphicon glyphicon-star"></span>弹出层</a>
     </p>
   </div>
 </div>
@@ -51,6 +51,6 @@
 </div>
 <!--footer end-->
 <script type="text/javascript" src="/script/bootstrap.min.js"></script>
-<script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<script src="/script/jquery-ui.min.js"></script>
 </body>
 </html>

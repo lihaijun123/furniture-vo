@@ -21,17 +21,10 @@ $(function() {
 		$("#unityPlayer").initSize();
 	});
 	
-	$(".in_top a:eq(4)").click(function(){
+	$("#houseDialogLk").click(function(){
 		$("iframe").attr("src", "/fnthouse/search");
-		dialogObj = $("#dialog-listLk" ).dialog({
-		      resizable: true,
-		      height:$(".in_top").width() - 500,
-		      width:$(".in_top").width() - 200,
-		      modal: true
-		  });
+		houseSelect_dialogOpen();
 	});
-	
-	
 	
 	//alert("width:" + upW + ",height:" + window.innerHeight);
 	$("#unityPlayer").initSize();
@@ -43,11 +36,18 @@ $(function() {
 	*/
 	createUnityObject();
 });
-
-
+//打开户型选择窗口
+function houseSelect_dialogOpen(){
+	dialogObj = $("#dialog-listLk" ).dialog({
+	      resizable: true,
+	      height:$(".in_top").width() - 500,
+	      width:$(".in_top").width() - 200,
+	      modal: true
+	 });
+}
 //户型选择框返回的url
-function houseSelect_dialogCallbak(unity3dUrl){
-	alert("户型选择框返回的url:" + unity3dUrl);
+function houseSelect_dialogCallbak(jsonStr){
+	alert("户型选择框返回的url:" + jsonStr);
 	if(dialogObj){
 		dialogObj.dialog("close");
 	}

@@ -65,6 +65,10 @@ public class LoginFilter extends AbstractFilter {
 		String servletPath = request.getServletPath();
 		boolean isPass = false;
 		if(isNotNeedAuthCheckUrl(servletPath, request)){
+			if("/index".equals(servletPath)){
+				//首页回话设置用户信息
+				RequestThreadLocal.setLoginInfo(sessinObj);
+			}
 			isPass = true;
 		} else {
 			if(sessinObj == null) {
