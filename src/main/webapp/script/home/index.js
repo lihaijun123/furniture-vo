@@ -40,7 +40,7 @@ function houseSelect_dialogOpen(){
 	if(dialogObj){
 		dialogObj = null;
 	}
-	//$("iframe").attr("src", "/fnthouse/search");
+	$("iframe").attr("src", "/fnthouse/search");
 	dialogObj = $("#dialog-listLk" ).dialog({
 	      resizable: true,
 	      height:$(".in_top").width() - 500,
@@ -94,6 +94,5 @@ function createUnityObject(){
 }
 
 function LoadUnit(json){
-	//u.getUnity().SendMessage("control","LoadUnitAssetBundle",json);
 	u.getUnity().SendMessage("control","LoadUnitAssetBundle", json);
 }
