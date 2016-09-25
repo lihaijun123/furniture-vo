@@ -49,6 +49,7 @@ public class LoginFilter extends AbstractFilter {
 		, "/logout"
 		, "/fnthouse/*"
 		, "/fntproduct/*"
+		, "/fntprodcate/*"
 	};
 	public static Auth auth = new Auth();
 

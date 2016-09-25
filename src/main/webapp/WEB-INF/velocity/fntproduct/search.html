@@ -39,29 +39,12 @@
 	font-size: large;
 }
 .bottom_div_2_content_detail{
-	background-color: yellow;
 	border: 2px solid ;
 	border-color:#AAAAAA;
 	position: absolute;
 }
 </style>
-<!-- <div class="bottom_div_2">
-	<div class="bottom_div_2_conent text-center">
-		灯具
-	</div>
-	<div class="line"></div>
-	<div class="bottom_div_2_conent text-center">
-		<a >灯饰照明</a>
-	</div>
-	<div class="line"></div>
-	<div class="bottom_div_2_conent text-center">
-		<a >饰品</a>
-	</div>
-	<div class="line"></div>
-	<div class="bottom_div_2_conent text-center">
-		<a id="type">家纺</a>
-	</div>
-</div> -->
+
 <div class="bottom_div_1">
 	<div class="bottom_div_1_content text-center">类别</div>
 	<div class="line"></div>
@@ -76,7 +59,6 @@
 <script>
 $(function(){
 	
-	
 	$(".bottom_div_1_content").mouseover(function(){
 		$(this).css("background-color","#5599FF");
 		$(this).css("color","#FFFFFF");
@@ -88,85 +70,98 @@ $(function(){
 	$(".bottom_div_1_content").click(function(){
 		var idx = $(this).index();
 		if(idx === 0){
-			createBottomDiv2(["灯具", "灯饰照明", "饰品", "家纺"]);
+			$.ajax({
+    			url:"/fntprodcate/search/0",
+    			data:{
+    				
+    			},
+        		type:"get",
+        		cache:false,
+        		dataType:"json",
+        		success:function(data){
+        			var ary = new Array();
+					for(var index in data){
+						var code = data[index].code;
+						var name = data[index].name;
+						ary.push(code + "#" + name);
+					}
+					createBottomDiv2(ary, idx);
+        		},
+        		error:function(){
+
+        		}
+    		});
 		} else if(idx === 2){
-			createBottomDiv2(["全部"]);
+			createBottomDiv2(["全部"], idx);
 		} else if(idx === 4){
-			createBottomDiv2(["全部"]);
+			createBottomDiv2(["全部"], idx);
 		} else if(idx === 6){
-			createBottomDiv2(["全部", "实木", "板式", "塑料", "木质"]);
+			createBottomDiv2(["全部", "实木", "板式", "塑料", "木质"], idx);
 		} else if(idx === 8){
-			createBottomDiv2(["全部"]);
+			createBottomDiv2(["全部"], idx);
 		}
 	});
 });
 
-function createBottomDiv2(items){
+function createBottomDiv2(items, idx){
 	var parentdiv = $('<div></div>');
     parentdiv.addClass('bottom_div_2');
     for(var i in items){
+    	var name = "";
+    	var code = "";
 		var itm = items[i];
-	    var childdiv1 = $('<div><a id="div_2_content_' + i + '">' + itm + '</a></div>');
+		if(itm.indexOf("#") != -1){
+			var itmAry = itm.split("#");
+			code = itmAry[0];
+			name = itmAry[1];
+		} else {
+			name = itm;
+		}
+	    var childdiv1 = $('<div ><a id="div_2_content_' + i + '" val="' + code + '">' + name + '</a></div>');
 	    childdiv1.addClass('bottom_div_2_conent text-center');
 	    childdiv1.appendTo(parentdiv);
 	    var childdiv2 = $('<div></div>');
 	    childdiv2.addClass('line');
 	    childdiv2.appendTo(parentdiv);
-	    
-	    childdiv1.bind("click", function () {
-			/* var obj = $("#divCreat");
-	    	obj.hide("slow");
-			obj.css("position", "absolute");
-			obj.css("top", $(this).offset().top - (5 + obj.height()));
-			obj.css("left", $(this).offset().left);
-			obj.show("slow");
-		    if (obj.css("display") == "none") {
-		        obj.show("slow");
-		    } else {
-		        obj.hide("slow");
-		    } */
-		    $("div[id^='div_2_content_detail_']").hide();
-	    	var content = $('<div id="div_2_content_detail_"' + i + '></div>');
-	    	content.append("ajax请求内容");
-	    	content.addClass("bottom_div_2_content_detail");
-	    	content.css("top", $(this).offset().top - (20 + content.height()));
-	    	content.css("left", $(this).offset().left);
-	    	content.appendTo('body');
-		}); 
+	    if(idx === 0){
+		    childdiv1.children().bind("click", function () {
+			    var thisObj = $(this);
+		    	$.ajax({
+	    			url:"/fntprodcate/search/" + $(this).attr("val"),
+	        		type:"get",
+	        		cache:false,
+	        		dataType:"json",
+	        		success:function(data){
+	        		 	$("div[id^='div_2_content_detail_']").hide();
+	 		    		var content = $('<div id="div_2_content_detail_"' + i + '></div>');
+	        			var contentList = "";
+						for(var index in data){
+			    			contentList += "<ul class='list-inline'>";
+							var pCode = data[index].code;
+							var pName = data[index].name;
+							contentList += "<li>" + pName + "</li>";
+							var list = data[index].list;
+						    for(var cIdx in list){
+						    	var chdCode = list[cIdx].code;
+						    	var chdName = list[cIdx].name;
+						    	contentList += "<li>" + chdName + "</li>";
+						    }
+							contentList += "</ul>";
+							
+						}
+						content.append(contentList);
+				    	content.addClass("bottom_div_2_content_detail");
+				    	content.appendTo('body');
+				    	content.css("top", thisObj.offset().top - (20 + content.height()));
+				    	content.css("left", thisObj.offset().left - 10);
+	        		},
+	        		error:function(){
+
+	        		}
+	    		});
+			}); 
+	    }
 	}
     parentdiv.appendTo('body');    
 }
 </script>
-
-
-<!-- <div id="divCreat" style="display: none;background-color: yellow;border: 2px solid ;border-color:#AAAAAA;">
-	<table>
-		<tr>
-			<td>sfsdfsd</td>
-		</tr>
-		<tr>
-			<td>sfsdfsd</td>
-		</tr>
-		<tr>
-			<td>sfsdfsd</td>
-		</tr>
-		<tr>
-			<td>sfsdfsd</td>
-		</tr>
-		<tr>
-			<td>sfsdfsd</td>
-		</tr>
-		<tr>
-			<td>sfsdfsd</td>
-		</tr>
-		<tr>
-			<td>sfsdfsd</td>
-		</tr>
-		<tr>
-			<td>sfsdfsd</td>
-		</tr>
-		<tr>
-			<td>dfsfsd333333333333</td>
-		</tr>
-	</table>
-</div> -->

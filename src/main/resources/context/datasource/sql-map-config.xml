@@ -30,5 +30,6 @@
 		<!-- 户型 -->
 		<sqlMap resource="context/datasource/sqlmap/fnt_house_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/custom/c_house_SqlMap.xml"/>
+		<sqlMap resource="context/datasource/sqlmap/core_category_SqlMap.xml"/>
 		
 </sqlMapConfig>
