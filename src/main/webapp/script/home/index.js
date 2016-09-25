@@ -24,9 +24,6 @@ $(function() {
 	$("#houseDialogLk").click(function(){
 		houseSelect_dialogOpen();
 	});
-	$("#productDialogLk").click(function(){
-		productSelect_dialogOpen();
-	});
 	
 	//alert("width:" + upW + ",height:" + window.innerHeight);
 	$("#unityPlayer").initSize();
@@ -121,6 +118,5 @@ function createUnityObject(){
 }
 
 function LoadUnit(json){
-	//u.getUnity().SendMessage("control","LoadUnitAssetBundle",json);
 	u.getUnity().SendMessage("control","LoadUnitAssetBundle", json);
 }
