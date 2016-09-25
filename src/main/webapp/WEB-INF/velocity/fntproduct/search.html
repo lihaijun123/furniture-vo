@@ -89,7 +89,7 @@ li a:hover{color:#5599FF;}
 						￥$!product.price
 					</div>
 					<div style="margin-top: 10px;width: 150px;" class="text-center">
-						<input id="prodCk_$!product.sn" val="$!product.modelFileUrl" version="$!product.modelFileVersion" type="checkbox">
+						<input id="prodCk_$!product.sn" val="$!product.modelFileUrl" picUrl="$!product.picFileUrl" version="$!product.modelFileVersion" type="checkbox">
 					</div>
 				</div>
 			#end
@@ -172,7 +172,8 @@ $(function(){
 		    	$("input[id^='prodCk_']:checked").each(function(){
 		    		var url = $(this).attr("val");
 			   		var version = parseInt($(this).attr("version"));
-			   		callbackVal += '{"url":"' + url + '","version":' + version + '},';
+			   		var picUrl = $(this).attr("picUrl");
+			   		callbackVal += '{"picUrl":"' + picUrl + '","url":"' + url + '","version":' + version + '},';
 		    	});
 		    	callbackVal = callbackVal.replace(/,$/g,"");
 		    	callbackVal += "]";
