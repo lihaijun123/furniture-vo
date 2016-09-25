@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.focustech.focus3d.agent.common.controller.CommonController;
 import com.focustech.focus3d.agent.fntproduct.service.FntProductService;
-import com.focustech.focus3d.agent.model.FntHouseModel;
 import com.focustech.focus3d.agent.model.FntProductModel;
 
 /**
@@ -42,7 +41,7 @@ public class FntProductController  extends CommonController {
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String search(FntProductSearch productSearch, ModelMap modelMap){
-		List<FntHouseModel> list = fntProductService.search(productSearch);
+		List<FntProductModel> list = fntProductService.search(productSearch);
 		modelMap.addAttribute("list", list);
 		return "/fntproduct/search";
 	}

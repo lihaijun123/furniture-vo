@@ -44,12 +44,12 @@
 	position: absolute;
 }
 li{
-	margin-right: 10px;
+	margin-right: 5px;
 	width: 70px;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 ul{
-	margin-top: 10px;
+	margin-top: 5px;
 }
 li a:hover{color:#5599FF;}
 </style>
@@ -57,6 +57,42 @@ li a:hover{color:#5599FF;}
 	<input type="hidden" id="categoryCode" name="categoryCode"/>
 
 </form>
+<div class="row" style="margin-top: 10px;margin-left: 20px;">
+	<div>
+		#foreach($!product in $!list)
+			<div  style="width: 25%;float: left;margin-bottom: 5px;">
+				<div>
+					<img width="150px;" height="150px;" src="$!product.picFileUrl">
+				</div>
+				<div style="margin-top: 10px;font-size: medium; ">
+					$!product.name
+				</div>
+				<div style="margin-top: 10px;font-size: medium; ">
+					￥$!product.price
+				</div>
+				<div style="margin-top: 10px;width: 150px;" class="text-center">
+					<input type="checkbox">
+				</div>
+			</div>
+		#end
+	</div>
+	#foreach($!product in $!list)
+    <!-- <div class="col-sm-6 col-md-3">
+         <div class="thumbnail">
+            <img src="$!product.picFileUrl" alt="">
+            <div class="caption">
+                <h3>$!product.name</h3>
+                <p>$!product.price</p>
+                <p>
+                    <a id="product_select_$!product.sn" val="$!product.modelFileUrl" version="$!product.modelFileVersion" href="#" class="btn btn-primary" role="button">
+                       	使用
+                    </a> 
+                </p>
+            </div>
+         </div>
+    </div> -->
+    #end
+</div>
 <div class="bottom_div_1">
 	<div class="bottom_div_1_content text-center">类别</div>
 	<div class="line"></div>

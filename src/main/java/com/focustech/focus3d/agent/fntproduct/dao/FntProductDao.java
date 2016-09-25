@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
-import com.focustech.focus3d.agent.model.FntHouseModel;
+import com.focustech.focus3d.agent.model.FntProductModel;
 /**
  * 
  * *
@@ -29,7 +29,7 @@ public class FntProductDao extends CommonDao {
 	 * @param houseSearch
 	 * @return
 	 */
-	public List<FntHouseModel> search(FntProductSearch productSearch) {
+	public List<FntProductModel> search(FntProductSearch productSearch) {
 		StringBuffer condition = new StringBuffer();
 		String categoryCode = productSearch.getCategoryCode();
 		if(StringUtils.isNotEmpty(categoryCode)){
@@ -37,7 +37,7 @@ public class FntProductDao extends CommonDao {
 		}
 		log.debug("condition:" + condition);
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<FntHouseModel> list = new ArrayList<FntHouseModel>();
+		List<FntProductModel> list = new ArrayList<FntProductModel>();
 		try {
 			map.put("condition", condition.toString());
 			list = getSqlMapClient().queryForList("c_fnt_product.getFntProductList", map);
