@@ -35,6 +35,10 @@ public class FntProductDao extends CommonDao {
 		if(StringUtils.isNotEmpty(categoryCode)){
 			condition.append(" and category_code=").append(categoryCode).append("");
 		}
+		String keyWord = productSearch.getKeyWord();
+		if(StringUtils.isNotEmpty(keyWord)){
+			condition.append(" and name like '%").append(keyWord).append("%'");
+		}
 		log.debug("condition:" + condition);
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<FntProductModel> list = new ArrayList<FntProductModel>();

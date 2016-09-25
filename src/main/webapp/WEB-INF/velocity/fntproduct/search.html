@@ -8,12 +8,20 @@
     float: left;
     margin-top: 5px;
 }
+.bottom_div_0{
+	width: 100%;
+	height: 30px;
+	background-color: #FFFFFF;
+	position: fixed;
+	bottom: 0;
+	border:1px solid;
+}
 .bottom_div_1{
 	width: 100%;
 	height: 50px;
 	background-color: #AAAAAA;
-	position: fixed;
-	bottom: 0;
+	position: absolute;
+	bottom: 30px;
 }
 .bottom_div_1_content{
 	height: 50px;
@@ -28,7 +36,7 @@
 	height: 50px;
 	background-color: #888888;
 	position:absolute;
-	bottom: 50px;
+	bottom: 80px;
 }
 
 .bottom_div_2_conent{
@@ -63,6 +71,7 @@ li a:hover{color:#5599FF;}
 </style>
 <form action="/fntproduct/search" method="post">
 	<input type="hidden" id="categoryCode" name="categoryCode"/>
+	<input type="hidden" id="keyWord" name="keyWord"/>
 
 </form>
 <div class="row" style="margin-top: 10px;margin-left: 20px;">
@@ -100,6 +109,10 @@ li a:hover{color:#5599FF;}
 	<div class="bottom_div_1_content text-center">材质&nbsp;&nbsp;&nbsp;&nbsp;全部</div>
 	<div class="line"></div>
 	<div class="bottom_div_1_content text-center">价格&nbsp;&nbsp;&nbsp;&nbsp;全部</div>
+</div>
+<div class="bottom_div_0">
+	<input type="text" style="width: 300px;height:25px; margin-left: 20px;"/>
+	<button type="button" class="btn btn-primary btn-xs">搜索</button>
 </div>
 <script>
 $(function(){
@@ -171,7 +184,15 @@ $(function(){
 			$(".bottom_div_2").remove();
 		}
 	});
-	
+	$(".bottom_div_0").find("button").click(function(){
+		var keyword = $(this).prev().val();
+		if(keyword){
+			$("#keyWord").val(keyword);
+			$("form").submit();
+		} else {
+			$(this).parent().append("<font color='red'>请输入关键字！</font>");
+		}
+	});
 });
 
 //创建栏目

@@ -68,7 +68,7 @@ function productSelect_dialogOpen(){
 	$("iframe").attr("src", "/fntproduct/search");
 	prouductDialog = $("#product-dialog-listLk").dialog({
 	      resizable: true,
-	      height:$(".in_top").width() - 500,
+	      height:$(".in_top").width() - 450,
 	      width:$(".in_top").width() - 200,
 	      modal: true
 	 });
