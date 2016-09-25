@@ -78,8 +78,8 @@ function productSelect_dialogCallbak(jsonStr){
 	if(prouductDialog){
 		prouductDialog.dialog("close");
 	}
-	//LoadUnit(jsonStr);
-	alert(jsonStr);
+	LoadFurnitureItem(jsonStr);
+	//alert(jsonStr);
 }
 //unity
 var u;
@@ -116,9 +116,13 @@ function createUnityObject(){
 			break;
 		}
 	});
-	u.initPlugin(jQuery("#unityPlayer")[0], "/unity3d/fru.unity3d?v=3");
+	u.initPlugin(jQuery("#unityPlayer")[0], "/unity3d/fru.unity3d");
 }
 
 function LoadUnit(json){
 	u.getUnity().SendMessage("control","LoadUnitAssetBundle", json);
+}
+
+function LoadFurnitureItem(json){
+	u.getUnity().SendMessage("control","LoadFurnitureItem", json);
 }
