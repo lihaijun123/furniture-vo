@@ -1,11 +1,13 @@
 #set($layout="layout/layout_empty.html")
 <style>
 .line{
-    height: 50px;
+    height: 40px;
+    line-height:40px;
     width: 1px;
-    background: #000;
+    background: #666666;
     float: left;
     margin-right: 40px;
+    margin-top: 5px;
 }
 .bottom_div_1{
 	width: 100%;
@@ -16,10 +18,12 @@
 }
 .bottom_div_1_content{
 	height: 50px;
+	width:120px;
+	line-height:50px;
 	float: left;
+	color:#5599FF;
 	font-size: large;
 	margin-right: 10px;
-	background-color: green;
 }
 .bottom_div_2{
 	width: 100%;
@@ -30,46 +34,59 @@
 }
 .bottom_div_2_conent{
 	height: 50px;
+	width:120px;
 	line-height:50px;
 	float: left;
+	color:#FFFFFF;
 	font-size: large;
 	margin-right: 10px;
-	background-color: blue;
 }
 </style>
 <div class="bottom_div_2">
-	<div class="bottom_div_2_conent">
-		<a >家具</a>
+	<div class="bottom_div_2_conent text-center">
+		灯具
 	</div>
-	<div class="line">
-		<a >家具</a>
+	<div class="line"></div>
+	<div class="bottom_div_2_conent text-center">
+		<a >灯饰照明</a>
 	</div>
-	<div class="line">
-		<a id="type">家具</a>
+	<div class="line"></div>
+	<div class="bottom_div_2_conent text-center">
+		<a >饰品</a>
+	</div>
+	<div class="line"></div>
+	<div class="bottom_div_2_conent text-center">
+		<a id="type">家纺</a>
 	</div>
 </div>
 <div class="bottom_div_1">
-	<div class="bottom_div_1_content">类别</div>
+	<div class="bottom_div_1_content text-center">类别</div>
 	<div class="line"></div>
+	<div class="bottom_div_1_content text-center">颜色&nbsp;&nbsp;&nbsp;&nbsp;全部</div>
+	<div class="line"></div>
+	<div class="bottom_div_1_content text-center">尺寸&nbsp;&nbsp;&nbsp;&nbsp;全部</div>
+	<div class="line"></div>
+	<div class="bottom_div_1_content text-center">材质&nbsp;&nbsp;&nbsp;&nbsp;全部</div>
+	<div class="line"></div>
+	<div class="bottom_div_1_content text-center">价格&nbsp;&nbsp;&nbsp;&nbsp;全部</div>
 </div>
 <script>
 $(function(){
 	$("#type").click(function () {
-	    $("#divChooseNumber").css("position", "absolute");
-	    $("#divChooseNumber").css("top", $("#type").offset().top-$("#divChooseNumber").height());
-	    $("#divChooseNumber").css("left", $("#type").offset().left);
-	    if ($("#divChooseNumber").css("display") == "none") {
-	        $("#divChooseNumber").show("slow");
-	          
+		var obj = $("#divChooseNumber");
+		obj.css("position", "absolute");
+		obj.css("top", $("#type").offset().top - (20 + obj.height()));
+		obj.css("left", $("#type").offset().left);
+	    if (obj.css("display") == "none") {
+	        obj.show("slow");
 	    } else {
-	        $("#divChooseNumber").hide("slow");
+	        obj.hide("slow");
 	    }
 	}); 
 	
 	$("#divChooseNumber").mouseout(function(){
 		$(this).toggle("slow");
 	});
-
 });
 </script>
 
@@ -87,6 +104,21 @@ $(function(){
 		</tr>
 		<tr>
 			<td>sfsdfsd</td>
+		</tr>
+		<tr>
+			<td>sfsdfsd</td>
+		</tr>
+		<tr>
+			<td>sfsdfsd</td>
+		</tr>
+		<tr>
+			<td>sfsdfsd</td>
+		</tr>
+		<tr>
+			<td>sfsdfsd</td>
+		</tr>
+		<tr>
+			<td>dfsfsd333333333333</td>
 		</tr>
 	</table>
 </div>
