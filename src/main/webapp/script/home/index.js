@@ -44,7 +44,9 @@ function houseSelect_dialogOpen(){
 	}
 	$("iframe").attr("src", "/fnthouse/search");
 	dialogObj = $("#dialog-listLk" ).dialog({
-	      resizable: true,
+	      resizable: false,
+	      draggable: false,
+	      position: {my: "left top", at: "left top", of: "#cont"},
 	      height:$(".in_top").width() - 500,
 	      width:$(".in_top").width() - 200,
 	      modal: true
@@ -66,7 +68,9 @@ function productSelect_dialogOpen(){
 	}
 	$("iframe").attr("src", "/fntproduct/search");
 	prouductDialog = $("#product-dialog-listLk").dialog({
-	      resizable: true,
+	      resizable: false,
+	      draggable: false,
+	      position: {my: "left top", at: "left top", of: "#cont"},
 	      height:$(".in_top").width() - 450,
 	      width:$(".in_top").width() - 200,
 	      modal: true
