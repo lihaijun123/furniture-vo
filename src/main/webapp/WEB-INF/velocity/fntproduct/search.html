@@ -53,7 +53,10 @@ ul{
 }
 li a:hover{color:#5599FF;}
 </style>
+<form>
+	
 
+</form>
 <div class="bottom_div_1">
 	<div class="bottom_div_1_content text-center">类别</div>
 	<div class="line"></div>
@@ -148,18 +151,23 @@ function createBottomDiv2(items, idx){
 			    			contentList += "<ul class='list-inline'>";
 							var pCode = data[index].code;
 							var pName = data[index].name;
-							contentList += "<li><a>" + pName + "</a></li>";
+							contentList += "<li><a id='div2cd_" + index + "' val='" + pCode + "'>" + pName + "</a></li>";
 							var list = data[index].list;
 						    for(var cIdx in list){
 						    	var chdCode = list[cIdx].code;
 						    	var chdName = list[cIdx].name;
-						    	contentList += "<li><a>" + chdName + "</li></a>";
+						    	contentList += "<li><a id='div2cd_" + (index + "_" + cIdx) + "' val='" + chdCode + "'>" + chdName + "</li></a>";
 						    }
 							contentList += "</ul>";
 							
 						}
 						content.append(contentList);
 				    	content.addClass("bottom_div_2_content_detail");
+				    	//添加事件
+				    	content.find("a").bind("click", function(){
+				    		//查询结果
+				    		
+				    	});
 				    	content.appendTo('body');
 				    	content.css("top", thisObj.offset().top - (20 + content.height()));
 				    	content.css("left", thisObj.offset().left - 30);
