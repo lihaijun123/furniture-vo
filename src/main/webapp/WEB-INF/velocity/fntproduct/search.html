@@ -6,7 +6,6 @@
     width: 1px;
     background: #666666;
     float: left;
-    margin-right: 40px;
     margin-top: 5px;
 }
 .bottom_div_1{
@@ -18,12 +17,11 @@
 }
 .bottom_div_1_content{
 	height: 50px;
-	width:120px;
+	width:140px;
 	line-height:50px;
 	float: left;
 	color:#5599FF;
 	font-size: large;
-	margin-right: 10px;
 }
 .bottom_div_2{
 	width: 100%;
@@ -34,12 +32,11 @@
 }
 .bottom_div_2_conent{
 	height: 50px;
-	width:120px;
+	width:140px;
 	line-height:50px;
 	float: left;
 	color:#FFFFFF;
 	font-size: large;
-	margin-right: 10px;
 }
 </style>
 <div class="bottom_div_2">
@@ -86,6 +83,15 @@ $(function(){
 	
 	$("#divChooseNumber").mouseout(function(){
 		$(this).toggle("slow");
+	});
+	
+	$(".bottom_div_1_content").mouseover(function(){
+		$(this).css("background-color","#5599FF");
+		$(this).css("color","#FFFFFF");
+	});
+	$(".bottom_div_1_content").mouseout(function(){
+		$(this).css("background-color", "");
+		$(this).css("color", "#5599FF");
 	});
 });
 </script>
