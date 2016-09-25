@@ -1,0 +1,92 @@
+#set($layout="layout/layout_empty.html")
+<style>
+.line{
+    height: 50px;
+    width: 1px;
+    background: #000;
+    float: left;
+    margin-right: 40px;
+}
+.bottom_div_1{
+	width: 100%;
+	height: 50px;
+	background-color: #AAAAAA;
+	position: fixed;
+	bottom: 0;
+}
+.bottom_div_1_content{
+	height: 50px;
+	float: left;
+	font-size: large;
+	margin-right: 10px;
+	background-color: green;
+}
+.bottom_div_2{
+	width: 100%;
+	height: 50px;
+	background-color: #888888;
+	position:absolute;
+	bottom: 50px;
+}
+.bottom_div_2_conent{
+	height: 50px;
+	line-height:50px;
+	float: left;
+	font-size: large;
+	margin-right: 10px;
+	background-color: blue;
+}
+</style>
+<div class="bottom_div_2">
+	<div class="bottom_div_2_conent">
+		<a >家具</a>
+	</div>
+	<div class="line">
+		<a >家具</a>
+	</div>
+	<div class="line">
+		<a id="type">家具</a>
+	</div>
+</div>
+<div class="bottom_div_1">
+	<div class="bottom_div_1_content">类别</div>
+	<div class="line"></div>
+</div>
+<script>
+$(function(){
+	$("#type").click(function () {
+	    $("#divChooseNumber").css("position", "absolute");
+	    $("#divChooseNumber").css("top", $("#type").offset().top-$("#divChooseNumber").height());
+	    $("#divChooseNumber").css("left", $("#type").offset().left);
+	    if ($("#divChooseNumber").css("display") == "none") {
+	        $("#divChooseNumber").show("slow");
+	          
+	    } else {
+	        $("#divChooseNumber").hide("slow");
+	    }
+	}); 
+	
+	$("#divChooseNumber").mouseout(function(){
+		$(this).toggle("slow");
+	});
+
+});
+</script>
+
+
+<div id="divChooseNumber" style="display: none;background-color: yellow;border: 2px solid ;border-color:#AAAAAA;">
+	<table>
+		<tr>
+			<td>sfsdfsd</td>
+		</tr>
+		<tr>
+			<td>sfsdfsd</td>
+		</tr>
+		<tr>
+			<td>sfsdfsd</td>
+		</tr>
+		<tr>
+			<td>sfsdfsd</td>
+		</tr>
+	</table>
+</div>

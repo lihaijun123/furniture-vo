@@ -1,6 +1,8 @@
 package com.focustech.focus3d.agent.filter;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -46,6 +48,7 @@ public class LoginFilter extends AbstractFilter {
 		, "/" + LOGIN_PAGE_NAME
 		, "/logout"
 		, "/fnthouse/*"
+		, "/fntproduct/*"
 	};
 	public static Auth auth = new Auth();
 
@@ -100,9 +103,10 @@ public class LoginFilter extends AbstractFilter {
 		boolean flag = (resourceType == 1);
 		if(!flag){
 			for(String resource : DYNAMIC_RESOURCES){
-				if(resource.endsWith("*")){
-					String substring = resource.substring(0, resource.indexOf("*"));
-					if(servletPath.startsWith(substring)){
+				if(resource.contains("*")){
+					Pattern pattern = Pattern.compile("^" + resource.replace("*", ".*"));
+					Matcher matcher = pattern.matcher(servletPath);
+					if(matcher.matches()){
 						flag = true;
 						break;
 					}

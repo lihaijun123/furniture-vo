@@ -24,6 +24,9 @@ $(function() {
 	$("#houseDialogLk").click(function(){
 		houseSelect_dialogOpen();
 	});
+	$("#productDialogLk").click(function(){
+		productSelect_dialogOpen();
+	});
 	
 	//alert("width:" + upW + ",height:" + window.innerHeight);
 	$("#unityPlayer").initSize();
@@ -56,6 +59,21 @@ function houseSelect_dialogCallbak(jsonStr){
 	}
 	LoadUnit(jsonStr);
 }
+//打开添加家具窗口
+var prouductDialog;
+function productSelect_dialogOpen(){
+	if(prouductDialog){
+		prouductDialog = null;
+	}
+	//$("iframe").attr("src", "/fnthouse/search");
+	prouductDialog = $("#product-dialog-listLk").dialog({
+	      resizable: true,
+	      height:$(".in_top").width() - 500,
+	      width:$(".in_top").width() - 200,
+	      modal: true
+	 });
+}
+//unity
 var u;
 function createUnityObject(){
 	u = new UnityObject2(config);
