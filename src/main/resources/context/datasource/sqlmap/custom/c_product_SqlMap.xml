@@ -22,6 +22,7 @@
     <result column="STYLE" property="style" jdbcType="VARCHAR" />
     <result column="MODEL_NAME" property="modelName" jdbcType="VARCHAR" />
     <result column="MODEL_FILE_SN" property="modelFileSn" jdbcType="BIGINT" />
+    <result column="MODEL_FILE_VERSION" jdbcType="INTEGER" property="modelFileVersion" />
     <result column="DESIGN" property="design" jdbcType="VARCHAR" />
     <result column="IS_WITH_CORE" property="isWithCore" jdbcType="INTEGER" />
     <result column="FILLER" property="filler" jdbcType="VARCHAR" />
@@ -38,7 +39,7 @@
   
   <select id="getFntProductList"  resultMap="ibatorgenerated_BaseResultMap">
 	  select SN, NAME, BRAND, PRICE, MATERIA, COLOR, SPEC_NAME, SPEC_SIZE, PARAMETER, GROSS_WEIGHT,
-      PIC_FILE_SN, CATEGORY_NAME, CATEGORY_CODE, STYLE, MODEL_NAME, MODEL_FILE_SN, DESIGN,
+      PIC_FILE_SN, CATEGORY_NAME, CATEGORY_CODE, STYLE, MODEL_NAME, MODEL_FILE_SN, MODEL_FILE_VERSION, DESIGN,
       IS_WITH_CORE, FILLER, STATUS, SHELVES_TIME, REMARK, ADDER_SN, ADDER_NAME, ADD_TIME,
       UPDATER_SN, UPDATER_NAME, UPDATE_TIME
     from fnt_product
