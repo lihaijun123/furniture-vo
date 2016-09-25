@@ -44,14 +44,14 @@
 	position: absolute;
 }
 li{
-	margin-right: 20px;
-	width: 80px;
+	margin-right: 10px;
+	width: 70px;
 	margin-left: 10px;
 }
 ul{
 	margin-top: 10px;
-	
 }
+li a:hover{color:#5599FF;}
 </style>
 
 <div class="bottom_div_1">
@@ -148,12 +148,12 @@ function createBottomDiv2(items, idx){
 			    			contentList += "<ul class='list-inline'>";
 							var pCode = data[index].code;
 							var pName = data[index].name;
-							contentList += "<li>" + pName + "</li>";
+							contentList += "<li><a>" + pName + "</a></li>";
 							var list = data[index].list;
 						    for(var cIdx in list){
 						    	var chdCode = list[cIdx].code;
 						    	var chdName = list[cIdx].name;
-						    	contentList += "<li>" + chdName + "</li>";
+						    	contentList += "<li><a>" + chdName + "</li></a>";
 						    }
 							contentList += "</ul>";
 							
@@ -162,7 +162,7 @@ function createBottomDiv2(items, idx){
 				    	content.addClass("bottom_div_2_content_detail");
 				    	content.appendTo('body');
 				    	content.css("top", thisObj.offset().top - (20 + content.height()));
-				    	content.css("left", thisObj.offset().left - 10);
+				    	content.css("left", thisObj.offset().left - 30);
 	        		},
 	        		error:function(){
 
