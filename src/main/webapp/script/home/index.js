@@ -24,7 +24,9 @@ $(function() {
 	$("#houseDialogLk").click(function(){
 		houseSelect_dialogOpen();
 	});
-	
+	$("#productDialogLk").click(function(){
+		productSelect_dialogOpen();
+	});
 	//alert("width:" + upW + ",height:" + window.innerHeight);
 	$("#unityPlayer").initSize();
 	//alert("width:" + $("#unityPlayer").width() + ",height:" + $("#unityPlayer").height());
