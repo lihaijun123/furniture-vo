@@ -67,22 +67,27 @@ li a:hover{color:#5599FF;}
 </form>
 <div class="row" style="margin-top: 10px;margin-left: 20px;">
 	<div>
-		#foreach($!product in $!list)
-			<div  style="width: 25%;float: left;margin-bottom: 5px;">
-				<div>
-					<img width="150px;" height="150px;" src="$!product.picFileUrl">
+		#if($!list.size() > 0)
+			#foreach($!product in $!list)
+				<div  style="width: 25%;float: left;margin-bottom: 5px;">
+					<div>
+						<img width="150px;" height="150px;" src="$!product.picFileUrl">
+					</div>
+					<div style="margin-top: 10px;font-size: medium; ">
+						$!product.name
+					</div>
+					<div style="margin-top: 10px;font-size: medium; ">
+						￥$!product.price
+					</div>
+					<div style="margin-top: 10px;width: 150px;" class="text-center">
+						<input id="prodCk_$!product.sn" val="$!product.modelFileUrl" version="$!product.modelFileVersion" type="checkbox">
+					</div>
 				</div>
-				<div style="margin-top: 10px;font-size: medium; ">
-					$!product.name
-				</div>
-				<div style="margin-top: 10px;font-size: medium; ">
-					￥$!product.price
-				</div>
-				<div style="margin-top: 10px;width: 150px;" class="text-center">
-					<input id="prodCk_$!product.sn" val="$!product.modelFileUrl" version="$!product.modelFileVersion" type="checkbox">
-				</div>
-			</div>
+			#end
+		#else 
+			<font color="red">没有数据!</font>
 		#end
+		
 	</div>
 </div>
 <div class="bottom_div_1">
@@ -158,7 +163,7 @@ $(function(){
 		    	});
 		    	callbackVal = callbackVal.replace(/,$/g,"");
 		    	callbackVal += "]";
-		    	alert(callbackVal);
+		    	window.parent.productSelect_dialogCallbak(callbackVal);
 			});
 		    childdiv1.appendTo(parentdiv);
 		    parentdiv.appendTo('body'); 

@@ -43,7 +43,7 @@ function houseSelect_dialogOpen(){
 	if(dialogObj){
 		dialogObj = null;
 	}
-	//$("iframe").attr("src", "/fnthouse/search");
+	$("iframe").attr("src", "/fnthouse/search");
 	dialogObj = $("#dialog-listLk" ).dialog({
 	      resizable: true,
 	      height:$(".in_top").width() - 500,
@@ -65,13 +65,22 @@ function productSelect_dialogOpen(){
 	if(prouductDialog){
 		prouductDialog = null;
 	}
-	//$("iframe").attr("src", "/fnthouse/search");
+	$("iframe").attr("src", "/fntproduct/search");
 	prouductDialog = $("#product-dialog-listLk").dialog({
 	      resizable: true,
 	      height:$(".in_top").width() - 500,
 	      width:$(".in_top").width() - 200,
 	      modal: true
 	 });
+}
+//添加家具窗口返回的数据
+function productSelect_dialogCallbak(jsonStr){
+	//alert("户型选择框返回的url:" + jsonStr);
+	if(prouductDialog){
+		prouductDialog.dialog("close");
+	}
+	//LoadUnit(jsonStr);
+	alert(jsonStr);
 }
 //unity
 var u;
