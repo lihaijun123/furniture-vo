@@ -33,7 +33,7 @@ public class FntProductDao extends CommonDao {
 		StringBuffer condition = new StringBuffer();
 		String categoryCode = productSearch.getCategoryCode();
 		if(StringUtils.isNotEmpty(categoryCode)){
-			condition.append("category_code='").append(categoryCode).append("'");
+			condition.append(" and category_code=").append(categoryCode).append("");
 		}
 		log.debug("condition:" + condition);
 		Map<String, Object> map = new HashMap<String, Object>();

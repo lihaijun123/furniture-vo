@@ -1,9 +1,18 @@
 #set($layout="layout/layout_login.html")
-
-
-出错啦。
-
-<br>
-
-
+#set($ex=$request.getAttribute("ex"))
+<h2>
+错误：$ex.class.simpleName
+</h2>
+<hr/>
+<P>
+	<strong>错误描述：</strong>$ex.message
+</P>
+<P>
+	<strong>详细信息：</strong>
+</P>
+<pre>
+#foreach($stack in $ex.getStackTrace())
+	$stack.toString()
+#end
+</pre>
 <a href="/index">返回</a>
