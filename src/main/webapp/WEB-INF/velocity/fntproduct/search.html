@@ -38,8 +38,14 @@
 	color:#FFFFFF;
 	font-size: large;
 }
+.bottom_div_2_content_detail{
+	background-color: yellow;
+	border: 2px solid ;
+	border-color:#AAAAAA;
+	position: absolute;
+}
 </style>
-<div class="bottom_div_2">
+<!-- <div class="bottom_div_2">
 	<div class="bottom_div_2_conent text-center">
 		灯具
 	</div>
@@ -55,7 +61,7 @@
 	<div class="bottom_div_2_conent text-center">
 		<a id="type">家纺</a>
 	</div>
-</div>
+</div> -->
 <div class="bottom_div_1">
 	<div class="bottom_div_1_content text-center">类别</div>
 	<div class="line"></div>
@@ -69,21 +75,7 @@
 </div>
 <script>
 $(function(){
-	$("#type").click(function () {
-		var obj = $("#divChooseNumber");
-		obj.css("position", "absolute");
-		obj.css("top", $("#type").offset().top - (20 + obj.height()));
-		obj.css("left", $("#type").offset().left);
-	    if (obj.css("display") == "none") {
-	        obj.show("slow");
-	    } else {
-	        obj.hide("slow");
-	    }
-	}); 
 	
-	$("#divChooseNumber").mouseout(function(){
-		$(this).toggle("slow");
-	});
 	
 	$(".bottom_div_1_content").mouseover(function(){
 		$(this).css("background-color","#5599FF");
@@ -93,11 +85,61 @@ $(function(){
 		$(this).css("background-color", "");
 		$(this).css("color", "#5599FF");
 	});
+	$(".bottom_div_1_content").click(function(){
+		var idx = $(this).index();
+		if(idx === 0){
+			createBottomDiv2(["灯具", "灯饰照明", "饰品", "家纺"]);
+		} else if(idx === 2){
+			createBottomDiv2(["全部"]);
+		} else if(idx === 4){
+			createBottomDiv2(["全部"]);
+		} else if(idx === 6){
+			createBottomDiv2(["全部", "实木", "板式", "塑料", "木质"]);
+		} else if(idx === 8){
+			createBottomDiv2(["全部"]);
+		}
+	});
 });
+
+function createBottomDiv2(items){
+	var parentdiv = $('<div></div>');
+    parentdiv.addClass('bottom_div_2');
+    for(var i in items){
+		var itm = items[i];
+	    var childdiv1 = $('<div><a id="div_2_content_' + i + '">' + itm + '</a></div>');
+	    childdiv1.addClass('bottom_div_2_conent text-center');
+	    childdiv1.appendTo(parentdiv);
+	    var childdiv2 = $('<div></div>');
+	    childdiv2.addClass('line');
+	    childdiv2.appendTo(parentdiv);
+	    
+	    childdiv1.bind("click", function () {
+			/* var obj = $("#divCreat");
+	    	obj.hide("slow");
+			obj.css("position", "absolute");
+			obj.css("top", $(this).offset().top - (5 + obj.height()));
+			obj.css("left", $(this).offset().left);
+			obj.show("slow");
+		    if (obj.css("display") == "none") {
+		        obj.show("slow");
+		    } else {
+		        obj.hide("slow");
+		    } */
+		    $("div[id^='div_2_content_detail_']").hide();
+	    	var content = $('<div id="div_2_content_detail_"' + i + '></div>');
+	    	content.append("ajax请求内容");
+	    	content.addClass("bottom_div_2_content_detail");
+	    	content.css("top", $(this).offset().top - (20 + content.height()));
+	    	content.css("left", $(this).offset().left);
+	    	content.appendTo('body');
+		}); 
+	}
+    parentdiv.appendTo('body');    
+}
 </script>
 
 
-<div id="divChooseNumber" style="display: none;background-color: yellow;border: 2px solid ;border-color:#AAAAAA;">
+<!-- <div id="divCreat" style="display: none;background-color: yellow;border: 2px solid ;border-color:#AAAAAA;">
 	<table>
 		<tr>
 			<td>sfsdfsd</td>
@@ -127,4 +169,4 @@ $(function(){
 			<td>dfsfsd333333333333</td>
 		</tr>
 	</table>
-</div>
+</div> -->
