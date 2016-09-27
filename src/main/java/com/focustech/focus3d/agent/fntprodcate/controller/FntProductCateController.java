@@ -71,6 +71,46 @@ public class FntProductCateController extends CommonController{
 		}
 		ajaxOutput(response, jary.toString());
 	}
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public void searchAll(ModelMap modelMap, HttpServletResponse response) throws IOException{
+		List<FntProductCategory> list = cateService.list("1");
+		List<FntProductCategory> rootCateList = getRootCateList(list);
+		JSONObject level1Jo = new JSONObject();
+		for (FntProductCategory fntProductCategory : rootCateList) {
+			//一级目录下面所有类
+			Long catCode = fntProductCategory.getCatCode();
+			JSONObject levelDataJo = new JSONObject();
+			levelDataJo.put("name", fntProductCategory.getCatNameCn());
+			levelDataJo.put("child", buildChildrenData(list, catCode));
+			level1Jo.put(catCode, levelDataJo);
+		}
+		ajaxOutput(response, level1Jo.toString());
+	}
+	
+	
+	private JSONArray buildChildrenData(List<FntProductCategory> list, Long catCode) {
+		List<FntProductCategory> level2CateList = getChildCateList(list, TCUtil.lv(catCode));
+		JSONArray jary = new JSONArray();
+		for (FntProductCategory level2Cat : level2CateList) {
+			JSONObject jo = new JSONObject();
+			jo.put("name", level2Cat.getCatNameCn());
+			jo.put("key", level2Cat.getCatCode());
+			Long level2CatCode = level2Cat.getCatCode();
+			List<FntProductCategory> level3CateList = getChildCateList(list, TCUtil.lv(level2CatCode));
+			JSONArray dJary = new JSONArray();
+			for (FntProductCategory level3Cat : level3CateList) {
+				JSONObject dJo = new JSONObject();
+				dJo.put("name", level3Cat.getCatNameCn());
+				dJo.put("key", level3Cat.getCatCode());
+				dJo.put("child", new JSONArray());
+				dJary.add(dJo);
+			}
+			jo.put("child", dJary);
+			jary.add(jo);
+		}
+		
+		return jary;
+	}
 	/**
 	 * *
 	 * @param list
@@ -86,7 +126,6 @@ public class FntProductCateController extends CommonController{
 			}
 		}
 		return rvList;
-		
 	}
 	/**
 	 * 
