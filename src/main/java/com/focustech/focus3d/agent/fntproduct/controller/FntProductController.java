@@ -1,6 +1,12 @@
 package com.focustech.focus3d.agent.fntproduct.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,21 +35,53 @@ public class FntProductController  extends CommonController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(ModelMap modelMap){
 		return "/fntproduct/search";
-	}
+	}*/
 	/**
 	 * 
 	 * *
 	 * @param modelMap
 	 * @return
+	 * @throws IOException 
 	 */
+	@RequestMapping(value = "/search")
+	public void search(FntProductSearch productSearch, ModelMap modelMap, HttpServletResponse response) throws IOException{
+		List<FntProductModel> list = fntProductService.search(productSearch);
+		JSONArray jary = new JSONArray();
+		for (FntProductModel fntProductModel : list) {
+			JSONObject jo = new JSONObject();
+			jo.put("url", fntProductModel.getModelFileUrl());
+			jo.put("version", fntProductModel.getModelFileVersion());
+			jo.put("picUrl", fntProductModel.getPicFileUrl());
+			jary.add(jo);
+		}
+		ajaxOutput(response, jary.toString());
+		//modelMap.addAttribute("list", list);
+		//return "/fntproduct/search";
+		
+	}
+/*	*//**
+	 * 
+	 * *
+	 * @param modelMap
+	 * @return
+	 *//*
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String search(FntProductSearch productSearch, ModelMap modelMap){
 		List<FntProductModel> list = fntProductService.search(productSearch);
-		modelMap.addAttribute("list", list);
-		return "/fntproduct/search";
+		JSONArray jary = new JSONArray();
+		for (FntProductModel fntProductModel : list) {
+			JSONObject jo = new JSONObject();
+			jo.put("url", fntProductModel.getModelFileUrl());
+			jo.put("version", fntProductModel.getModelFileVersion());
+			jo.put("picUrl", fntProductModel.getPicFileUrl());
+			jary.add(jo);
+		}
+		//modelMap.addAttribute("list", list);
+		//return "/fntproduct/search";
+		
 	}
-	
+*/	
 }
