@@ -6,7 +6,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<!-- Spring ApplicationContext配置文件的路径,可使用通配符,多个路径用,号分隔 此参数用于后面的Spring Context Loader -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:context/focus3d_agent_context.xml</param-value>
+		<param-value>classpath:context/focus3d_agent_context.xml, classpath:/context/rest/spring-rest.xml</param-value>
 	</context-param>
 	<context-param>
         <param-name>log4jConfigLocation</param-name>
@@ -35,7 +35,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 		<filter-name>requestMessageCookieFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	
 	<filter>
 		<filter-name>visitLimitFilter</filter-name>
 		<filter-class>
@@ -59,6 +59,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 		<filter-name>loginFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	 
 	<!--权限验证
 	<filter>
 		<filter-name>authFilter</filter-name>
@@ -87,16 +88,34 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
-	<!--Spring ApplicationContext 载入 -->
+	<!--Spring ApplicationContext 载入
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	 -->
 	<!-- Spring 刷新Introspector防止内存泄露 -->
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
-
-	<!--spring前端控制器 -->
+	<!-- restful -->
+    <listener>
+        <listener-class>org.jboss.resteasy.plugins.guice.GuiceResteasyBootstrapServletContextListener</listener-class>
+    </listener>
+    
+	<listener>
+    	<listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>  
+  	</listener> 
+  	 <servlet>
+        <servlet-name>Resteasy</servlet-name>
+        <servlet-class>
+            org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Resteasy</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+	<!--spring前端控制器-->
 	<servlet>
 		<servlet-name>focus3d_svn_view</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -110,7 +129,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 		<servlet-name>focus3d_svn_view</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+ 
 	<servlet-mapping>
 	    <servlet-name>resin-file</servlet-name>
 	    <url-pattern>/script/*</url-pattern>

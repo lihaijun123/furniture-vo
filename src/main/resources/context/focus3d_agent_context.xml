@@ -18,8 +18,7 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
 	</context:component-scan>
-
-
+	
 	<context:property-placeholder location="classpath:/context/properties/context.properties,classpath:/context/properties/config.properties" />
 
 	<import resource="classpath:/context/datasource/datasource.xml" />
