@@ -71,6 +71,13 @@ public class FntProductCateController extends CommonController{
 		}
 		ajaxOutput(response, jary.toString());
 	}
+	/**
+	 * 
+	 * *
+	 * @param modelMap
+	 * @param response
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public void searchAll(ModelMap modelMap, HttpServletResponse response) throws IOException{
 		List<FntProductCategory> list = cateService.list("1");
@@ -94,14 +101,14 @@ public class FntProductCateController extends CommonController{
 		for (FntProductCategory level2Cat : level2CateList) {
 			JSONObject jo = new JSONObject();
 			jo.put("name", level2Cat.getCatNameCn());
-			jo.put("key", level2Cat.getCatCode());
+			jo.put("key", TCUtil.sv(level2Cat.getCatCode()));
 			Long level2CatCode = level2Cat.getCatCode();
 			List<FntProductCategory> level3CateList = getChildCateList(list, TCUtil.lv(level2CatCode));
 			JSONArray dJary = new JSONArray();
 			for (FntProductCategory level3Cat : level3CateList) {
 				JSONObject dJo = new JSONObject();
 				dJo.put("name", level3Cat.getCatNameCn());
-				dJo.put("key", level3Cat.getCatCode());
+				dJo.put("key", TCUtil.sv(level3Cat.getCatCode()));
 				dJo.put("child", new JSONArray());
 				dJary.add(dJo);
 			}
