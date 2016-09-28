@@ -11,10 +11,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.StringUtils;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
@@ -29,6 +29,7 @@ import com.focustech.focus3d.furniture.restful.constant.ContentType;
  * @author lihaijun
  * 
  */
+@Service
 @Path("/rest/product")
 @Produces(ContentType.APPLICATION_JSON_UTF_8)
 public class ProductRestService {
@@ -37,8 +38,7 @@ public class ProductRestService {
 
 	@GET
 	@Path("{name}")
-	public String hello(@PathParam("name") final String name)
-			throws JSONException {
+	public String hello(@PathParam("name") final String name){
 		JSONObject jo = new JSONObject();
 		jo.put("lihaijun", "李海俊");
 		return jo.toString();
@@ -75,5 +75,4 @@ public class ProductRestService {
 		}
 		return jary.toString();
 	}
-
 }

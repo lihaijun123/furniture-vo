@@ -12,6 +12,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.fntprodcate.service.FntProductCateService;
@@ -24,6 +25,7 @@ import com.focustech.focus3d.furniture.restful.constant.ContentType;
  * @author lihaijun
  *
  */
+@Service
 @Path("/rest/productcate")
 @Produces(ContentType.APPLICATION_JSON_UTF_8)
 public class ProductCategoryRestService {

@@ -7,6 +7,8 @@ import javax.ws.rs.Produces;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.springframework.stereotype.Service;
+
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
 import com.focustech.focus3d.furniture.restful.constant.ProvinceCityConst;
 
@@ -16,6 +18,7 @@ import com.focustech.focus3d.furniture.restful.constant.ProvinceCityConst;
  * @author lihaijun
  *
  */
+@Service
 @Path("/rest/area")
 @Produces(ContentType.APPLICATION_JSON_UTF_8)
 public class AreaRestService {

@@ -12,9 +12,11 @@
 			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
-
+	<context:component-scan base-package="com.focustech.focus3d.furniture.restful" />
+	<!-- 
 	<bean class="com.focustech.focus3d.furniture.restful.ProductRestService"/>
 	<bean class="com.focustech.focus3d.furniture.restful.ProductCategoryRestService"/>
 	<bean class="com.focustech.focus3d.furniture.restful.AreaRestService"/>
+	 -->
 	
 </beans>
