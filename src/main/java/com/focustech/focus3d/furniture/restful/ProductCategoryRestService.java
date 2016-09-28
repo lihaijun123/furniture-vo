@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.fntprodcate.service.FntProductCateService;
 import com.focustech.focus3d.agent.model.FntProductCategory;
+import com.focustech.focus3d.furniture.restful.constant.ContentType;
 
 /**
  * 产品目录
@@ -24,7 +25,7 @@ import com.focustech.focus3d.agent.model.FntProductCategory;
  *
  */
 @Path("/rest/productcate")
-@Produces("text/plain; charset=utf-8")
+@Produces(ContentType.APPLICATION_JSON_UTF_8)
 public class ProductCategoryRestService {
 	@Autowired
 	private FntProductCateService<FntProductCategory> cateService;

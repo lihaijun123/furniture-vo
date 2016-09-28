@@ -20,6 +20,7 @@ import com.focustech.common.utils.StringUtils;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
 import com.focustech.focus3d.agent.fntproduct.service.FntProductService;
 import com.focustech.focus3d.agent.model.FntProductModel;
+import com.focustech.focus3d.furniture.restful.constant.ContentType;
 
 /**
  * 
@@ -29,7 +30,7 @@ import com.focustech.focus3d.agent.model.FntProductModel;
  * 
  */
 @Path("/rest/product")
-@Produces("text/plain; charset=utf-8")
+@Produces(ContentType.APPLICATION_JSON_UTF_8)
 public class ProductRestService {
 	@Autowired
 	private FntProductService<FntProductModel> fntProductService;
