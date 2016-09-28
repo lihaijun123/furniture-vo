@@ -14,5 +14,7 @@
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 	<bean class="com.focustech.focus3d.furniture.restful.ProductRestService"/>
+	<bean class="com.focustech.focus3d.furniture.restful.ProductCategoryRestService"/>
+	<bean class="com.focustech.focus3d.furniture.restful.AreaRestService"/>
 	
 </beans>
