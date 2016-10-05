@@ -17,4 +17,10 @@ public interface FntHouseService<T> extends ICommonService<T> {
 	 * @return
 	 */
 	public List<T> search(FntHouseSearch houseSearch);
+	/**
+	 * *
+	 * @param houseSearch
+	 * @return
+	 */
+	public int searchTotal(FntHouseSearch houseSearch);
 }

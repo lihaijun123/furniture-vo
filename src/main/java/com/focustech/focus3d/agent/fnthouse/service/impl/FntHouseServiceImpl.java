@@ -42,5 +42,9 @@ public class FntHouseServiceImpl extends CommonServiceTemplate<FntHouseModel> im
 		}
 		return list;
 	}
+	@Override
+	public int searchTotal(FntHouseSearch houseSearch) {
+		return fntHouseDao.searchTotal(houseSearch);
+	}
 
 }

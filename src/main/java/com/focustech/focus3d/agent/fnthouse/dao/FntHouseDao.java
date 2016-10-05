@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.focustech.common.utils.ListUtils;
 import com.focustech.common.utils.StringUtils;
+import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.fnthouse.controller.FntHouseSearch;
 import com.focustech.focus3d.agent.model.FntHouseModel;
@@ -31,6 +32,21 @@ public class FntHouseDao extends CommonDao {
 	 * @return
 	 */
 	public List<FntHouseModel> search(FntHouseSearch houseSearch) {
+		Map<String, Object> map = createCondition(houseSearch);
+		List<FntHouseModel> list = new ArrayList<FntHouseModel>();
+		try {
+			list = getSqlMapClient().queryForList("c_fnt_house.getFntHouseList", map);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	/**
+	 * *
+	 * @param houseSearch
+	 * @return
+	 */
+	private Map<String, Object> createCondition(FntHouseSearch houseSearch) {
 		StringBuffer condition = new StringBuffer();
 		String province = houseSearch.getProvince();
 		String city = houseSearch.getCity();
@@ -38,6 +54,8 @@ public class FntHouseDao extends CommonDao {
 		List<String> areaRange = houseSearch.getAreaRange();
 		List<String> roomType = houseSearch.getRoomType();
 		List<String> type = houseSearch.getType();
+		String pageNow = houseSearch.getPageNow();
+		String pageSize = houseSearch.getPageSize();
 		if(StringUtils.isNotEmpty(province) && !"请选择".equals(province)){
 			if("全国".equals(province)){
 				//condition.append(" and province !='").append("请选择").append("'");
@@ -86,16 +104,32 @@ public class FntHouseDao extends CommonDao {
 			}
 			condition.append(" )");
 		}
+		if(StringUtils.isNotEmpty(pageNow)){
+			condition.append(" limit ")
+			.append((TCUtil.iv(pageNow) - 1) * TCUtil.iv(pageSize))
+			.append(", ")
+			.append(TCUtil.iv(pageSize));
+		}
 		log.debug("condition:" + condition);
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<FntHouseModel> list = new ArrayList<FntHouseModel>();
+		map.put("condition", condition.toString());
+		return map;
+	}
+	/**
+	 * 
+	 * *
+	 * @param houseSearch
+	 * @return
+	 */
+	public int searchTotal(FntHouseSearch houseSearch) {
+		houseSearch.setPageNow("");
+		Map<String, Object> map = createCondition(houseSearch);
 		try {
-			map.put("condition", condition.toString());
-			list = getSqlMapClient().queryForList("c_fnt_house.getFntHouseList", map);
+			return TCUtil.iv(getSqlMapClient().queryForObject("c_fnt_house.getFntHouseListCount", map));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return list;
+		return 0;
 	}
 	
 	

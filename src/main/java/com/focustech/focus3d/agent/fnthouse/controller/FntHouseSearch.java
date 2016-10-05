@@ -9,12 +9,14 @@ import java.util.List;
  *
  */
 public class FntHouseSearch {
-	private String province;
-	private String city;
-	private String keyWord;
-	private List<String> type = new ArrayList<String>();
-	private List<String> areaRange = new ArrayList<String>();
-	private List<String> roomType = new ArrayList<String>();
+	private String province;//省
+	private String city;//市
+	private String keyWord;//关键字
+	private List<String> type = new ArrayList<String>();//房屋性质类型
+	private List<String> areaRange = new ArrayList<String>();//面积
+	private List<String> roomType = new ArrayList<String>();//户型类型
+	private String pageNow;//当前页
+	private String pageSize;//每页条数
 	public String getKeyWord() {
 		return keyWord;
 	}
@@ -50,5 +52,17 @@ public class FntHouseSearch {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public String getPageNow() {
+		return pageNow;
+	}
+	public void setPageNow(String pageNow) {
+		this.pageNow = pageNow;
+	}
+	public String getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
 	}
 }
