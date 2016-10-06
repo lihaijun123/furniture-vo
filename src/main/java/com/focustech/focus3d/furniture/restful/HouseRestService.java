@@ -135,6 +135,7 @@ public class HouseRestService {
 		for (FntHouseModel fntHouseModel : list) {
 			JSONObject jo = new JSONObject();
 			jo.put("name", fntHouseModel.getName());
+			jo.put("area", fntHouseModel.getArea());
 			jo.put("roomNum", fntHouseModel.getRoomNum());
 			jo.put("livingRoomNum", fntHouseModel.getLivingRoomNum());
 			jo.put("url", fntHouseModel.getModelFileUrl());
