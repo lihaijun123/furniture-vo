@@ -47,5 +47,6 @@ public class ProvinceCityConst {
 		province_city.put("city_32", new String[]{"香港","其他"});
 		province_city.put("city_33", new String[]{"澳门","其他"});
 		province_city.put("city_34", new String[]{"台湾","其他"});
+		province_city.put("city_35", new String[]{"其他"});
 	}
 }
