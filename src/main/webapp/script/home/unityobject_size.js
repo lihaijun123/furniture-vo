@@ -1,7 +1,7 @@
 (function($) {
 	$.fn.initSize = function() {
 		var upW = $(".in_top").width();
-		$(this).width(upW * 0.78);
+		$(this).width(upW * 1);
 		$(this).height(($(this).width() * 9) / 16);
 	};
 	$.fn.fullScreenSize = function() {
