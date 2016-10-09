@@ -14,4 +14,6 @@ import com.focustech.focus3d.agent.service.ICommonService;
 public interface FntProductCateService<T> extends ICommonService<T> {
 
 	public List<FntProductCategory> list(String status);
+	
+	public T selectByCode(long cateCode);
 }

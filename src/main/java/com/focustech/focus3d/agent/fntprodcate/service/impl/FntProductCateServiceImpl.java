@@ -32,5 +32,11 @@ public class FntProductCateServiceImpl extends CommonServiceTemplate<FntProductC
 		categoryCriteria.createCriteria().andCatStatusEqualTo(status);
 		return selectByCriteria(categoryCriteria, FntProductCategory.class);
 	}
+	@Override
+	public FntProductCategory selectByCode(long cateCode) {
+		CoreCategoryCriteria categoryCriteria = new CoreCategoryCriteria();
+		categoryCriteria.createCriteria().andCatCodeEqualTo(cateCode);
+		return selectFirstByExample(categoryCriteria, FntProductCategory.class);
+	}
 
 }

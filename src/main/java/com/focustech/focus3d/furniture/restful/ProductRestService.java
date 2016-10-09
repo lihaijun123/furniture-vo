@@ -17,8 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.StringUtils;
+import com.focustech.focus3d.agent.fntprodcate.service.FntProductCateService;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
 import com.focustech.focus3d.agent.fntproduct.service.FntProductService;
+import com.focustech.focus3d.agent.model.FntProductCategory;
 import com.focustech.focus3d.agent.model.FntProductModel;
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
 
@@ -71,6 +73,16 @@ public class ProductRestService {
 			jo.put("url", fntProductModel.getModelFileUrl());
 			jo.put("version", fntProductModel.getModelFileVersion());
 			jo.put("picUrl", fntProductModel.getPicFileUrl());
+			String categoryName = fntProductModel.getCategoryName();
+			String category = "";
+			if(categoryName.contains("地")){
+				category = "floor";
+			} else if(categoryName.contains("墙")){
+				category = "wall";
+			} else {
+				category = "furniture";
+			}
+			jo.put("category", category);
 			jary.add(jo);
 		}
 		return jary.toString();
