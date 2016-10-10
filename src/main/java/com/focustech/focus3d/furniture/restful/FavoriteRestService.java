@@ -87,6 +87,28 @@ public class FavoriteRestService {
 	@GET
 	@Path("/list/{userId}")
 	public String list(@PathParam("userId") String userId){
+		JSONArray jary = getList(userId);
+		return jary.toString();
+	}
+	/**
+	 * *
+	 * @param userId
+	 * @param targetType
+	 * @return
+	 */
+	@POST
+	@Path("/list")
+	public String listByPost(@QueryParam("userId") String userId){
+		JSONArray jary = getList(userId);
+		return jary.toString();
+	}
+	/**
+	 * 
+	 * *
+	 * @param userId
+	 * @return
+	 */
+	private JSONArray getList(String userId) {
 		//LnAKoUyeyUpB DqoeAUpKyyey
 		EncryptUtil.encode(100000L);
 		JSONArray jary = new JSONArray();
@@ -102,6 +124,6 @@ public class FavoriteRestService {
 				e.printStackTrace();
 			}
 		}
-		return jary.toString();
+		return jary;
 	}
 }
