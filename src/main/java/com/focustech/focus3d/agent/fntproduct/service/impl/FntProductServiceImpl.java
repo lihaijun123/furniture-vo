@@ -2,10 +2,13 @@ package com.focustech.focus3d.agent.fntproduct.service.impl;
 
 import java.util.List;
 
+import net.sf.json.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.focustech.cief.filemanage.common.utils.FileManageUtil;
+import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
@@ -30,16 +33,46 @@ public class FntProductServiceImpl extends CommonServiceTemplate<FntProductModel
 	@Override
 	public List<FntProductModel> search(FntProductSearch productSearch) {
 		List<FntProductModel> list = productDao.search(productSearch);
-		for (FntProductModel fntHouseModel : list) {
-			Long picFileSn = fntHouseModel.getPicFileSn();
-			if(picFileSn != null){
-				fntHouseModel.setPicFileUrl(TCUtil.sv(FileManageUtil.getFileURL(picFileSn)));
-			}
-			Long modelFileSn = fntHouseModel.getModelFileSn();
-			if(modelFileSn != null){
-				fntHouseModel.setModelFileUrl(TCUtil.sv(FileManageUtil.getFileURL(modelFileSn)));
-			}
+		for (FntProductModel productModel : list) {
+			setFileInfo(productModel);
 		}
 		return list;
+	}
+	
+	
+	@Override
+	public JSONObject serialize(FntProductModel fntProductModel) {
+		setFileInfo(fntProductModel);
+		JSONObject jo = new JSONObject();
+		jo.put("url", fntProductModel.getModelFileUrl());
+		jo.put("version", fntProductModel.getModelFileVersion());
+		jo.put("picUrl", fntProductModel.getPicFileUrl());
+		String categoryName = fntProductModel.getCategoryName();
+		String category = "";
+		if(categoryName.contains("地")){
+			category = "floor";
+		} else if(categoryName.contains("墙")){
+			category = "wall";
+		} else {
+			category = "furniture";
+		}
+		jo.put("category", category);
+		jo.put("id", EncryptUtil.encode(fntProductModel.getSn()));
+		return jo;
+	}
+	/**
+	 * 
+	 * *
+	 * @param fntProductModel
+	 */
+	private void setFileInfo(FntProductModel fntProductModel) {
+		Long picFileSn = fntProductModel.getPicFileSn();
+		if(picFileSn != null){
+			fntProductModel.setPicFileUrl(TCUtil.sv(FileManageUtil.getFileURL(picFileSn)));
+		}
+		Long modelFileSn = fntProductModel.getModelFileSn();
+		if(modelFileSn != null){
+			fntProductModel.setModelFileUrl(TCUtil.sv(FileManageUtil.getFileURL(modelFileSn)));
+		}
 	}
 }
