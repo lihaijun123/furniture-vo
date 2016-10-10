@@ -49,15 +49,12 @@ public class FavoriteRestService {
 	@Path("/save")
 	public String save(
 			@QueryParam("userId") String userId,
-			@QueryParam("targetId") String targetId,
-			@QueryParam("targetType") Integer targetType
+			@QueryParam("targetId") String targetId
 			){
 		int status = 0;
 		String message = "收藏成功";
 		if(StringUtils.isNotEmpty(userId) && StringUtils.isNotEmpty(targetId)){
-			if(targetType == null){
-				targetType = 1;//默认家具
-			}
+			int targetType = 1;//默认家具
 			try {
 				Long userIdDecode = EncryptUtil.decode(userId);
 				Long targetIdDecode = EncryptUtil.decode(targetId);
@@ -88,15 +85,13 @@ public class FavoriteRestService {
 	 * @return
 	 */
 	@GET
-	@Path("/list/{userId}/{targetType}")
-	public String list(@PathParam("userId") String userId, @PathParam("targetType") Integer targetType){
+	@Path("/list/{userId}")
+	public String list(@PathParam("userId") String userId){
 		//LnAKoUyeyUpB DqoeAUpKyyey
 		EncryptUtil.encode(100000L);
 		JSONArray jary = new JSONArray();
 		if(StringUtils.isNotEmpty(userId)){
-			if(targetType == null){
-				targetType = 1;
-			}
+			int targetType = 1;
 			try {
 				List<FntFavoriteModel> list = favoriteService.list(EncryptUtil.decode(userId), targetType);
 				for (FntFavoriteModel fntFavoriteModel : list) {
