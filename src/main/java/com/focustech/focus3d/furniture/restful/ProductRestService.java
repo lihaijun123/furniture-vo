@@ -16,6 +16,7 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.focus3d.agent.fntprodcate.service.FntProductCateService;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
@@ -83,6 +84,7 @@ public class ProductRestService {
 				category = "furniture";
 			}
 			jo.put("category", category);
+			jo.put("id", EncryptUtil.encode(fntProductModel.getSn()));
 			jary.add(jo);
 		}
 		return jary.toString();
