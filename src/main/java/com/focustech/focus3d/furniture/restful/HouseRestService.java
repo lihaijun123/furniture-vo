@@ -14,6 +14,7 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.fnthouse.controller.FntHouseSearch;
@@ -139,6 +140,7 @@ public class HouseRestService {
 			jo.put("livingRoomNum", fntHouseModel.getLivingRoomNum());
 			jo.put("url", fntHouseModel.getModelFileUrl());
 			jo.put("version", fntHouseModel.getModelFileVersion());
+			jo.put("id", EncryptUtil.encode(fntHouseModel.getSn()));
 			jo.put("picUrl", fntHouseModel.getPicFileUrl());
 			jary.add(jo);
 		}
