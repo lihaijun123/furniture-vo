@@ -28,5 +28,7 @@ public interface ICommonService<T> {
 	public int updateByCriteriaSelective(Object u);
 
 	public T selectBySn(Long sn, Class<?> targetClass);
+	
+	public List<T> selectByCriteriaWithBlob(Object u, Class<?> targetClass);
 
 }

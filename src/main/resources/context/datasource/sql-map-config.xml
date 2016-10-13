@@ -34,5 +34,6 @@
 		<sqlMap resource="context/datasource/sqlmap/fnt_product_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/custom/c_product_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/fnt_favorite_SqlMap.xml"/>
+		<sqlMap resource="context/datasource/sqlmap/fnt_case_SqlMap.xml"/>
 		
 </sqlMapConfig>
