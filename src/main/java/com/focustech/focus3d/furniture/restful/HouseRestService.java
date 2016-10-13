@@ -14,7 +14,6 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.fnthouse.controller.FntHouseSearch;
@@ -133,16 +132,7 @@ public class HouseRestService {
 		JSONArray jary = new JSONArray();
 		List<FntHouseModel> list = fntHouseService.search(houseSearch);
 		for (FntHouseModel fntHouseModel : list) {
-			JSONObject jo = new JSONObject();
-			jo.put("name", fntHouseModel.getName());
-			jo.put("area", fntHouseModel.getArea());
-			jo.put("roomNum", fntHouseModel.getRoomNum());
-			jo.put("livingRoomNum", fntHouseModel.getLivingRoomNum());
-			jo.put("url", fntHouseModel.getModelFileUrl());
-			jo.put("version", fntHouseModel.getModelFileVersion());
-			jo.put("id", EncryptUtil.encode(fntHouseModel.getSn()));
-			jo.put("picUrl", fntHouseModel.getPicFileUrl());
-			jary.add(jo);
+			jary.add(fntHouseService.serialize(fntHouseModel));
 		}
 		pageSize = houseSearch.getPageSize();
 		int recordTotal = fntHouseService.searchTotal(houseSearch);

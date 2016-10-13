@@ -2,6 +2,8 @@ package com.focustech.focus3d.agent.fnthouse.service;
 
 import java.util.List;
 
+import net.sf.json.JSONObject;
+
 import com.focustech.focus3d.agent.fnthouse.controller.FntHouseSearch;
 import com.focustech.focus3d.agent.service.ICommonService;
 /**
@@ -23,4 +25,11 @@ public interface FntHouseService<T> extends ICommonService<T> {
 	 * @return
 	 */
 	public int searchTotal(FntHouseSearch houseSearch);
+	/**
+	 * 
+	 * *
+	 * @param fntProductModel
+	 * @return
+	 */
+	public JSONObject serialize(T fntHouseModel);
 }

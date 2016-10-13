@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.focus3d.agent.fntcase.service.FntCaseService;
+import com.focustech.focus3d.agent.fnthouse.service.FntHouseService;
 import com.focustech.focus3d.agent.model.FntCaseModel;
+import com.focustech.focus3d.agent.model.FntHouseModel;
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
 
 /**
@@ -33,6 +35,8 @@ import com.focustech.focus3d.furniture.restful.constant.ContentType;
 public class CaseRestService {
 	@Autowired
 	private FntCaseService<FntCaseModel> caseService;
+	@Autowired
+	private FntHouseService<FntHouseModel> houseService;
 	/**
 	 * *
 	 * @param userId
@@ -97,8 +101,9 @@ public class CaseRestService {
 			}
 			for (FntCaseModel fntCaseModel : list) {
 				JSONObject jo = new JSONObject();
-				jo.put("userId", fntCaseModel.getUserId());
-				jo.put("houseId", fntCaseModel.getHouseId());
+				jo.put("userId", EncryptUtil.encode(fntCaseModel.getUserId()));
+				FntHouseModel houseModel = houseService.selectBySn(fntCaseModel.getHouseId(), FntHouseModel.class);
+				jo.put("house", houseService.serialize(houseModel));
 				jo.put("data", fntCaseModel.getCaseData());
 				jary.add(jo);
 			}
