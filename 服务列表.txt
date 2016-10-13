@@ -1,0 +1,14 @@
+搜藏服务：
+
+http://139.196.173.139:8888/rest/favorite/save
+post 字段：
+
+userId=LnAKoUyeyUpB (用户id)
+targetId=DqoeAUpKyyey （收藏对象id）
+
+
+用户收藏列表服务：
+
+http://139.196.173.139:8888/rest/favorite/list
+post 字段：
+userId=LnAKoUyeyUpB (用户id)
