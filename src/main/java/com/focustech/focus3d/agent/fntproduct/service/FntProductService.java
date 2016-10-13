@@ -27,4 +27,6 @@ public interface FntProductService<T> extends ICommonService<T> {
 	 * @return
 	 */
 	public JSONObject serialize(T fntProductModel);
+	
+	public JSONObject serialize(long productId);
 }

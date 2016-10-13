@@ -75,4 +75,9 @@ public class FntProductServiceImpl extends CommonServiceTemplate<FntProductModel
 			fntProductModel.setModelFileUrl(TCUtil.sv(FileManageUtil.getFileURL(modelFileSn)));
 		}
 	}
+	@Override
+	public JSONObject serialize(long productId) {
+		FntProductModel productModel = selectBySn(productId, FntProductModel.class);
+		return serialize(productModel);
+	}
 }

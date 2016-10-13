@@ -102,8 +102,7 @@ public class CaseRestService {
 			for (FntCaseModel fntCaseModel : list) {
 				JSONObject jo = new JSONObject();
 				jo.put("userId", EncryptUtil.encode(fntCaseModel.getUserId()));
-				FntHouseModel houseModel = houseService.selectBySn(fntCaseModel.getHouseId(), FntHouseModel.class);
-				jo.put("house", houseService.serialize(houseModel));
+				jo.put("house", houseService.serialize(fntCaseModel.getHouseId()));
 				jo.put("data", fntCaseModel.getCaseData());
 				jary.add(jo);
 			}

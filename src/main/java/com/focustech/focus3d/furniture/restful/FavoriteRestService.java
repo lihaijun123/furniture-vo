@@ -115,8 +115,7 @@ public class FavoriteRestService {
 			try {
 				List<FntFavoriteModel> list = favoriteService.list(EncryptUtil.decode(userId), targetType);
 				for (FntFavoriteModel fntFavoriteModel : list) {
-					FntProductModel productModel = fntProductService.selectBySn(fntFavoriteModel.getTargetId(), FntProductModel.class);
-					jary.add(fntProductService.serialize(productModel));
+					jary.add(fntProductService.serialize(fntFavoriteModel.getTargetId()));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

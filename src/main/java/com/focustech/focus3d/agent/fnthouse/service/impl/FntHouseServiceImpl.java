@@ -72,5 +72,10 @@ public class FntHouseServiceImpl extends CommonServiceTemplate<FntHouseModel> im
 			fntHouseModel.setModelFileUrl(TCUtil.sv(FileManageUtil.getFileURL(modelFileSn)));
 		}
 	}
+	@Override
+	public JSONObject serialize(long houseId) {
+		FntHouseModel houseModel = selectBySn(houseId, FntHouseModel.class);
+		return serialize(houseModel);
+	}
 
 }
