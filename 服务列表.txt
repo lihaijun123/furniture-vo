@@ -12,6 +12,20 @@ post 字段：
 userId=LnAKoUyeyUpB (用户id)
 
 ========案例服务===========
-
+http://139.196.173.139:8888/rest/case/save
+post字段:
 userId=LnAKoUyeyUpB (用户id)
 houseId=DqoeAUpKyyey （户型id）
+data=数据
+通过userId获取：
+
+http://139.196.173.139:8888/rest/case/list/byuser
+post字段：
+userId:LnAKoUyeyUpB
+
+
+通过houseId获取：
+
+http://139.196.173.139:8888/rest/case/list/byhouse
+post字段：
+houseId:DqoeAUpKyyey
