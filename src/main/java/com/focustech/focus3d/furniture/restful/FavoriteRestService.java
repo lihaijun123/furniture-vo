@@ -2,12 +2,12 @@ package com.focustech.focus3d.furniture.restful;
 
 import java.util.List;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -47,12 +47,9 @@ public class FavoriteRestService {
 	 */
 	@POST
 	@Path("/save")
-	public String save(
-			@QueryParam("userId") String userId,
-			@QueryParam("targetId") String targetId
-			){
+	public String save(@FormParam("userId") String userId, @FormParam("targetId") String targetId){
 		int status = 0;
-		String message = "收藏成功";
+		String message = "";
 		if(StringUtils.isNotEmpty(userId) && StringUtils.isNotEmpty(targetId)){
 			int targetType = 1;//默认家具
 			try {
@@ -65,6 +62,7 @@ public class FavoriteRestService {
 					favoriteModel.setTargetId(targetIdDecode);
 					favoriteModel.setTargetType(targetType);
 					favoriteService.insert(favoriteModel);
+					message = "收藏成功";
 				} else {
 					status = 1;
 					message = "收藏失败，已经被收藏";
@@ -98,7 +96,7 @@ public class FavoriteRestService {
 	 */
 	@POST
 	@Path("/list")
-	public String listByPost(@QueryParam("userId") String userId){
+	public String listByPost(@FormParam("userId") String userId){
 		JSONArray jary = getList(userId);
 		return jary.toString();
 	}
@@ -110,7 +108,7 @@ public class FavoriteRestService {
 	 */
 	private JSONArray getList(String userId) {
 		//LnAKoUyeyUpB DqoeAUpKyyey
-		EncryptUtil.encode(100000L);
+		//EncryptUtil.encode(100000L);
 		JSONArray jary = new JSONArray();
 		if(StringUtils.isNotEmpty(userId)){
 			int targetType = 1;
