@@ -53,4 +53,9 @@ public class FntCaseServiceImpl extends CommonServiceTemplate<FntCaseModel> impl
 		caseCriteria.createCriteria().andHouseIdEqualTo(houseId);
 		return selectByCriteriaWithBlob(caseCriteria, FntCaseModel.class);
 	}
+	@Override
+	public List<FntCaseModel> listAll() {
+		FntCaseCriteria caseCriteria = new FntCaseCriteria();
+		return selectByCriteriaWithBlob(caseCriteria, FntCaseModel.class);
+	}
 }

@@ -1,5 +1,6 @@
 package com.focustech.focus3d.furniture.restful;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.FormParam;
@@ -80,47 +81,29 @@ public class CaseRestService {
 	 * @return
 	 */
 	@POST
-	@Path("/list/byuser")
-	public String listByUser(@FormParam("userId") String userId){
+	@Path("/list")
+	public String list(@FormParam("userId") String userId, @FormParam("houseId") String houseId){
 		JSONArray jary = new JSONArray();
-		if(StringUtils.isNotEmpty(userId)){
-			try {
+		List<FntCaseModel> list = new ArrayList<FntCaseModel>();
+		try {
+			if(StringUtils.isNotEmpty(userId)){
 				long userIdDec = EncryptUtil.decode(userId);
-				List<FntCaseModel> listByUser = caseService.listByUser(userIdDec);
-				for (FntCaseModel fntCaseModel : listByUser) {
-					JSONObject jo = new JSONObject();
-					jo.put("userId", userId);
-					jo.put("data", fntCaseModel.getCaseData());
-					jary.add(jo);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return jary.toString();
-	}
-	/**
-	 * *
-	 * @param houseId
-	 * @return
-	 */
-	@POST
-	@Path("/list/byhouse")
-	public String listByHouse(@FormParam("houseId") String houseId){
-		JSONArray jary = new JSONArray();
-		if(StringUtils.isNotEmpty(houseId)){
-			try {
+				list = caseService.listByUser(userIdDec);
+			} else if(StringUtils.isNotEmpty(houseId)){
 				long houseIdDec = EncryptUtil.decode(houseId);
-				List<FntCaseModel> listByHouse = caseService.listByHouse(houseIdDec);
-				for (FntCaseModel fntCaseModel : listByHouse) {
-					JSONObject jo = new JSONObject();
-					jo.put("houseId", houseId);
-					jo.put("data", fntCaseModel.getCaseData());
-					jary.add(jo);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+				list = caseService.listByHouse(houseIdDec);
+			} else {
+				list = caseService.listAll();
 			}
+			for (FntCaseModel fntCaseModel : list) {
+				JSONObject jo = new JSONObject();
+				jo.put("userId", fntCaseModel.getUserId());
+				jo.put("houseId", fntCaseModel.getHouseId());
+				jo.put("data", fntCaseModel.getCaseData());
+				jary.add(jo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return jary.toString();
 	}

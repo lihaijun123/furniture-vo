@@ -19,5 +19,7 @@ public interface FntCaseService<T> extends ICommonService<T> {
 	
 	public List<T> listByHouse(long houseId);
 	
+	public List<T> listAll();
+	
 	
 }

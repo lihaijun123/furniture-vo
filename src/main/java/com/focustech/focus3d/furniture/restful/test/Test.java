@@ -34,9 +34,10 @@ public class Test {
 
 	public static void main(String[] args) {
 		//testFavorite();
-		testCaseSave();
-		testCaseListByUser();
+		//testCaseSave();
+		//testCaseListByUser();
 		testCaseListByHouse();
+		testCaseListAll();
 	}
 	
 	
@@ -105,8 +106,8 @@ public class Test {
 				out.write(bf, 0, bf.length);
 			}
 			String x = new String(out.toByteArray(), "utf8");
-			System.out.println(x);
-			qparams.add(new BasicNameValuePair("data", x));
+			//System.out.println(x);
+			qparams.add(new BasicNameValuePair("data", "sfsdf"));
 			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(qparams, "utf-8");
 			post.setEntity(entity);
 			//示例：提交用户名和密码
@@ -144,7 +145,7 @@ public class Test {
 		try {
 			CloseableHttpClient httpClient = HttpClients.createDefault();
 			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
-			HttpPost post = new HttpPost(URL_TEST + "/rest/case/list/byuser");
+			HttpPost post = new HttpPost(URL_TEST + "/rest/case/list");
 			post.setConfig(requestConfig);
 			List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 			qparams.add(new BasicNameValuePair("userId", "LnAKoUyeyUpB"));
@@ -181,10 +182,46 @@ public class Test {
 		try {
 			CloseableHttpClient httpClient = HttpClients.createDefault();
 			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
-			HttpPost post = new HttpPost(URL_TEST + "/rest/case/list/byhouse");
+			HttpPost post = new HttpPost(URL_TEST + "/rest/case/list");
 			post.setConfig(requestConfig);
 			List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 			qparams.add(new BasicNameValuePair("houseId", "DqoeAUpKyyey"));
+			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(qparams, "utf-8");
+			post.setEntity(entity);
+			//示例：提交用户名和密码
+			System.out.println(post.getRequestLine());
+			HttpResponse resp = httpClient.execute(post);
+			int statusCode = resp.getStatusLine().getStatusCode();
+			System.out.println(statusCode);
+			InputStream is = resp.getEntity().getContent();
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			int len = 0;
+			byte[] byt = new byte[1024];
+			while((len = is.read(byt)) != -1){
+				outputStream.write(byt, 0, len);
+			}
+			System.out.println(new String(outputStream.toByteArray()));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private static void testCaseListAll() {
+		try {
+			CloseableHttpClient httpClient = HttpClients.createDefault();
+			RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+			HttpPost post = new HttpPost(URL_TEST + "/rest/case/list");
+			post.setConfig(requestConfig);
+			List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(qparams, "utf-8");
 			post.setEntity(entity);
 			//示例：提交用户名和密码
