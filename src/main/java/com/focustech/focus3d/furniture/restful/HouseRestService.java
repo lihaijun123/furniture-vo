@@ -2,6 +2,7 @@ package com.focustech.focus3d.furniture.restful;
 
 import java.util.List;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -70,14 +71,14 @@ public class HouseRestService {
 	@POST
 	@Path("search")
 	public String searchByPost(
-			@QueryParam("province") String province,
-			@QueryParam("city") String city,
-			@QueryParam("keyWord") String keyWord,
-			@QueryParam("type") String type,
-			@QueryParam("areaRange") String areaRange,
-			@QueryParam("roomType") String roomType,
-			@QueryParam("pageNow") String pageNow,
-			@QueryParam("pageSize") String pageSize
+			@FormParam("province") String province,
+			@FormParam("city") String city,
+			@FormParam("keyWord") String keyWord,
+			@FormParam("type") String type,
+			@FormParam("areaRange") String areaRange,
+			@FormParam("roomType") String roomType,
+			@FormParam("pageNow") String pageNow,
+			@FormParam("pageSize") String pageSize
 			) {
 		return searchData(province, city, keyWord, type, areaRange, roomType, pageNow, pageSize);
 	}
