@@ -17,11 +17,13 @@ import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.StringUtils;
+import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.fntcase.service.FntCaseService;
 import com.focustech.focus3d.agent.fnthouse.service.FntHouseService;
 import com.focustech.focus3d.agent.model.FntCaseModel;
 import com.focustech.focus3d.agent.model.FntHouseModel;
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
+import com.focustech.focus3d.furniture.restful.search.FntCaseSearch;
 
 /**
  * 
@@ -79,26 +81,41 @@ public class CaseRestService {
 		return jo.toString();
 	}
 	/**
-	 * 
+	 * 搜索
 	 * *
 	 * @param userId
 	 * @return
 	 */
 	@POST
-	@Path("/list")
-	public String list(@FormParam("userId") String userId, @FormParam("houseId") String houseId){
+	@Path("/search")
+	public String search(
+			@FormParam("userId") String userId, 
+			@FormParam("houseName") String houseName,
+			@FormParam("buildingName") String buildingName,
+			@FormParam("pageNow") String pageNow,
+			@FormParam("pageSize") String pageSize)
+	{
 		JSONArray jary = new JSONArray();
 		List<FntCaseModel> list = new ArrayList<FntCaseModel>();
+		FntCaseSearch caseSearch = new FntCaseSearch();
 		try {
 			if(StringUtils.isNotEmpty(userId)){
 				long userIdDec = EncryptUtil.decode(userId);
-				list = caseService.listByUser(userIdDec);
-			} else if(StringUtils.isNotEmpty(houseId)){
-				long houseIdDec = EncryptUtil.decode(houseId);
-				list = caseService.listByHouse(houseIdDec);
-			} else {
-				list = caseService.listAll();
+				caseSearch.setUserId(TCUtil.sv(userIdDec));
+			} 
+			if(StringUtils.isNotEmpty(houseName)){
+				caseSearch.setHouseName(houseName);
 			}
+			if(StringUtils.isNotEmpty(buildingName)){
+				caseSearch.setBuildingName(buildingName);
+			}
+			if(StringUtils.isNotEmpty(pageNow) && TCUtil.iv(pageNow) > 0){
+				caseSearch.setPageNow(TCUtil.iv(pageNow));
+				if(StringUtils.isNotEmpty(pageSize) && TCUtil.iv(pageSize) > 0){
+					caseSearch.setPageSize(TCUtil.iv(pageSize));
+				}
+			}
+			list = caseService.search(caseSearch);
 			for (FntCaseModel fntCaseModel : list) {
 				JSONObject jo = new JSONObject();
 				jo.put("userId", EncryptUtil.encode(fntCaseModel.getUserId()));
@@ -109,7 +126,10 @@ public class CaseRestService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return jary.toString();
+		JSONObject rvJo = new JSONObject();
+		caseSearch.addPageInfo(rvJo);
+		rvJo.put("list", jary);
+		return rvJo.toString();
 	}
 	
 	@GET

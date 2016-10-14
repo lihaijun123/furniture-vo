@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.focustech.focus3d.agent.common.controller.CommonController;
 import com.focustech.focus3d.agent.fnthouse.service.FntHouseService;
 import com.focustech.focus3d.agent.model.FntHouseModel;
+import com.focustech.focus3d.furniture.restful.search.FntHouseSearch;
 /**
  * 
  * *

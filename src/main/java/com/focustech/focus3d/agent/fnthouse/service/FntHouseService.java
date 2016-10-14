@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.sf.json.JSONObject;
 
-import com.focustech.focus3d.agent.fnthouse.controller.FntHouseSearch;
 import com.focustech.focus3d.agent.service.ICommonService;
+import com.focustech.focus3d.furniture.restful.search.FntHouseSearch;
 /**
  * *
  * @author lihaijun

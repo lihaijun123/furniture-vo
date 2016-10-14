@@ -14,8 +14,8 @@ import com.focustech.common.utils.ListUtils;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.dao.CommonDao;
-import com.focustech.focus3d.agent.fnthouse.controller.FntHouseSearch;
 import com.focustech.focus3d.agent.model.FntHouseModel;
+import com.focustech.focus3d.furniture.restful.search.FntHouseSearch;
 /**
  * 
  * *
@@ -39,6 +39,11 @@ public class FntHouseDao extends CommonDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		if(ListUtils.isNotEmpty(list)){
+			int searchTotal = searchTotal(houseSearch);
+			houseSearch.setRecords(list);
+			houseSearch.setRecordTotal(searchTotal);
+		}
 		return list;
 	}
 	/**
@@ -54,8 +59,8 @@ public class FntHouseDao extends CommonDao {
 		List<String> areaRange = houseSearch.getAreaRange();
 		List<String> roomType = houseSearch.getRoomType();
 		List<String> type = houseSearch.getType();
-		String pageNow = houseSearch.getPageNow();
-		String pageSize = houseSearch.getPageSize();
+		int pageNow = houseSearch.getPageNow();
+		int pageSize = houseSearch.getPageSize();
 		if(StringUtils.isNotEmpty(province) && !"请选择".equals(province)){
 			if("全国".equals(province)){
 				//condition.append(" and province !='").append("请选择").append("'");
@@ -104,7 +109,7 @@ public class FntHouseDao extends CommonDao {
 			}
 			condition.append(" )");
 		}
-		if(StringUtils.isNotEmpty(pageNow)){
+		if(pageNow > 0){
 			condition.append(" limit ")
 			.append((TCUtil.iv(pageNow) - 1) * TCUtil.iv(pageSize))
 			.append(", ")
@@ -122,7 +127,6 @@ public class FntHouseDao extends CommonDao {
 	 * @return
 	 */
 	public int searchTotal(FntHouseSearch houseSearch) {
-		houseSearch.setPageNow("");
 		Map<String, Object> map = createCondition(houseSearch);
 		try {
 			return TCUtil.iv(getSqlMapClient().queryForObject("c_fnt_house.getFntHouseListCount", map));

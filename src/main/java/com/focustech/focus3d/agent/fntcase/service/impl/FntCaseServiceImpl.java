@@ -1,4 +1,4 @@
-package com.focustech.focus3d.agent.fntcase.service;
+package com.focustech.focus3d.agent.fntcase.service.impl;
 
 import java.util.List;
 
@@ -8,9 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.fntcase.dao.FntCaseDao;
+import com.focustech.focus3d.agent.fntcase.service.FntCaseService;
 import com.focustech.focus3d.agent.model.FntCaseModel;
 import com.focustech.focus3d.agent.model.ibator.FntCaseCriteria;
 import com.focustech.focus3d.agent.service.impl.CommonServiceTemplate;
+import com.focustech.focus3d.furniture.restful.search.FntCaseSearch;
 /**
  * 
  * *
@@ -57,5 +59,13 @@ public class FntCaseServiceImpl extends CommonServiceTemplate<FntCaseModel> impl
 	public List<FntCaseModel> listAll() {
 		FntCaseCriteria caseCriteria = new FntCaseCriteria();
 		return selectByCriteriaWithBlob(caseCriteria, FntCaseModel.class);
+	}
+	@Override
+	public List<FntCaseModel> search(FntCaseSearch caseSearch) {
+		return fntCaseDao.search(caseSearch);
+	}
+	@Override
+	public int searchTotal(FntCaseSearch caseSearch) {
+		return fntCaseDao.searchTotal(caseSearch);
 	}
 }

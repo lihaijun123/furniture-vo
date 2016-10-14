@@ -11,11 +11,11 @@ import com.focustech.cief.filemanage.common.utils.FileManageUtil;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.dao.CommonDao;
-import com.focustech.focus3d.agent.fnthouse.controller.FntHouseSearch;
 import com.focustech.focus3d.agent.fnthouse.dao.FntHouseDao;
 import com.focustech.focus3d.agent.fnthouse.service.FntHouseService;
 import com.focustech.focus3d.agent.model.FntHouseModel;
 import com.focustech.focus3d.agent.service.impl.CommonServiceTemplate;
+import com.focustech.focus3d.furniture.restful.search.FntHouseSearch;
 /**
  * 
  * *

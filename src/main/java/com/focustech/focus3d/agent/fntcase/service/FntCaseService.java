@@ -3,6 +3,7 @@ package com.focustech.focus3d.agent.fntcase.service;
 import java.util.List;
 
 import com.focustech.focus3d.agent.service.ICommonService;
+import com.focustech.focus3d.furniture.restful.search.FntCaseSearch;
 /**
  * *
  * @author lihaijun
@@ -20,6 +21,14 @@ public interface FntCaseService<T> extends ICommonService<T> {
 	public List<T> listByHouse(long houseId);
 	
 	public List<T> listAll();
+
+	public List<T> search(FntCaseSearch caseSearch);
+	/**
+	 * *
+	 * @param houseSearch
+	 * @return
+	 */
+	public int searchTotal(FntCaseSearch caseSearch);
 	
 	
 }

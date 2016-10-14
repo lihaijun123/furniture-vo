@@ -17,10 +17,10 @@ import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
-import com.focustech.focus3d.agent.fnthouse.controller.FntHouseSearch;
 import com.focustech.focus3d.agent.fnthouse.service.FntHouseService;
 import com.focustech.focus3d.agent.model.FntHouseModel;
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
+import com.focustech.focus3d.furniture.restful.search.FntHouseSearch;
 
 /**
  * 
@@ -122,12 +122,10 @@ public class HouseRestService {
 				houseSearch.getRoomType().add(string);
 			}
 		}
-		if(StringUtils.isNotEmpty(pageNow)){
-			houseSearch.setPageNow(pageNow);
-			if(StringUtils.isNotEmpty(pageSize)){
-				houseSearch.setPageSize(pageSize);
-			} else {
-				houseSearch.setPageSize("5");
+		if(StringUtils.isNotEmpty(pageNow) && TCUtil.iv(pageNow) > 0){
+			houseSearch.setPageNow(TCUtil.iv(pageNow));
+			if(StringUtils.isNotEmpty(pageSize) && TCUtil.iv(pageSize) > 0){
+				houseSearch.setPageSize(TCUtil.iv(pageSize));
 			}
 		}
 		JSONArray jary = new JSONArray();
@@ -135,12 +133,8 @@ public class HouseRestService {
 		for (FntHouseModel fntHouseModel : list) {
 			jary.add(fntHouseService.serialize(fntHouseModel));
 		}
-		pageSize = houseSearch.getPageSize();
-		int recordTotal = fntHouseService.searchTotal(houseSearch);
 		JSONObject rvJo = new JSONObject();
-		rvJo.put("pageNow", TCUtil.iv(pageNow) <= 0 ? 1 : TCUtil.iv(pageNow));
-		rvJo.put("pageSize", TCUtil.iv(pageSize) <= 0 ? recordTotal : TCUtil.iv(pageSize));
-		rvJo.put("pageTotal", TCUtil.iv(pageNow) <= 0 ? 1 : (recordTotal + TCUtil.iv(pageSize) - 1) / TCUtil.iv(pageSize));
+		houseSearch.addPageInfo(rvJo);
 		rvJo.put("list", jary);
 		return rvJo.toString();
 		
