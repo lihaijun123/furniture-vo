@@ -24,7 +24,7 @@ public class RestServiceTest extends AbstractTest{
 		qparams.add(new BasicNameValuePair("userId", "LnAKoUyeyUpB"));
 		httpRequest(getProtocal() + "/rest/favorite/list", qparams, HttpMethod.POST);
 	}
-	@Test
+	//@Test
 	public void testHouse() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 		qparams.add(new BasicNameValuePair("province", ""));
