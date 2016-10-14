@@ -80,12 +80,11 @@ public class RestServiceTest extends AbstractTest{
 		httpRequest(getProtocal() + "/rest/case/list", qparams, HttpMethod.POST);
 	}
 	
-	//@Test
+	@Test
 	public void testCaseSearch() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
-		qparams.add(new BasicNameValuePair("userId", "LnAKoUyeyUpB"));
-		qparams.add(new BasicNameValuePair("houseName", ""));
-		qparams.add(new BasicNameValuePair("buildingName", ""));
+		qparams.add(new BasicNameValuePair("userId", ""));
+		qparams.add(new BasicNameValuePair("buildingName", "雅居"));
 		qparams.add(new BasicNameValuePair("pageNow", "1"));
 		qparams.add(new BasicNameValuePair("pageSize", "2"));
 		httpRequest(getProtocal() + "/rest/case/search", qparams, HttpMethod.POST);
