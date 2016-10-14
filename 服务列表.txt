@@ -22,7 +22,7 @@ data=数据
 
 ##查询服务
 
-http://139.196.173.139:8888/rest/case/list
+http://139.196.173.139:8888/rest/case/search
 post字段：
 userId:LnAKoUyeyUpB
 buildingName:小区名称
