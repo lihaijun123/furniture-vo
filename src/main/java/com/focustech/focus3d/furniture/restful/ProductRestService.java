@@ -17,10 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.StringUtils;
-import com.focustech.focus3d.agent.fntprodcate.service.FntProductCateService;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
 import com.focustech.focus3d.agent.fntproduct.service.FntProductService;
-import com.focustech.focus3d.agent.model.FntProductCategory;
 import com.focustech.focus3d.agent.model.FntProductModel;
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
 
