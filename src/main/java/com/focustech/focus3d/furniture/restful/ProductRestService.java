@@ -55,7 +55,12 @@ public class ProductRestService {
 	public String searchByPost(@FormParam("keyWord") String keyWord, @FormParam("categoryCode") String categoryCode) {
 		return searchData(keyWord, categoryCode);
 	}
-	
+	/**
+	 * *
+	 * @param keyWord
+	 * @param categoryCode
+	 * @return
+	 */
 	private String searchData(String keyWord, String categoryCode) {
 		FntProductSearch fntProductSearch = new FntProductSearch();
 		if (StringUtils.isNotEmpty(keyWord)) {
@@ -67,20 +72,7 @@ public class ProductRestService {
 		List<FntProductModel> list = fntProductService.search(fntProductSearch);
 		JSONArray jary = new JSONArray();
 		for (FntProductModel fntProductModel : list) {
-			JSONObject jo = new JSONObject();
-			jo.put("url", fntProductModel.getModelFileUrl());
-			jo.put("version", fntProductModel.getModelFileVersion());
-			jo.put("picUrl", fntProductModel.getPicFileUrl());
-			String categoryName = fntProductModel.getCategoryName();
-			String category = "";
-			if(categoryName.contains("地")){
-				category = "floor";
-			} else if(categoryName.contains("墙")){
-				category = "wall";
-			} else {
-				category = "furniture";
-			}
-			jo.put("category", category);
+			JSONObject jo = fntProductService.serialize(fntProductModel);
 			jary.add(jo);
 		}
 		return jary.toString();

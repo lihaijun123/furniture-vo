@@ -49,5 +49,9 @@ public abstract class CommonServiceTemplate<T> {
 
 		return getDao().selectByKey(sn, cls);
 	}
+	
+	public List<T> selectByCriteriaWithBlob(Object u, Class<?> targetClass) {
+		return getDao().selectByCriteriaWithBlob(u, targetClass);
+	}
 
 }
