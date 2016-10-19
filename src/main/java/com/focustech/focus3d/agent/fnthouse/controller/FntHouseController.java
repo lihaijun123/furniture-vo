@@ -8,9 +8,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.focustech.common.utils.StringUtils;
 import com.focustech.focus3d.agent.common.controller.CommonController;
 import com.focustech.focus3d.agent.fnthouse.service.FntHouseService;
+import com.focustech.focus3d.agent.fnthouseupload.service.FntHouseUploadService;
 import com.focustech.focus3d.agent.model.FntHouseModel;
+import com.focustech.focus3d.agent.model.FntHouseUploadModel;
 import com.focustech.focus3d.furniture.restful.search.FntHouseSearch;
 /**
  * 
@@ -23,6 +26,8 @@ import com.focustech.focus3d.furniture.restful.search.FntHouseSearch;
 public class FntHouseController extends CommonController {
 	@Autowired
 	private FntHouseService<FntHouseModel> fntHouseService;
+	@Autowired
+	private FntHouseUploadService<FntHouseUploadModel> fntHouseUploadService;
 	/**
 	 * 
 	 * *
@@ -44,5 +49,34 @@ public class FntHouseController extends CommonController {
 		List<FntHouseModel> list = fntHouseService.search(houseSearch);
 		modelMap.addAttribute("list", list);
 		return "/fnthouse/search";
+	}
+	
+	/**
+	 * *
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/upload", method = RequestMethod.GET)
+	public String upload(ModelMap modelMap){
+		return "/fnthouse/upload";
+	}
+	
+	/**
+	 * *
+	 * @param houseUploadModel
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public String upload(FntHouseUploadModel houseUploadModel, ModelMap modelMap){
+		String hosueName = houseUploadModel.getHouseName();
+		Long hosueFileSn = houseUploadModel.getHouseFileSn();
+		int status = 0;
+		if(StringUtils.isNotEmpty(hosueName) && hosueFileSn != null){
+			fntHouseUploadService.insert(houseUploadModel);
+			status = 1;
+		}
+		modelMap.put("status", status);
+		return "/fnthouse/upload";
 	}
 }

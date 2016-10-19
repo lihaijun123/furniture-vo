@@ -1,0 +1,100 @@
+#set($layout="layout/layout_empty.html")
+<style>
+/*jquery validate*/
+input.error { border: 1px solid red; }
+label.error {
+
+
+  padding-left: 16px;
+
+  padding-bottom: 2px;
+
+  font-weight: bold;
+
+  color: #EA5200;
+}
+
+</style>
+<div class="container">
+	<form id="f1" action="/fnthouse/upload" method="post" class="form-horizontal mar_t40">
+		<input type="hidden" id="status" name="status" value="$!status"/>
+	 	<div  class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">户型名称</label>
+			<div class="col-sm-10">
+				<input type="text" id="houseName" name="houseName" class="form-control"  maxlength=30  placeholder="请输入户型名称">
+			</div>
+		</div>
+		<div class="form-group hidden-xs">
+		    <label for="inputEmail3" class="col-sm-2 control-label">户型文件</label>
+		    <div class="col-sm-10">
+				<div class="float_l">
+					<input type="hidden" id="houseFileSn" name="houseFileSn"/>
+				</div>
+				<p class="mar_t20 mar_b20 float_l mar_l40">
+					<input  id="file_upload2" name="file_upload2" type="file"/>
+					<span id="houseFileSn_namedisplay"></span>
+					<small class="font_s14 dis_block float_l"></small>
+				</p>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-primary font_s20 w200">提交</button>
+		  	  <font id="message" color="red">$!message</font>
+		    </div>
+		  </div>
+	</form>
+</div>
+<script>
+	$(function(){
+		var status = $("#status").val();
+		if(status === "1"){
+			window.parent.houseUpload_dialogCallbak("upload success!");
+		} else {
+			$.extend($.validator.defaults,{ignore:""});
+			var initJson = {};
+			veUploadify(initJson, "file_upload2");
+			$("form").validate({
+		    	onfocusout:function(element){$(element).valid();},
+		    	errorPlacement: function(error, element){
+		    		if (element.attr("name") == "houseFileSn"){
+		    			error.appendTo($("#houseFileSn_namedisplay"));
+		    		} else {
+		    			error.appendTo(element.parent());
+		    		}
+		    	},
+		    	rules: {
+		    		houseName:{
+		    			required: true,
+		    			maxlength: 30
+		    		},
+		    		houseFileSn:{
+		    			required: true,
+		    			maxlength: 30
+		    		}
+		    	},
+		    	messages: {
+		    		houseName:{
+						required: "请输入户型名称",
+						maxlength: "请输入{0}个字以内"
+					},
+		    		houseFileSn:{
+						required: "请上传户型文件",
+						maxlength: "请输入{0}个字以内"
+					}
+		    	},
+		    	submitHandler:function(form){
+		    		form.submit();
+		    	}
+		    });
+		}
+	});
+	function getfile_upload2Id(){
+		return "houseFileSn";
+	}
+</script>
+<script type="text/javascript" src="/script/uploadFile/swfobject.js"></script>
+<script type="text/javascript" src="/script/uploadFile/uploadify.v2.1.4.min.js"></script>
+<script type="text/javascript" src="/script/uploadFile/fileUploadInit.js"></script>
+<script type="text/javascript" src="/script/uploadFile/uploadify_zh_CN.js"></script>
+<script type="text/javascript" src="/script/jquery.validate.min.js"></script>
