@@ -51,6 +51,7 @@ public class LoginFilter extends AbstractFilter {
 		, "/fntproduct/*"
 		, "/fntprodcate/*"
 		, "/rest*"
+		, "/pgshare/*"
 	};
 	public static Auth auth = new Auth();
 

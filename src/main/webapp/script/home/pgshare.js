@@ -11,6 +11,7 @@ $(function(){
  * 
  */
 function pgShare(data){
+	/*
 	var obj = eval('(' + data + ')');
 	var url = "";
 	var surl = encodeURIComponent(obj.url);
@@ -24,7 +25,40 @@ function pgShare(data){
 		url = "http://service.weibo.com/share/share.php?appkey=1343713053&url=" + surl + "&title=" + stitle + "&pic=" + spic;
 	}
 	window.open(url);
+	*/
+	share_dialogOpen(data);
 }
+
+var share_dialog = null;
+function share_dialogOpen(fileId){
+	if(share_dialog){
+		share_dialog = null;
+	}
+	$("iframe").attr("src", "/pgshare/" + fileId);
+	share_dialog = $("#share-dialog-listLk").dialog({
+	      resizable: false,
+	      draggable: false,
+	      position: {my: "left top", at: "left top", of: "#cont"},
+	      height:$(".in_top").width() - 500,
+	      width:$(".in_top").width() + 50,
+	      modal: true
+	 });
+}
+
+function toShare(type){
+	var url = "";
+	var surl = encodeURIComponent("http://139.196.173.139:8888/index");
+	var stitle = encodeURIComponent("信利家具");
+	var spic = encodeURIComponent($("#picUrl").val());
+	if(type == "qq"){
+		url = "http://connect.qq.com/widget/shareqq/index.html?url=" + surl + "&desc=" + stitle + "&pics=" + spic + "&source=''&sourceUrl=''";
+	}
+	if(type == "sina" ){
+		url = "http://service.weibo.com/share/share.php?appkey=1343713053&url=" + surl + "&title=" + stitle + "&pic=" + spic;
+	}
+	window.open(url);
+}
+
 	/*
 	window._bd_share_config = {
 		common : {
