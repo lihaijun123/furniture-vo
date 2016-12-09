@@ -46,28 +46,32 @@ public class ProductRestService {
 
 	@GET
 	@Path("search")
-	public String searchByGet(@QueryParam("keyWord") String keyWord, @QueryParam("categoryCode") String categoryCode) {
-		return searchData(keyWord, categoryCode);
+	public String searchByGet(@QueryParam("keyWord") String keyWord, @QueryParam("categoryCode") String categoryCode, @QueryParam("price") String price) {
+		return searchData(keyWord, categoryCode, price);
 	}
 
 	@POST
 	@Path("search")
-	public String searchByPost(@FormParam("keyWord") String keyWord, @FormParam("categoryCode") String categoryCode) {
-		return searchData(keyWord, categoryCode);
+	public String searchByPost(@FormParam("keyWord") String keyWord, @FormParam("categoryCode") String categoryCode, @QueryParam("price") String price) {
+		return searchData(keyWord, categoryCode, price);
 	}
 	/**
 	 * *
 	 * @param keyWord
 	 * @param categoryCode
+	 * @param price 
 	 * @return
 	 */
-	private String searchData(String keyWord, String categoryCode) {
+	private String searchData(String keyWord, String categoryCode, String price) {
 		FntProductSearch fntProductSearch = new FntProductSearch();
 		if (StringUtils.isNotEmpty(keyWord)) {
 			fntProductSearch.setKeyWord(keyWord);
 		}
 		if (StringUtils.isNotEmpty(categoryCode)) {
 			fntProductSearch.setCategoryCode(categoryCode);
+		}
+		if (StringUtils.isNotEmpty(price)) {
+			fntProductSearch.setPriceRange(price);
 		}
 		List<FntProductModel> list = fntProductService.search(fntProductSearch);
 		JSONArray jary = new JSONArray();
