@@ -62,9 +62,9 @@ public class ProductRestService {
 	public String searchByPost(
 			@FormParam("keyWord") String keyWord, 
 			@FormParam("categoryCode") String categoryCode, 
-			@QueryParam("price") String price,
-			@QueryParam("pageNow") String pageNow,
-			@QueryParam("pageSize") String pageSize
+			@FormParam("price") String price,
+			@FormParam("pageNow") String pageNow,
+			@FormParam("pageSize") String pageSize
 			) {
 		return searchData(keyWord, categoryCode, price, pageNow, pageSize);
 	}
