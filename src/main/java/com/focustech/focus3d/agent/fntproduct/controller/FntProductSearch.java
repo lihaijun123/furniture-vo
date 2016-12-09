@@ -1,11 +1,14 @@
 package com.focustech.focus3d.agent.fntproduct.controller;
+
+import com.focustech.focus3d.furniture.restful.search.FntPageInfo;
+
 /**
  * 
  * *
  * @author lihaijun
  *
  */
-public class FntProductSearch {
+public class FntProductSearch extends FntPageInfo{
 	//改为对应目录名称
 	private String categoryCode;
 	private String priceRange;

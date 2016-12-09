@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.StringUtils;
+import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
 import com.focustech.focus3d.agent.fntproduct.service.FntProductService;
 import com.focustech.focus3d.agent.model.FntProductModel;
@@ -40,29 +41,43 @@ public class ProductRestService {
 	@Path("{name}")
 	public String hello(@PathParam("name") final String name){
 		JSONObject jo = new JSONObject();
-		jo.put("lihaijun", "李海俊");
+		jo.put("lihaijun", "lhj");
 		return jo.toString();
 	}
 
 	@GET
 	@Path("search")
-	public String searchByGet(@QueryParam("keyWord") String keyWord, @QueryParam("categoryCode") String categoryCode, @QueryParam("price") String price) {
-		return searchData(keyWord, categoryCode, price);
+	public String searchByGet(
+			@QueryParam("keyWord") String keyWord, 
+			@QueryParam("categoryCode") String categoryCode, 
+			@QueryParam("price") String price,
+			@QueryParam("pageNow") String pageNow,
+			@QueryParam("pageSize") String pageSize
+			) {
+		return searchData(keyWord, categoryCode, price, pageNow, pageSize);
 	}
 
 	@POST
 	@Path("search")
-	public String searchByPost(@FormParam("keyWord") String keyWord, @FormParam("categoryCode") String categoryCode, @QueryParam("price") String price) {
-		return searchData(keyWord, categoryCode, price);
+	public String searchByPost(
+			@FormParam("keyWord") String keyWord, 
+			@FormParam("categoryCode") String categoryCode, 
+			@QueryParam("price") String price,
+			@QueryParam("pageNow") String pageNow,
+			@QueryParam("pageSize") String pageSize
+			) {
+		return searchData(keyWord, categoryCode, price, pageNow, pageSize);
 	}
 	/**
 	 * *
 	 * @param keyWord
 	 * @param categoryCode
 	 * @param price 
+	 * @param pageSize 
+	 * @param pageNow 
 	 * @return
 	 */
-	private String searchData(String keyWord, String categoryCode, String price) {
+	private String searchData(String keyWord, String categoryCode, String price, String pageNow, String pageSize) {
 		FntProductSearch fntProductSearch = new FntProductSearch();
 		if (StringUtils.isNotEmpty(keyWord)) {
 			fntProductSearch.setKeyWord(keyWord);
@@ -72,6 +87,12 @@ public class ProductRestService {
 		}
 		if (StringUtils.isNotEmpty(price)) {
 			fntProductSearch.setPriceRange(price);
+		}
+		if(StringUtils.isNotEmpty(pageNow) && TCUtil.iv(pageNow) > 0){
+			fntProductSearch.setPageNow(TCUtil.iv(pageNow));
+			if(StringUtils.isNotEmpty(pageSize) && TCUtil.iv(pageSize) > 0){
+				fntProductSearch.setPageSize(TCUtil.iv(pageSize));
+			}
 		}
 		List<FntProductModel> list = fntProductService.search(fntProductSearch);
 		JSONArray jary = new JSONArray();

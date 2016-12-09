@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.focustech.common.utils.StringUtils;
+import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
 import com.focustech.focus3d.agent.model.FntProductModel;
@@ -30,9 +31,22 @@ public class FntProductDao extends CommonDao {
 	 * @return
 	 */
 	public List<FntProductModel> search(FntProductSearch productSearch) {
+		Map<String, Object> map = createCondition(productSearch);
+		List<FntProductModel> list = new ArrayList<FntProductModel>();
+		try {
+			list = getSqlMapClient().queryForList("c_fnt_product.getFntProductList", map);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	private Map<String, Object> createCondition(FntProductSearch productSearch){
 		StringBuffer condition = new StringBuffer();
 		String categoryCode = productSearch.getCategoryCode();
 		String priceRange = productSearch.getPriceRange();
+		int pageNow = productSearch.getPageNow();
+		int pageSize = productSearch.getPageSize();
 		if(StringUtils.isNotEmpty(categoryCode)){
 			condition.append(" and category_name='").append(categoryCode).append("'");
 		}
@@ -52,15 +66,15 @@ public class FntProductDao extends CommonDao {
 			}
 			condition.append(" and price >=").append(priceS).append(" and price <= ").append(priceE);
 		}
+		if(pageNow > 0){
+			condition.append(" limit ")
+			.append((TCUtil.iv(pageNow) - 1) * TCUtil.iv(pageSize))
+			.append(", ")
+			.append(TCUtil.iv(pageSize));
+		}
 		log.debug("condition:" + condition);
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<FntProductModel> list = new ArrayList<FntProductModel>();
-		try {
-			map.put("condition", condition.toString());
-			list = getSqlMapClient().queryForList("c_fnt_product.getFntProductList", map);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return list;
+		map.put("condition", condition.toString());
+		return map;
 	}
 }
