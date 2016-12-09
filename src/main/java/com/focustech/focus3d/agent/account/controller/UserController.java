@@ -19,8 +19,6 @@ import com.focustech.focus3d.agent.message.service.MessageValidateService;
 import com.focustech.focus3d.agent.model.AgentLogin;
 import com.focustech.focus3d.agent.model.AgentUser;
 import com.focustech.focus3d.agent.model.MessageValidate;
-import com.focustech.focus3d.agent.model.ReceiveAddress;
-import com.focustech.focus3d.agent.order.service.ReceiveAddressService;
 import com.focustech.focus3d.agent.user.service.AgentUserService;
 
 /**
@@ -38,8 +36,6 @@ public class UserController extends CommonController{
 	private AgentLoginService<AgentLogin> agentLoginService;
 	@Autowired
 	private MessageValidateService<MessageValidate> messageValidateService;
-	@Autowired
-	private ReceiveAddressService<ReceiveAddress> receiveAddressService;
 	/**
 	 *
 	 * *
@@ -209,78 +205,6 @@ public class UserController extends CommonController{
 		//modelMap.put("message", msg);
 		RequestThreadLocal.getMessageCookie().addMessage(msg);
 		modelMap.put("tabIdx", 0);
-		return view;
-	}
-	/**
-	 *
-	 * *
-	 * @param uid
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/revaddress", method = RequestMethod.GET)
-	public String revAddress(ModelMap modelMap, HttpServletRequest req){
-		String view = "/user/revaddress";
-		try {
-			AgentLogin currentLogin = RequestThreadLocal.getLoginInfo();
-			if(currentLogin != null){
-				AgentLogin agentLogin = agentLoginService.selectBySn(currentLogin.getSn(), AgentLogin.class);
-				Long userId = agentLogin.getUserId();
-				if(userId != null && userId > 0){
-					ReceiveAddress receiveAddress = receiveAddressService.getByUserId(userId);
-					if(receiveAddress == null){
-						AgentUser agentUser = agentUserService.selectBySn(userId, AgentUser.class);
-						receiveAddress = new ReceiveAddress();
-						receiveAddress.setUserName(agentUser.getUserName());
-						receiveAddress.setMobilePhone(agentUser.getMobilePhone());
-						receiveAddress.setProvince(agentUser.getProvince());
-						receiveAddress.setCity(agentUser.getCity());
-						receiveAddress.setStreet(agentUser.getStreet());
-					}
-					modelMap.put("receiveAddress", receiveAddress);
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return view;
-	}
-	/**
-	 *
-	 * *
-	 */
-	@RequestMapping(value = "/revaddress", method = RequestMethod.POST)
-	public String saveRevAddress(ReceiveAddress receiveAddress, ModelMap modelMap, HttpServletRequest req){
-		String message = "";
-		String view = "/user/revAddress";
-		try {
-			AgentLogin currentLogin = RequestThreadLocal.getLoginInfo();
-			if(currentLogin != null){
-				AgentLogin agentLogin = agentLoginService.selectBySn(currentLogin.getSn(), AgentLogin.class);
-				Long userId = agentLogin.getUserId();
-				if(userId != null && userId > 0){
-					String userName = receiveAddress.getUserName();
-					String mobilePhone = receiveAddress.getMobilePhone();
-					String street = receiveAddress.getStreet();
-					if(StringUtils.isNotEmpty(userName) && StringUtils.isNotEmpty(mobilePhone) && StringUtils.isNotEmpty(street)){
-						receiveAddress.setUserId(userId);
-						Long sn = receiveAddress.getSn();
-						if(sn != null){
-							receiveAddressService.updateByKeySelective(receiveAddress);
-
-						} else {
-							receiveAddressService.insert(receiveAddress);
-						}
-						message = "修改成功";
-					} else {
-						message = "请填写姓名、手机号码、街道信息";
-					}
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		modelMap.put("message", message);
 		return view;
 	}
 

@@ -21,10 +21,6 @@ public class AgentUser extends BizAgentUser<AgentUser, BizAgentUserCriteria> imp
 	private String idCardFileUrl;
 	private String kbisFileUrl;
 	private String encryptSn;
-	private List<AgentOrder> waitConfirmList = new ArrayList<AgentOrder>();//买家已付款等待卖家确认5
-	private List<AgentOrder> confirmedList = new ArrayList<AgentOrder>();//卖家已经确认买家付款3
-	private List<AgentOrder> waitPayList = new ArrayList<AgentOrder>();//等待买家付款2
-	private List<AgentOrder> orderList = new ArrayList<AgentOrder>();//全部
 	private AgentLogin loginInfo;
 	public String getSmsCode() {
 		return smsCode;
@@ -64,38 +60,6 @@ public class AgentUser extends BizAgentUser<AgentUser, BizAgentUserCriteria> imp
 
 	public void setValidCode(String validCode) {
 		this.validCode = validCode;
-	}
-
-	public List<AgentOrder> getWaitConfirmList() {
-		return waitConfirmList;
-	}
-
-	public void setWaitConfirmList(List<AgentOrder> waitConfirmList) {
-		this.waitConfirmList = waitConfirmList;
-	}
-
-	public List<AgentOrder> getConfirmedList() {
-		return confirmedList;
-	}
-
-	public void setConfirmedList(List<AgentOrder> confirmedList) {
-		this.confirmedList = confirmedList;
-	}
-
-	public List<AgentOrder> getWaitPayList() {
-		return waitPayList;
-	}
-
-	public void setWaitPayList(List<AgentOrder> waitPayList) {
-		this.waitPayList = waitPayList;
-	}
-
-	public List<AgentOrder> getOrderList() {
-		return orderList;
-	}
-
-	public void setOrderList(List<AgentOrder> orderList) {
-		this.orderList = orderList;
 	}
 
 	public AgentLogin getLoginInfo() {

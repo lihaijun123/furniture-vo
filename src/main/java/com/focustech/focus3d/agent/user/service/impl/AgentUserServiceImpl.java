@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.ListUtils;
 import com.focustech.common.utils.MD5Util;
 import com.focustech.common.utils.TCUtil;
@@ -17,11 +16,9 @@ import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.login.dao.AgentLoginDao;
 import com.focustech.focus3d.agent.login.dao.AgentUserDao;
 import com.focustech.focus3d.agent.model.AgentLogin;
-import com.focustech.focus3d.agent.model.AgentOrder;
 import com.focustech.focus3d.agent.model.AgentRole;
 import com.focustech.focus3d.agent.model.AgentUser;
 import com.focustech.focus3d.agent.model.AgentUserRole;
-import com.focustech.focus3d.agent.order.dao.AgentOrderDao;
 import com.focustech.focus3d.agent.service.impl.CommonServiceTemplate;
 import com.focustech.focus3d.agent.user.service.AgentUserService;
 /**
@@ -41,8 +38,6 @@ public class AgentUserServiceImpl extends CommonServiceTemplate<AgentUser> imple
 	private AgentUserRoleDao agentUserRoleDao;
 	@Autowired
 	private AgentRoleDao agentRoleDao;
-	@Autowired
-	private AgentOrderDao agentOrderDao;
 	@Override
 	public CommonDao getDao() {
 		return agentUserDao;
@@ -111,25 +106,7 @@ public class AgentUserServiceImpl extends CommonServiceTemplate<AgentUser> imple
 
 	@Override
 	public List<AgentUser> getSubAccountList(long parentSn) {
-		List<AgentUser> subAccountList = agentUserDao.getSubAccountList(parentSn);
-		for (AgentUser agentUser : subAccountList) {
-			agentUser.setEncryptSn(EncryptUtil.encode(agentUser.getSn()));
-			List<AgentOrder> orderList = agentOrderDao.getList(agentUser.getSn(), null);
-			for (AgentOrder agentOrder : orderList) {
-				Integer status = agentOrder.getStatus();
-				if(status == 2){
-					agentUser.getWaitPayList().add(agentOrder);
-				}
-				if(status == 3){
-					agentUser.getConfirmedList().add(agentOrder);
-				}
-				if(status == 5){
-					agentUser.getWaitConfirmList().add(agentOrder);
-				}
-			}
-			agentUser.setOrderList(orderList);
-		}
-		return subAccountList;
+		// TODO Auto-generated method stub
+		return null;
 	}
-
 }

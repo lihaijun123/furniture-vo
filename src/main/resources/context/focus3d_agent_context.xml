@@ -30,10 +30,11 @@
 	<import resource="classpath:/com/focustech/cief/filemanage/conf/filemanage-client.xml" />
 
 	<import resource="classpath:/context/component/component.xml" />
-
+	<!-- 
 	<import resource="classpath:/context/pay/focus3d-pay-wx.xml" />
 	<import resource="classpath:/context/pay/focus3d-pay-yl.xml" />
 	<import resource="classpath:/context/pay/focus3d-pay-ali.xml" />
+	 -->
 
 
 

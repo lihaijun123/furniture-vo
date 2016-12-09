@@ -8,23 +8,14 @@
 		defaultStatementTimeout="60" statementCachingEnabled="true"
 		classInfoCacheEnabled="true" />
 
-		<sqlMap resource="context/datasource/sqlmap/biz_prod_case_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/biz_agent_login_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/biz_agent_message_validate_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/biz_agent_user_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/biz_agent_product_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/biz_agent_order_item_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/biz_agent_order_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/biz_agent_receive_address_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/biz_agent_user_product_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/biz_agent_order_trans_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/biz_agent_order_logtc_SqlMap.xml"/>
 		<!--权限管理-->
 		<sqlMap resource="context/datasource/sqlmap/biz_agent_resource_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/biz_agent_role_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/biz_agent_role_resource_SqlMap.xml"/>
 		<sqlMap resource="context/datasource/sqlmap/biz_agent_user_role_SqlMap.xml"/>
-		<sqlMap resource="context/datasource/sqlmap/custom/c_agent_product_SqlMap.xml"/>
 		<!-- 菜单管理 -->
 		<sqlMap resource="context/datasource/sqlmap/custom/c_menu_tree_SqlMap.xml"/>
 		<!-- 户型 -->
