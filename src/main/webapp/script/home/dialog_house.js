@@ -16,7 +16,7 @@ function houseUpload_dialogOpen(){
 	      draggable: false,
 	      position: {my: "left top", at: "left top", of: "#cont"},
 	      height:$(".in_top").width() - 500,
-	      width:$(".in_top").width() - 200,
+	      width:$(".in_top").width() + 50,
 	      modal: true
 	 });
 }
