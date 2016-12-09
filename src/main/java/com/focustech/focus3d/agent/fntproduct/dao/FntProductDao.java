@@ -8,11 +8,14 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.focustech.common.utils.StringUtils;
 import com.focustech.focus3d.agent.dao.CommonDao;
+import com.focustech.focus3d.agent.fntprodcate.dao.FntProductCategoryDao;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
+import com.focustech.focus3d.agent.model.FntProductCategory;
 import com.focustech.focus3d.agent.model.FntProductModel;
 /**
  * 
@@ -33,7 +36,7 @@ public class FntProductDao extends CommonDao {
 		StringBuffer condition = new StringBuffer();
 		String categoryCode = productSearch.getCategoryCode();
 		if(StringUtils.isNotEmpty(categoryCode)){
-			condition.append(" and category_code=").append(categoryCode).append("");
+			condition.append(" and category_name='").append(categoryCode).append("'");
 		}
 		String keyWord = productSearch.getKeyWord();
 		if(StringUtils.isNotEmpty(keyWord)){

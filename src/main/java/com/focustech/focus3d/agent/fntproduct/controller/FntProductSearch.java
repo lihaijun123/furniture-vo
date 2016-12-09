@@ -6,7 +6,7 @@ package com.focustech.focus3d.agent.fntproduct.controller;
  *
  */
 public class FntProductSearch {
-	
+	//改为对应目录名称
 	private String categoryCode;
 	private String keyWord;
 	public String getCategoryCode() {
