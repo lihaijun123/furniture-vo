@@ -78,28 +78,31 @@ public class ProductRestService {
 	 * @return
 	 */
 	private String searchData(String keyWord, String categoryCode, String price, String pageNow, String pageSize) {
-		FntProductSearch fntProductSearch = new FntProductSearch();
+		FntProductSearch productSearch = new FntProductSearch();
 		if (StringUtils.isNotEmpty(keyWord)) {
-			fntProductSearch.setKeyWord(keyWord);
+			productSearch.setKeyWord(keyWord);
 		}
 		if (StringUtils.isNotEmpty(categoryCode)) {
-			fntProductSearch.setCategoryCode(categoryCode);
+			productSearch.setCategoryCode(categoryCode);
 		}
 		if (StringUtils.isNotEmpty(price)) {
-			fntProductSearch.setPriceRange(price);
+			productSearch.setPriceRange(price);
 		}
 		if(StringUtils.isNotEmpty(pageNow) && TCUtil.iv(pageNow) > 0){
-			fntProductSearch.setPageNow(TCUtil.iv(pageNow));
+			productSearch.setPageNow(TCUtil.iv(pageNow));
 			if(StringUtils.isNotEmpty(pageSize) && TCUtil.iv(pageSize) > 0){
-				fntProductSearch.setPageSize(TCUtil.iv(pageSize));
+				productSearch.setPageSize(TCUtil.iv(pageSize));
 			}
 		}
-		List<FntProductModel> list = fntProductService.search(fntProductSearch);
+		List<FntProductModel> list = fntProductService.search(productSearch);
 		JSONArray jary = new JSONArray();
 		for (FntProductModel fntProductModel : list) {
 			JSONObject jo = fntProductService.serialize(fntProductModel);
 			jary.add(jo);
 		}
-		return jary.toString();
+		JSONObject rvJo = new JSONObject();
+		productSearch.addPageInfo(rvJo);
+		rvJo.put("list", jary);
+		return rvJo.toString();
 	}
 }

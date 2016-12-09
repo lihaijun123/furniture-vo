@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.focustech.common.utils.ListUtils;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.dao.CommonDao;
@@ -31,17 +32,22 @@ public class FntProductDao extends CommonDao {
 	 * @return
 	 */
 	public List<FntProductModel> search(FntProductSearch productSearch) {
-		Map<String, Object> map = createCondition(productSearch);
+		Map<String, Object> map = createCondition(productSearch, 1);
 		List<FntProductModel> list = new ArrayList<FntProductModel>();
 		try {
 			list = getSqlMapClient().queryForList("c_fnt_product.getFntProductList", map);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		if(ListUtils.isNotEmpty(list)){
+			int searchTotal = searchTotal(productSearch);
+			productSearch.setRecords(list);
+			productSearch.setRecordTotal(searchTotal);
+		}
 		return list;
 	}
 	
-	private Map<String, Object> createCondition(FntProductSearch productSearch){
+	private Map<String, Object> createCondition(FntProductSearch productSearch, int searchType){
 		StringBuffer condition = new StringBuffer();
 		String categoryCode = productSearch.getCategoryCode();
 		String priceRange = productSearch.getPriceRange();
@@ -66,7 +72,7 @@ public class FntProductDao extends CommonDao {
 			}
 			condition.append(" and price >=").append(priceS).append(" and price <= ").append(priceE);
 		}
-		if(pageNow > 0){
+		if(pageNow > 0 && searchType == 1){
 			condition.append(" limit ")
 			.append((TCUtil.iv(pageNow) - 1) * TCUtil.iv(pageSize))
 			.append(", ")
@@ -76,5 +82,21 @@ public class FntProductDao extends CommonDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("condition", condition.toString());
 		return map;
+	}
+	
+	/**
+	 * 
+	 * *
+	 * @param houseSearch
+	 * @return
+	 */
+	public int searchTotal(FntProductSearch productSearch) {
+		Map<String, Object> map = createCondition(productSearch, 2);
+		try {
+			return TCUtil.iv(getSqlMapClient().queryForObject("c_fnt_product.getFntProductListCount", map));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

@@ -46,5 +46,11 @@
     where 1=1
     $condition$
   </select>
-	
+
+	<select id="getFntProductListCount"  resultClass="int">
+		select count(SN)
+	    from fnt_product
+	    where 1=1
+	    $condition$
+	</select>
 </sqlMap>

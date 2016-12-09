@@ -32,7 +32,7 @@ public class FntHouseDao extends CommonDao {
 	 * @return
 	 */
 	public List<FntHouseModel> search(FntHouseSearch houseSearch) {
-		Map<String, Object> map = createCondition(houseSearch);
+		Map<String, Object> map = createCondition(houseSearch, 1);
 		List<FntHouseModel> list = new ArrayList<FntHouseModel>();
 		try {
 			list = getSqlMapClient().queryForList("c_fnt_house.getFntHouseList", map);
@@ -51,7 +51,7 @@ public class FntHouseDao extends CommonDao {
 	 * @param houseSearch
 	 * @return
 	 */
-	private Map<String, Object> createCondition(FntHouseSearch houseSearch) {
+	private Map<String, Object> createCondition(FntHouseSearch houseSearch, int searchType) {
 		StringBuffer condition = new StringBuffer();
 		String province = houseSearch.getProvince();
 		String city = houseSearch.getCity();
@@ -109,7 +109,7 @@ public class FntHouseDao extends CommonDao {
 			}
 			condition.append(" )");
 		}
-		if(pageNow > 0){
+		if(pageNow > 0 && searchType == 1){
 			condition.append(" limit ")
 			.append((TCUtil.iv(pageNow) - 1) * TCUtil.iv(pageSize))
 			.append(", ")
@@ -127,7 +127,7 @@ public class FntHouseDao extends CommonDao {
 	 * @return
 	 */
 	public int searchTotal(FntHouseSearch houseSearch) {
-		Map<String, Object> map = createCondition(houseSearch);
+		Map<String, Object> map = createCondition(houseSearch, 2);
 		try {
 			return TCUtil.iv(getSqlMapClient().queryForObject("c_fnt_house.getFntHouseListCount", map));
 		} catch (SQLException e) {
