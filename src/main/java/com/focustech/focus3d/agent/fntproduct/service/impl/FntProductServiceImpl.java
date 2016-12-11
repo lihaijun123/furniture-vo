@@ -58,7 +58,7 @@ public class FntProductServiceImpl extends CommonServiceTemplate<FntProductModel
 		} else {
 			category = "furniture";
 		}
-		jo.put("category", category);
+		jo.put("type", category);
 		jo.put("id", EncryptUtil.encode(fntProductModel.getSn()));
 		return jo;
 	}

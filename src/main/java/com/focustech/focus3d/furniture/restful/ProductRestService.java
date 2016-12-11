@@ -52,9 +52,10 @@ public class ProductRestService {
 			@QueryParam("categoryCode") String categoryCode, 
 			@QueryParam("price") String price,
 			@QueryParam("pageNow") String pageNow,
-			@QueryParam("pageSize") String pageSize
+			@QueryParam("pageSize") String pageSize,
+			@QueryParam("type") String type
 			) {
-		return searchData(keyWord, categoryCode, price, pageNow, pageSize);
+		return searchData(keyWord, categoryCode, price, type, pageNow, pageSize);
 	}
 
 	@POST
@@ -64,9 +65,10 @@ public class ProductRestService {
 			@FormParam("categoryCode") String categoryCode, 
 			@FormParam("price") String price,
 			@FormParam("pageNow") String pageNow,
-			@FormParam("pageSize") String pageSize
+			@FormParam("pageSize") String pageSize,
+			@FormParam("type") String type
 			) {
-		return searchData(keyWord, categoryCode, price, pageNow, pageSize);
+		return searchData(keyWord, categoryCode, price, type, pageNow, pageSize);
 	}
 	/**
 	 * *
@@ -75,9 +77,10 @@ public class ProductRestService {
 	 * @param price 
 	 * @param pageSize 
 	 * @param pageNow 
+	 * @param pageSize2 
 	 * @return
 	 */
-	private String searchData(String keyWord, String categoryCode, String price, String pageNow, String pageSize) {
+	private String searchData(String keyWord, String categoryCode, String price, String type, String pageNow, String pageSize) {
 		FntProductSearch productSearch = new FntProductSearch();
 		if (StringUtils.isNotEmpty(keyWord)) {
 			productSearch.setKeyWord(keyWord);
@@ -87,6 +90,9 @@ public class ProductRestService {
 		}
 		if (StringUtils.isNotEmpty(price)) {
 			productSearch.setPriceRange(price);
+		}
+		if (StringUtils.isNotEmpty(type)) {
+			productSearch.setType(type);
 		}
 		if(StringUtils.isNotEmpty(pageNow) && TCUtil.iv(pageNow) > 0){
 			productSearch.setPageNow(TCUtil.iv(pageNow));
@@ -98,7 +104,10 @@ public class ProductRestService {
 		JSONArray jary = new JSONArray();
 		for (FntProductModel fntProductModel : list) {
 			JSONObject jo = fntProductService.serialize(fntProductModel);
-			jary.add(jo);
+			String sType = productSearch.getType();
+			if(StringUtils.isNotEmpty(sType) && jo.getString("type").equals(sType)){
+				jary.add(jo);
+			}
 		}
 		JSONObject rvJo = new JSONObject();
 		productSearch.addPageInfo(rvJo);

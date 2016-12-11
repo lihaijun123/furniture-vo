@@ -13,6 +13,7 @@ public class FntProductSearch extends FntPageInfo{
 	private String categoryCode;
 	private String priceRange;
 	private String keyWord;
+	private String type;
 	public String getCategoryCode() {
 		return categoryCode;
 	}
@@ -35,6 +36,14 @@ public class FntProductSearch extends FntPageInfo{
 
 	public void setPriceRange(String priceRange) {
 		this.priceRange = priceRange;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }
