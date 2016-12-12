@@ -52,7 +52,7 @@ public class FntHouseServiceImpl extends CommonServiceTemplate<FntHouseModel> im
 		jo.put("Area", fntHouseModel.getArea());
 		jo.put("City", fntHouseModel.getCity());
 		jo.put("Country", fntHouseModel.getStreet());
-		jo.put("Floor", fntHouseModel.getBuildingName());
+		jo.put("Floor", fntHouseModel.getName());
 		jo.put("Callery", "9");
 		jo.put("Id", EncryptUtil.encode(fntHouseModel.getSn()));
 		jo.put("IsRenovation", false);
