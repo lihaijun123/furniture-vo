@@ -85,11 +85,10 @@ public class LoginController extends CommonController{
 							if(status == 1){
 								req.getSession().setAttribute(LoginFilter.SESSION_KEY, agentLogin);
 								RequestThreadLocal.setLoginInfo(agentLogin);
-
 								/*List<AgentResource> agentResources = getUserResourceList();
 								if(ListUtils.isNotEmpty(agentResources)){
 								}*/
-								view = redirect("/user");
+								view = redirect("/index");
 								//删除短信验证码
 								/*if(messageValidate != null){
 									messageValidateService.setStatus(messageValidate, 0);

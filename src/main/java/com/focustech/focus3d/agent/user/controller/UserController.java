@@ -1,4 +1,4 @@
-package com.focustech.focus3d.agent.account.controller;
+package com.focustech.focus3d.agent.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 

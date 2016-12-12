@@ -72,7 +72,7 @@ public class LoginFilter extends AbstractFilter {
 		boolean isPass = false;
 		if(isNotNeedAuthCheckUrl(servletPath, request)){
 			if("/index".equals(servletPath)){
-				//首页回话设置用户信息
+				//首页会话设置用户信息
 				RequestThreadLocal.setLoginInfo(sessinObj);
 			}
 			isPass = true;

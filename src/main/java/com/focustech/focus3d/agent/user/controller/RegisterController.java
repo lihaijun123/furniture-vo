@@ -1,4 +1,4 @@
-package com.focustech.focus3d.agent.apply.controller;
+package com.focustech.focus3d.agent.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +25,7 @@ import com.focustech.focus3d.agent.user.service.AgentUserService;
  */
 @Controller
 @RequestMapping(value = "/register")
-public class ApplyController extends CommonController{
+public class RegisterController extends CommonController{
 	@Autowired
 	private AgentUserService<AgentUser> agentUserService;
 	@Autowired
@@ -74,7 +74,7 @@ public class ApplyController extends CommonController{
 				if(dbExist != null){
 					msg = "手机号码已经被申请过，请换个手机号。";
 				} else {
-					agentUser.setPartnerId("");
+					agentUser.setPartnerId(generateUserId());
 					agentUser.setStatus(1);
 					//注册通道类型
 					int mobileSystemType = getMobileSystemType(req);
@@ -114,5 +114,20 @@ public class ApplyController extends CommonController{
 	@RequestMapping(value = "/complate", method = RequestMethod.GET)
 	public String complate(ModelMap modelMap){
 		return "/user/complate";
+	}
+	
+	/**
+	 * 限制字符显示长度 *
+	 *
+	 * @param str
+	 * @return
+	 */
+	private static String generateUserId() {
+		int length = 8;
+		String str = TCUtil.sv(System.currentTimeMillis());
+		if (!StringUtils.isEmpty(str) && str.length() > length) {
+            return str.substring(0, length);
+		}
+		return str;
 	}
 }
