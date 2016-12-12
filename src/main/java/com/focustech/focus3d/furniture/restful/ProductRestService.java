@@ -104,10 +104,7 @@ public class ProductRestService {
 		JSONArray jary = new JSONArray();
 		for (FntProductModel fntProductModel : list) {
 			JSONObject jo = fntProductService.serialize(fntProductModel);
-			String sType = productSearch.getType();
-			if(StringUtils.isNotEmpty(sType) && jo.getString("type").equals(sType)){
-				jary.add(jo);
-			}
+			jary.add(jo);
 		}
 		JSONObject rvJo = new JSONObject();
 		productSearch.addPageInfo(rvJo);

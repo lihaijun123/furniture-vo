@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.focustech.cief.filemanage.common.utils.FileManageUtil;
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.TCUtil;
+import com.focustech.focus3d.agent.common.constant.FntProductType;
 import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
 import com.focustech.focus3d.agent.fntproduct.dao.FntProductDao;
@@ -49,16 +50,7 @@ public class FntProductServiceImpl extends CommonServiceTemplate<FntProductModel
 		jo.put("url", fntProductModel.getModelFileUrl());
 		jo.put("version", fntProductModel.getModelFileVersion());
 		jo.put("picUrl", fntProductModel.getPicFileUrl());
-		String categoryName = fntProductModel.getCategoryName();
-		String category = "";
-		if(categoryName.contains("地")){
-			category = "floor";
-		} else if(categoryName.contains("墙")){
-			category = "wall";
-		} else {
-			category = "furniture";
-		}
-		jo.put("type", category);
+		jo.put("type", FntProductType.getNameEnByCode(fntProductModel.getType()));
 		jo.put("id", EncryptUtil.encode(fntProductModel.getSn()));
 		return jo;
 	}

@@ -59,8 +59,9 @@ public class FntPageInfo {
 
 	public JSONObject addPageInfo(JSONObject rvJo){
 		rvJo.put("pageNow", pageNow <= 0 ? 1 : pageNow);
-		rvJo.put("pageSize", getRecords() != null ? getRecords().size() : 0);
-		rvJo.put("pageTotal", pageNow <= 0 ? 1 : (recordTotal + pageSize - 1) / pageSize);
+		rvJo.put("pageSize", pageSize <=0 ? 0 : pageSize);
+		rvJo.put("pageRecords", getRecords() != null ? getRecords().size() : 0);
+		rvJo.put("pageTotal", (recordTotal + pageSize - 1) / pageSize);
 		return rvJo;
 	}
 }

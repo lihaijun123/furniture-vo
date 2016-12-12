@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.focustech.common.utils.ListUtils;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
+import com.focustech.focus3d.agent.common.constant.FntProductType;
 import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
 import com.focustech.focus3d.agent.model.FntProductModel;
@@ -51,6 +52,7 @@ public class FntProductDao extends CommonDao {
 		StringBuffer condition = new StringBuffer();
 		String categoryCode = productSearch.getCategoryCode();
 		String priceRange = productSearch.getPriceRange();
+		String type = productSearch.getType();
 		int pageNow = productSearch.getPageNow();
 		int pageSize = productSearch.getPageSize();
 		if(StringUtils.isNotEmpty(categoryCode)){
@@ -71,6 +73,9 @@ public class FntProductDao extends CommonDao {
 				priceE = prices[0];
 			}
 			condition.append(" and price >=").append(priceS).append(" and price <= ").append(priceE);
+		}
+		if(StringUtils.isNotEmpty(type)){
+			condition.append(" and type ='").append(FntProductType.getCodeByNameEn(type)).append("' ");
 		}
 		if(pageNow > 0 && searchType == 1){
 			condition.append(" limit ")

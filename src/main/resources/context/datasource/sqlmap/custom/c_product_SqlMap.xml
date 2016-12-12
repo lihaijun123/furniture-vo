@@ -35,13 +35,14 @@
     <result column="UPDATER_SN" property="updaterSn" jdbcType="BIGINT" />
     <result column="UPDATER_NAME" property="updaterName" jdbcType="VARCHAR" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="TYPE" jdbcType="INTEGER" property="type" />
   </resultMap>
   
   <select id="getFntProductList"  resultMap="ibatorgenerated_BaseResultMap">
 	  select SN, NAME, BRAND, PRICE, MATERIA, COLOR, SPEC_NAME, SPEC_SIZE, PARAMETER, GROSS_WEIGHT,
       PIC_FILE_SN, CATEGORY_NAME, CATEGORY_CODE, STYLE, MODEL_NAME, MODEL_FILE_SN, MODEL_FILE_VERSION, DESIGN,
       IS_WITH_CORE, FILLER, STATUS, SHELVES_TIME, REMARK, ADDER_SN, ADDER_NAME, ADD_TIME,
-      UPDATER_SN, UPDATER_NAME, UPDATE_TIME
+      UPDATER_SN, UPDATER_NAME, UPDATE_TIME,TYPE
     from fnt_product
     where 1=1
     $condition$
