@@ -1196,7 +1196,7 @@ handle.fn.getJoinQuery = function () {
 handle.fn.floorSearch = function (dataset) {
     var $first = handle.prototype.$newApplyFirst;
     $first.find("a.select_button").attr("opened", true);
-    var path = "/common/common/FloorSearch";
+    var path = "/rest/house/search";
     $.getJSON(path, dataset, function (result) {
         $first.find("a.select_button").attr("opened", false);
         $first.find("div.none_record >p").show();
@@ -1210,8 +1210,8 @@ handle.fn.floorSearch = function (dataset) {
                 var li = "";
                 for (var i = 0; i < len; i++) {
                     //读取转换成功的图片
-                    var smallImgUrl = GetThumbnail(itemData[i].ApartmentModelUrl + "floorPlan.png", 114, 90);
-                    var bigImgUrl = GetThumbnail(itemData[i].ApartmentModelUrl + "floorPlan.png", 400, 400);
+                    var smallImgUrl = itemData[i].picUrl;//GetThumbnail(itemData[i].ApartmentModelUrl + "floorPlan.png", 114, 90);
+                    var bigImgUrl = itemData[i].picUrl//GetThumbnail(itemData[i].ApartmentModelUrl + "floorPlan.png", 400, 400);
                     li += "<li><input name=\"smallImgUrl\" value=\"{0}\" type=\"hidden\" /><a title=\"点击放大\" class=\"list_image\" bigurl=\"{6}\"><img  src=\"{0}\"></a><p>{1}{2} ㎡<br>{3}室{4}厅</p><a class=\"use_button\" opened=\"false\" picId=\"{5}\" apId=\"{7}\">使用</a></li>".format(
                         smallImgUrl, itemData[i].Floor, Math.floor(parseFloat(itemData[i].Area)), itemData[i].Rooms, itemData[i].Saloons, itemData[i].PicId, bigImgUrl, itemData[i].ApartmentId);
                 }

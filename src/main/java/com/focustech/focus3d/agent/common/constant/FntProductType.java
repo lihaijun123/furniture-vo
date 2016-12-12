@@ -7,8 +7,8 @@ package com.focustech.focus3d.agent.common.constant;
 public enum FntProductType {
 	
 	FURNITURE(1, "家具"),
-	WALL(2, "墙纸"),
-	FLOOR(2, "地板");
+	FLOOR(2, "地板"),
+	WALL(3, "墙纸");
 	
 	int code;
 	String nameCn;

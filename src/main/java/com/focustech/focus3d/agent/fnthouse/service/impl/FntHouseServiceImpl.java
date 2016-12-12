@@ -47,14 +47,24 @@ public class FntHouseServiceImpl extends CommonServiceTemplate<FntHouseModel> im
 	public JSONObject serialize(FntHouseModel fntHouseModel) {
 		setFileInfo(fntHouseModel);
 		JSONObject jo = new JSONObject();
-		jo.put("name", fntHouseModel.getName());
-		jo.put("area", fntHouseModel.getArea());
-		jo.put("roomNum", fntHouseModel.getRoomNum());
-		jo.put("livingRoomNum", fntHouseModel.getLivingRoomNum());
-		jo.put("url", fntHouseModel.getModelFileUrl());
+		jo.put("ApartmentId", fntHouseModel.getName());
+		jo.put("ApartmentModelUrl", fntHouseModel.getModelFileUrl());
+		jo.put("Area", fntHouseModel.getArea());
+		jo.put("City", fntHouseModel.getCity());
+		jo.put("Country", fntHouseModel.getStreet());
+		jo.put("Floor", fntHouseModel.getBuildingName());
+		jo.put("Callery", "9");
+		jo.put("Id", EncryptUtil.encode(fntHouseModel.getSn()));
+		jo.put("IsRenovation", false);
+		//jo.put("livingRoomNum", fntHouseModel.getLivingRoomNum());
+		//jo.put("url", fntHouseModel.getModelFileUrl());
 		jo.put("version", fntHouseModel.getModelFileVersion());
-		jo.put("id", EncryptUtil.encode(fntHouseModel.getSn()));
+		//jo.put("id", EncryptUtil.encode(fntHouseModel.getSn()));
+		jo.put("picId", fntHouseModel.getPicFileUrl());
 		jo.put("picUrl", fntHouseModel.getPicFileUrl());
+		jo.put("Province", fntHouseModel.getProvince());
+		jo.put("Rooms", fntHouseModel.getRoomNum());
+		jo.put("Saloons", 2);
 		return jo;
 	}
 	/**

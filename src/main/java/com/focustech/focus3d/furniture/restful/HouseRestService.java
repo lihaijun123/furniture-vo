@@ -47,14 +47,15 @@ public class HouseRestService {
 	@GET
 	@Path("search")
 	public String searchByGet(
-			@QueryParam("province") String province,
+			@QueryParam("areaList") String areaRange,
 			@QueryParam("city") String city,
-			@QueryParam("keyWord") String keyWord,
+			@QueryParam("keyword") String keyWord,
+			@QueryParam("pageIndex") String pageNow,
+			@QueryParam("pageSize") String pageSize,
+			@QueryParam("province") String province,
 			@QueryParam("type") String type,
-			@QueryParam("areaRange") String areaRange,
-			@QueryParam("roomType") String roomType,
-			@QueryParam("pageNow") String pageNow,
-			@QueryParam("pageSize") String pageSize
+			@QueryParam("plansTypeList") String plansTypeList,
+			@QueryParam("roomsList") String roomType
 			) {
 		return searchData(province, city, keyWord, type, areaRange, roomType, pageNow, pageSize);
 	}
@@ -71,14 +72,15 @@ public class HouseRestService {
 	@POST
 	@Path("search")
 	public String searchByPost(
-			@FormParam("province") String province,
+			@FormParam("areaList") String areaRange,
 			@FormParam("city") String city,
-			@FormParam("keyWord") String keyWord,
+			@FormParam("keyword") String keyWord,
+			@FormParam("pageIndex") String pageNow,
+			@FormParam("pageSize") String pageSize,
+			@FormParam("province") String province,
 			@FormParam("type") String type,
-			@FormParam("areaRange") String areaRange,
-			@FormParam("roomType") String roomType,
-			@FormParam("pageNow") String pageNow,
-			@FormParam("pageSize") String pageSize
+			@FormParam("plansTypeList") String plansTypeList,
+			@FormParam("roomsList") String roomType
 			) {
 		return searchData(province, city, keyWord, type, areaRange, roomType, pageNow, pageSize);
 	}
@@ -135,7 +137,10 @@ public class HouseRestService {
 		}
 		JSONObject rvJo = new JSONObject();
 		houseSearch.addPageInfo(rvJo);
-		rvJo.put("list", jary);
+		JSONObject itemsObj = new JSONObject();
+		itemsObj.put("Item", jary);
+		rvJo.put("Data", itemsObj);
+		rvJo.put("Message", "ok");
 		return rvJo.toString();
 		
 	}
