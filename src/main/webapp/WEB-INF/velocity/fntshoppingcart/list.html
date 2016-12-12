@@ -1,0 +1,43 @@
+#set($layout="layout/layout_mem.html")
+<div class="container">
+
+<div class="table-responsive">
+				  <table class="table table-hover">
+				    <caption></caption>
+				    <thead>
+				      <tr>
+				        <th>序号</th>
+				        <th>家具名称</th>
+				        <th>添加时间</th>
+				        <th>操作</th>
+					  </tr>
+				    </thead>
+				    <tbody>
+				      #foreach($!shoppingcart in $!list)
+				      <tr>
+				        <td>$!velocityCount</td>
+				        <td>$!shoppingcart.product.name</td>
+				        <td>$!date.format("yyyy-MM-dd hh:mm:ss", $!shoppingcart.addTime)</td>
+				        <td>
+				        	<ul class="list-inline ">
+					        	<li><a id="del_shoppingcart_" data-toggle="tooltip" data-placement="bottom" sn="$!shoppingcart.encryptSn" title="删除" href="#"><span class="glyphicon glyphicon-trash" ></span></a></li>
+							</ul>
+				        </td>
+					  </tr>
+					  #end
+				    </tbody>
+				  </table>
+				</div>
+</div>
+
+<script>
+	$(function(){
+		$("a[id^='del_shoppingcart_']").click(function(){
+				if(window.confirm("是否删除？")){
+					window.location.href = "/fntshoppingcart/delete/" + $(this).attr("sn");
+				} else {
+					//$("body").animate({scrollTop: $("#studentForm").offset().top}, 500);
+				}
+		});
+	});
+</script>

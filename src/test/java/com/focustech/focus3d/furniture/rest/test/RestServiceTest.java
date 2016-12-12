@@ -89,5 +89,9 @@ public class RestServiceTest extends AbstractTest{
 		qparams.add(new BasicNameValuePair("pageSize", "2"));
 		httpRequest(getProtocal() + "/rest/case/search", qparams, HttpMethod.POST);
 	}
+	@Override
+	protected String getProtocal() {
+		return URL_TEST;
+	}
 	
 }

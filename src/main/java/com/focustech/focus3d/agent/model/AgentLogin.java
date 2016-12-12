@@ -51,4 +51,16 @@ public class AgentLogin extends BizAgentLogin<AgentLogin, BizAgentLoginCriteria>
 		this.validCode = validCode;
 	}
 
+	@Override
+	public String getEncryptSn() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setEncryptSn(String encryptSn) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

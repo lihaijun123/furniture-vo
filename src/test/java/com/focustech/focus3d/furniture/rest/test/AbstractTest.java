@@ -28,8 +28,8 @@ import org.springframework.http.HttpMethod;
  */
 public abstract class AbstractTest {
 	private static final Logger log = LoggerFactory.getLogger(AbstractTest.class);
-	private static String URL_TEST = "http://127.0.0.1:7001";
-	private static String URL_RELEASE = "http://139.196.173.139:8888";
+	protected static String URL_TEST = "http://127.0.0.1:7001";
+	protected static String URL_RELEASE = "http://139.196.173.139:8888";
 	/**
 	 * 
 	 * *
@@ -122,7 +122,5 @@ public abstract class AbstractTest {
 		throw new RuntimeException("无返回结果");
 	}
 	
-	protected String getProtocal(){
-		return URL_RELEASE;
-	}
+	protected abstract String getProtocal();
 }

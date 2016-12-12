@@ -10,4 +10,6 @@ import com.focustech.cief.ibatis.domain.BaseEntity;
 public interface CommonModel extends BaseEntity {
 	 public Long getSn();
 	 public void setSn(Long sn);
+	 public String getEncryptSn();
+	 public void setEncryptSn(String encryptSn);
 }

@@ -32,4 +32,16 @@ public class FntHouseModel extends FntHouse<FntHouseModel, FntHouseCriteria> imp
 	public void setModelFileUrl(String modelFileUrl) {
 		this.modelFileUrl = modelFileUrl;
 	}
+
+	@Override
+	public String getEncryptSn() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setEncryptSn(String encryptSn) {
+		// TODO Auto-generated method stub
+		
+	}
 }

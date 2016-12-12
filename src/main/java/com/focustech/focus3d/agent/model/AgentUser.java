@@ -1,8 +1,5 @@
 package com.focustech.focus3d.agent.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.focustech.focus3d.agent.model.ibator.BizAgentUser;
 import com.focustech.focus3d.agent.model.ibator.BizAgentUserCriteria;
 /**
