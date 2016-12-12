@@ -189,8 +189,8 @@
         }
 
     });
-
-
+	
+	    /*	
         var unityRunTimeParam = '%7b%22Token%22%3a%22ta1wgd5bt2lpxe2l0lhow5wi%22%2c%22RequestId%22%3a%22%22%2c%22Preference%22%3a%7b%22FurnitureBase%22%3a%22http%3a%2f%2fcdn.jiajia1.com%2fStorage1%2fu3d%2fv0001%2fproduct%2fexport%2ffurniture%2f%22%2c%22FurniturePreviewBase%22%3a%22http%3a%2f%2fcdn.jiajia1.com%2fStorage1%2fu3d%2fv0001%2fproduct%2fpreview%2ffurniture%2f%22%2c%22ServerPageBase%22%3a%22http%3a%2f%2fwww.jiajia1.com%22%2c%22AddiUnityFileBase%22%3a%22http%3a%2f%2fcdn.jiajia1.com%2fStorage1%2fu3d%2fv0001%2funitysetting%2f%22%2c%22WebplayerVersion%22%3a104%2c%22OrphanVersion%22%3a125%2c%22TextureResizeRatio%22%3a0.0%2c%22DisplayRoomTexture%22%3atrue%2c%22DisplayFurnitureTexture%22%3atrue%2c%22IsRealtimeCubemap%22%3atrue%7d%2c%22SceneInfo%22%3a%7b%22ID%22%3a%22556ece48b5ad1d0f90b5cc1a%22%2c%22ApartmentFileBase%22%3a%22http%3a%2f%2fcdn.jiajia1.com%2fStorage1%2fu3d%2fv0001%2fdesign%2fSuite%2fS9_Classical%2fS5_ModernClassic_Poly_Married_5%2f%22%2c%22StyleName%22%3a%22%e5%8f%a4%e5%85%b8-%e4%b8%ad%e6%80%a7%22%2c%22Name%22%3a%22%e5%8d%83%e5%b9%b4%e5%85%b8%e9%9b%85%e9%9a%94%e4%b8%96%e6%a2%a6%22%2c%22ArrangeBasePath%22%3a%22http%3a%2f%2fcdn.jiajia1.com%2fStorage1%2fu3d%2fv0001%2fdesign%2fSuite%2fS9_Classical%2fS5_ModernClassic_Poly_Married_5%2f%22%2c%22ViewCount%22%3a0%2c%22SceneType%22%3a1%2c%22RoomType%22%3a0%2c%22ArrangeStep%22%3a0%2c%22SpecialRoom%22%3a%22%22%2c%22HasStyleTemplate%22%3atrue%2c%22DesignFileBase%22%3a%22u3d%2fv0001%2fdesign%2f%22%2c%22OriginalStyle%22%3a%22Suite%2fS9_Classical%2fS5_ModernClassic_Poly_Married_5%2f%22%2c%22ApartmentVersion%22%3a16%2c%22ArrangeVersion%22%3a16%2c%22SkyBoxFileName%22%3a%22%22%2c%22SkyBoxVersion%22%3a0%2c%22PreviewUrl%22%3a%22http%3a%2f%2fcdn.jiajia1.com%2fStorage1%2fimage%2f2015%2f6%2f18%2f2b7470813729449c945781d830e065c5.jpg%22%2c%22TimeStamp%22%3a%222015-12-11T11%3a21%3a39.379%2b08%3a00%22%2c%22Designer%22%3a%22Shadow%22%7d%2c%22BNewComer%22%3afalse%2c%22IsTester%22%3afalse%2c%22ApartmentForArrange%22%3anull%2c%22Setting%22%3a%7b%22QualityLevel%22%3a0%7d%2c%22InitialRoomName%22%3a%22bedroom_2%22%7d';
         var baseWebplayer = "http://cdn.jiajia1.com/Storage1/u3d/v0001/unitysetting/Webplayer.unity3d?" + "104";
         var u;
@@ -243,7 +243,8 @@
             }
         });
         u.initPlugin(jQuery("#unityPlayer")[0], baseWebplayer);
-        
+        */
+	    
         //如果是谷歌内核并且版本是42，则提醒
         if (/chrome\/4([2-5])./.test(navigator.userAgent.toLowerCase())) {
             if (jQuery("#unityPlayer").find("embed").length==0) {
