@@ -11,9 +11,9 @@
             loadScript(unityregisterScript, function () {
                 loadScript(unityloginScript, function () {
                     loadScript(uploadifyScript, function () {
-                        loadScript(unityScript, function () {
+                        //loadScript(unityScript, function () {
                             loadScript(jiathisScript, function () { });
-                        });
+                        //});
                     });
                 });
             });
