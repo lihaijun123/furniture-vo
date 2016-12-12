@@ -83,7 +83,7 @@ $("div.unity_box_right .list").eq(0).click(function () {
      handle.prototype.$application.find(".new_apply_first").show(100).siblings().hide();
  });
 //handle处理函数
-handle.fn = {alert();
+handle.fn = {
     //初始化地址信息
     initAddressInfo: function (pro, city, county) {
         new PCAS("selectProvince=" + pro, "selectCity=" + city, "selectCountry=" +county);
@@ -297,9 +297,10 @@ handle.fn = {alert();
             schemeId: sceneId
         };
         $.ajax({
-            url: "/common/checkunitystate/UserStateAndInfo",
+            url: "/common/checkunitystate",
             data: setData,
             cache: false,
+            dataType:"json",
             success: function (data) {
                 if (data.Message == "nologin") {
                     showLoginBox();

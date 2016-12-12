@@ -1,5 +1,5 @@
 
- 
+ 	/*
     var jqformScript = "http://cdn.jiajia1.com/Scripts/Base/jquery.form.js?v=V1.2.9";
     var unityregisterScript = "http://cdn.jiajia1.com/Scripts/Register/unityregister.js?v=V1.2.9";
     var unityloginScript = "http://cdn.jiajia1.com/Scripts/Register/unitylogin.js?v=V1.2.9";
@@ -11,15 +11,15 @@
             loadScript(unityregisterScript, function () {
                 loadScript(unityloginScript, function () {
                     loadScript(uploadifyScript, function () {
-                        //loadScript(unityScript, function () {
+                        loadScript(unityScript, function () {
                             loadScript(jiathisScript, function () { });
-                        //});
+                        });
                     });
                 });
             });
         });
     };
-   
+   	*/
     //jbox 提醒配置
     jBoxConfig.tipDefaults = {
         timeout: 1000 /* 提示显示多少毫秒后自动关闭,必须是大于0的整数 */

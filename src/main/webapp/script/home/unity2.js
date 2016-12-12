@@ -1220,8 +1220,7 @@ function requestFullScreen(element) {
 //}
 
 //默认户型框
-function showApartmentBox() {debugger;
-	alert();
+function showApartmentBox() {
     $("#new_apply div.new_apply_first_hasdefault").show().siblings().hide();
 }
 //隐藏登陆框

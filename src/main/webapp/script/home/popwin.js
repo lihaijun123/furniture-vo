@@ -2,11 +2,9 @@
 $(function(){
 	
 	$("#selectHouse").click(function(){
-		 debugger;
 		 //showLoginBox();
-		 //showApartmentBox();
-		 //showApplySearchBox();
-		 showApplication();
+		 //showApplication();
+		Apply3DExperience();
 	});
 	
 	
