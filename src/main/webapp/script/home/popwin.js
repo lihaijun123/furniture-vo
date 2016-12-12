@@ -1,9 +1,13 @@
+
 $(function(){
 	
 	$("#selectHouse").click(function(){
 		 debugger;
-		 hideUnity();
-		 showLoginBox();
+		 //showLoginBox();
+		 //showApartmentBox();
+		 //showApplySearchBox();
+		 showApplication();
 	});
+	
 	
 });

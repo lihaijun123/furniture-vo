@@ -1101,7 +1101,8 @@ function showLoginBox() {
     $divLogin.find(".register_form").hide();
 }
 //楼盘搜索框
-function showApplySearchBox() {
+function showApplySearchBox() {debugger;
+alert();
     var $newApplyFirst = $("#new_apply div.new_apply_first");
     $newApplyFirst.find("input[class=select_text]").val("");
     $newApplyFirst.find("#mq").val("");
@@ -1220,7 +1221,8 @@ function requestFullScreen(element) {
 //}
 
 //默认户型框
-function showApartmentBox() {
+function showApartmentBox() {debugger;
+	alert();
     $("#new_apply div.new_apply_first_hasdefault").show().siblings().hide();
 }
 //隐藏登陆框
