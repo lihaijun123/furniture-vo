@@ -16,7 +16,7 @@ public class Generate {
 	 */
 	public static void main(String[] args) throws Exception{
 		//String projectPath = System.getProperty("user.dir");
-		String projectPath = "F:\\furniture_workspace\\furniture-vo";
+		String projectPath = "F:\\furniture_workspace\\furniture-vo\\src\\main\\resources\\context\\datasource\\sqlmap\\";
 		Focus3dGenerate.generate(projectPath);
 	}
 }
