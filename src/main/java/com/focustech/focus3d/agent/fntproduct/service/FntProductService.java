@@ -24,6 +24,7 @@ public interface FntProductService<T> extends ICommonService<T> {
 	/**
 	 * *
 	 * @param fntProductModel
+	 * @param productSearch 
 	 * @return
 	 */
 	public JSONObject serialize(T fntProductModel);
