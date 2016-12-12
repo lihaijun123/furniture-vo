@@ -31,6 +31,7 @@ function pgShare(data){
 
 var share_dialog = null;
 function share_dialogOpen(fileId){
+	alert(fileId);
 	if(share_dialog){
 		share_dialog = null;
 	}
