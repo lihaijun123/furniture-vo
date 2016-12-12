@@ -1212,8 +1212,8 @@ handle.fn.floorSearch = function (dataset) {
                     //读取转换成功的图片
                     var smallImgUrl = itemData[i].picUrl;//GetThumbnail(itemData[i].ApartmentModelUrl + "floorPlan.png", 114, 90);
                     var bigImgUrl = itemData[i].picUrl//GetThumbnail(itemData[i].ApartmentModelUrl + "floorPlan.png", 400, 400);
-                    li += "<li><input name=\"smallImgUrl\" value=\"{0}\" type=\"hidden\" /><a title=\"点击放大\" class=\"list_image\" bigurl=\"{6}\"><img  src=\"{0}\"></a><p>{1}{2} ㎡<br>{3}室{4}厅</p><a class=\"use_button\" opened=\"false\" picId=\"{5}\"  apId=\"{7}\" apartmentModelUrl=\"{8}\" version=\"{9}\">使用</a></li>".format(
-                        smallImgUrl, itemData[i].Floor, Math.floor(parseFloat(itemData[i].Area)), itemData[i].Rooms, itemData[i].Saloons, itemData[i].PicId, bigImgUrl, itemData[i].ApartmentId, itemData[i].ApartmentModelUrl, itemData[i].version);
+                    li += "<li><input name=\"smallImgUrl\" value=\"{0}\" type=\"hidden\" /><a title=\"点击放大\" class=\"list_image\" bigurl=\"{6}\"><img  src=\"{0}\"></a><p>{1}{2} ㎡<br>{3}室{4}厅</p><a class=\"use_button\" opened=\"false\" picId=\"{5}\"  apId=\"{7}\" apartmentModelUrl=\"{8}\" version=\"{9}\" houseId=\"{10}\">使用</a></li>".format(
+                        smallImgUrl, itemData[i].Floor, Math.floor(parseFloat(itemData[i].Area)), itemData[i].Rooms, itemData[i].Saloons, itemData[i].PicId, bigImgUrl, itemData[i].ApartmentId, itemData[i].ApartmentModelUrl, itemData[i].version, itemData[i].Id);
                 }
                 $first.find("ul.record_list").empty().css("margin-left", "0px").append(li);
                 $("#btnRecordLeft").css("background", "url('/Content/Images/Unity/unity_apply/left.png')");
@@ -1252,8 +1252,8 @@ handle.fn.floorSearch = function (dataset) {
                 	showUnity();
                 	var url = $(this).attr("apartmentModelUrl");
                 	var version = $(this).attr("version");
-                	var rv = '{"url":"' + url + '","version":' + version + '}';
-                	
+                	var houseId = $(this).attr("houseId");
+                	var rv = '{"url":"' + url + '","version":' + version + '","id":"' + houseId + '"}';
                 	LoadUnit(rv);
                 });
             }
