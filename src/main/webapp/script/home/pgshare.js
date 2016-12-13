@@ -40,9 +40,10 @@ function share_dialogOpen(fileId){
 function SharePicture2(backgroundImageData, imageData) {
 	hideUnity();
 	$("#print_share").show(50);
+	//$("#print_share").focus();
 	changeBackground(backgroundImageData);
-  var imghtml = "<img style=\"width: " + 590 + "px;height: " + 328 + "px\"  src=\"" + imageData + "\" shareUrl=\"" + imageData + "\"/>";
-  $("#print_shareImgUrl").html("").append(imghtml);
+	var imghtml = "<img style=\"width: " + 590 + "px;height: " + 328 + "px\"  src=\"" + imageData + "\" shareUrl=\"" + imageData + "\"/>";
+	$("#print_shareImgUrl").html("").append(imghtml);
 }
 
 function toShare(type){

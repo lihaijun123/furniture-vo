@@ -91,26 +91,23 @@ handle.fn = {
     //初始化上传插件
     initUploadify: function (id) {
         $("#" + id).uploadify({
-            swf: "/Scripts/jquery.uploadify/uploadify.swf" + handle.prototype.version,
-            uploader: "/Common/Common/Upload?sSavePath=sweethome/room/image/v0001&var",
+            uploader: "/script/uploadFile/uploadify.swf" + handle.prototype.version,
+            script: "http://139.196.173.139:8018/crs/i1/upload?1=1",
             auto: true,
             buttonText: "户型图上传",
-            fileTypeDesc: '图片文件',
-            fileTypeExts: '*.gif; *.jpg;*.jpeg;*.png',
+            fileDesc: '图片文件',
+            fileExt: '*.gif; *.jpg;*.jpeg;*.png',
             removeCompleted: false,
-            onUploadStart: function (file) {
+            onSelect: function (file) {
                 //清除队列只保留最后一个
                 $("#select_upload-queue").children(":last").siblings().remove();
                 $(".image_name").html("");
-                $("#uploadMsg").find("img").attr("src", "/Content/Images/Unity/unity_apply/back04.png" + handle.prototype.version);
+                $("#uploadMsg").find("img").attr("src", "/images/unity_apply/back04.png" + handle.prototype.version);
             },
             queueSizeLimit: 1,
-            uploadLimit: 99,
-            width: 86,
-            height: 25,
             multi: false,
             removeTimeout: 1,
-            onUploadSuccess: function (file, data, response) {
+            onComplete: function (file, data, response) {
                 eval("data=" + data);
                 if (data.Success == true) {
                     var img = GetThumbnail(data.SaveName, 170, 170);
@@ -401,7 +398,7 @@ handle.fn = {
     //弹出上传户型图
     showApplySecond: function () {
 
-        handle.prototype.$newApplySecond.find(".de_box").empty().append("<a><img src=\"/Content/Images/Unity/unity_apply/back04.png" + handle.prototype.version + "\"></a>");
+        handle.prototype.$newApplySecond.find(".de_box").empty().append("<a><img src=\"/images/unity_apply/back04.png" + handle.prototype.version + "\"></a>");
         handle.prototype.$newApplySecond.find("#select_upload-queue").html("");
         handle.prototype.$newApplySecond.find(".image_name").html("我的平面户型图.jpg");
 
@@ -1368,7 +1365,7 @@ handle.prototype.$application.find("div.popup_box").mouseleave(function () {
 handle.prototype.$application.find(".select_upload").click(function () {
     if ($(this).attr("opened") == "false") {
         $(this).attr("opened", "true");
-        $.getJSON("/common/checkunitystate/ApartmentState", function (result) {
+        $.getJSON("/common/checkunitystate", function (result) {
             handle.prototype.$application.find(".select_upload").attr("opened", "false");
             if (result.Message == "nologin") {
                 handle.fn.showDivLogin();
@@ -1450,8 +1447,8 @@ handle.fn.initValidator();
 $(function () {
     //自动补全
     handle.fn.autoComplete("mq");
-    //初始化上传
-    handle.fn.initUploadify("select_upload");
+    //初始化上传lihaijun
+    //handle.fn.initUploadify("select_upload");
     handle.fn.hoverHistory();
     handle.fn.clickExpmenu();
     handle.fn.countProductNumPrice();

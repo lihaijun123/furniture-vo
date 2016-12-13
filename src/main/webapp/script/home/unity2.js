@@ -1186,6 +1186,8 @@ function showInceptionBox() {
 function showApplication() {
     hideUnity();
     $('#new_apply').show(80);
+    //$('#new_apply').focus();//lihaijun
+    
 }
 //右键冲突提醒框
 function showConflictTips() {

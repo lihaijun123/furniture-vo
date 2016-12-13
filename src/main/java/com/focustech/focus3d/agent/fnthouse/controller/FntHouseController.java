@@ -69,12 +69,15 @@ public class FntHouseController extends CommonController {
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String upload(FntHouseUploadModel houseUploadModel, ModelMap modelMap){
-		String hosueName = houseUploadModel.getHouseName();
-		Long hosueFileSn = houseUploadModel.getHouseFileSn();
-		int status = 0;
-		if(StringUtils.isNotEmpty(hosueName) && hosueFileSn != null){
+		String buildingName = houseUploadModel.getBuildingName();
+		Long picFileSn = houseUploadModel.getPicFileSn();
+		int status = 1;
+		if(StringUtils.isNotEmpty(buildingName) && picFileSn != null){
+			houseUploadModel.setUserId(7L);
+			houseUploadModel.setHouseName(buildingName);
+			houseUploadModel.setHouseFileSn(picFileSn);
+			houseUploadModel.setStatus(1);
 			fntHouseUploadService.insert(houseUploadModel);
-			status = 1;
 		}
 		modelMap.put("status", status);
 		return "/fnthouse/upload";

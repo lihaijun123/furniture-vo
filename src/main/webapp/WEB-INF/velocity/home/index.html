@@ -1,4 +1,8 @@
 ﻿#set($layout="layout/layout_home.html")
+<link href="/script/uploadFile/uploadify.css" type="text/css" rel="stylesheet" />
+<style type="text/css">
+	#file_uploadUploader{width: 7%;height: 25px;}
+</style>
 <link href="/style/home/css" rel="stylesheet">
 <link href="/style/home/css1" rel="stylesheet">
 <script src="/script/home/jquery"></script>
@@ -56,7 +60,7 @@
           <!--------------------------------登录注册框begin------------------------------------------>
           <div id="loginAndRegister" class="share_mask" style="display: none">
             <div class="login">
-              <div class="close" onclick=" HideThisDiv(&#39;#loginAndRegister&#39;) "></div>
+              <div class="close" onclick="HideThisDiv('loginAndRegister')"></div>
               <div class="logo"></div>
               <!--------------------------------unity登录框--------------------------------------->
               <form class="login_form" name="login_form" id="login_form" style="display: block">
@@ -129,7 +133,7 @@
             <div class="share">
               <div class="share_image" id="shareImgUrl"></div>
               <!--------------close按钮------------------> 
-              <span class="close" style="margin-top: 80px;" type="button" value="关闭分享框" onclick="HideThisDiv(&#39;#share&#39;)"></span> 
+              <span class="close" style="margin-top: 80px;" type="button" value="关闭分享框" onclick="HideThisDiv('share')"></span> 
               <!--------------close按钮end------------------>
               <p id="shareTitle" class="p1">古典-中性</p>
               <p>MODERN STYLE</p>
@@ -164,7 +168,7 @@
           <!---------------------------------截屏分享框end-----------------------------------------> 
           <!---------------------------------收藏框begin----------------------------------------->
           <div class="collect" id="collect" style="display:none">
-            <div class="close" type="button" value="关闭收藏夹" onclick="HideThisDiv(&#39;#collect&#39;);"></div>
+            <div class="close" type="button" value="关闭收藏夹" onclick="HideThisDiv('collect');"></div>
             <div class="product"> <span class="left"></span> <span class="right"></span> <a class="pointer"></a> <a class="back"><img src="/images/2b7470813729449c945781d830e065c5.jpg_148x148.jpg"></a> </div>
             <div class="title">成功添加到收藏夹</div>
             <div class="sort_title" style="display: none">
@@ -213,7 +217,7 @@
             <!--2.09添加 返回按钮 end-->
             <div class="close" type="button" value="关闭申请设计" onclick="HideThisDiv(&#39;#new_apply&#39;);"></div>
             <!------------放大镜弹出框-------------------->
-            <div class="popup_box" style="display: none"><img src="/images/back04.png" bigurl=""></div>
+            <div class="popup_box" style="display: none"><img src="/images/unity_apply/back04.png" bigurl=""></div>
             <!-------------放大镜弹出框------------------->
             <div> 
               <!--------------------存在默认户型----------------------------->
@@ -301,18 +305,14 @@
               <!--------------------楼盘搜索执行-----------------------------> 
               <!--------------------上传户型图时执行----------------------------->
               <div class="new_apply_second" style="display: none">
-                <div id="uploadMsg" class="de_box"><a><img src="/images/back04.png"></a></div>
+                <div id="uploadMsg" class="de_box"><a><img src="/images/unity_apply/back04.png"></a></div>
                 <div class="right_box">
                   <div id="select_upload" class="uploadify" style="height: 25px; width: 86px;">
-                    <object id="SWFUpload_0" type="application/x-shockwave-flash" data="/images/uploadify.swf.下载" width="86" height="25" class="swfupload" style="position: absolute; z-index: 1;">
-                      <param name="wmode" value="transparent">
-                      <param name="movie" value="/Scripts/jquery.uploadify/uploadify.swf?v=V1.2.9&amp;preventswfcaching=1481073738425">
-                      <param name="quality" value="high">
-                      <param name="menu" value="false">
-                      <param name="allowScriptAccess" value="always">
-                      <param name="flashvars" value="movieName=SWFUpload_0&amp;uploadURL=%2FCommon%2FCommon%2FUpload%3FsSavePath%3Dsweethome%2Froom%2Fimage%2Fv0001%26var&amp;useQueryString=false&amp;requeueOnError=false&amp;httpSuccess=&amp;assumeSuccessTimeout=30&amp;params=&amp;filePostName=Filedata&amp;fileTypes=*.gif%3B%20*.jpg%3B*.jpeg%3B*.png&amp;fileTypesDescription=%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6&amp;fileSizeLimit=0&amp;fileUploadLimit=99&amp;fileQueueLimit=1&amp;debugEnabled=false&amp;buttonImageURL=%2F&amp;buttonWidth=86&amp;buttonHeight=25&amp;buttonText=&amp;buttonTextTopPadding=0&amp;buttonTextLeftPadding=0&amp;buttonTextStyle=color%3A%20%23000000%3B%20font-size%3A%2016pt%3B&amp;buttonAction=-100&amp;buttonDisabled=false&amp;buttonCursor=-2">
-                    </object>
+                  
+                    <input id="file_upload1" name="file_upload1" type="file" /><br>
+					<!-- 
                     <div id="select_upload-button" class="uploadify-button " style="height: 25px; line-height: 25px; width: 86px;"><span class="uploadify-button-text">户型图上传</span></div>
+					 -->
                   </div>
                   <div id="select_upload-queue" class="uploadify-queue"></div>
                   <a class="image_name">我的平面户型图.jpg</a>
@@ -321,14 +321,16 @@
                 </div>
                 <input type="hidden" name="designId" value="556ece48b5ad1d0f90b5cc1a">
                 <input type="hidden" name="designName" value="千年典雅隔世梦">
-                <form id="formApply" class="upload_form">
+                <!-- lihaijun -->
+                <form id="formApply" class="upload_form" action="/fnthouse/upload" method="post">
+                  <input type="hidden" id="picFileSn" name="picFileSn"/>
                   <div class="form_line">
                     <label><i class="required_x">*</i>楼盘:</label>
-                    <input id="txtFloor" name="txtFloor" type="text" class="line_text">
+                    <input id="txtFloor" name="buildingName" type="text" class="line_text">
                     <span class="tipinfo"></span></div>
                   <div class="form_line">
                     <label><i class="required_x">*</i>类型:</label>
-                    <select id="selectPlansType" name="selectPlansType" class=" select_line">
+                    <select id="selectPlansType" name="type" class=" select_line">
                       <option value="1">小区房</option>
                       <option value="2">别墅</option>
                       <option value="3">自建房</option>
@@ -336,10 +338,10 @@
                       <option value="5">经济房</option>
                     </select>
                     <label style="margin-left: 30px;"><i class="required_x">*</i>面积:</label>
-                    <input id="txtArea" name="txtArea" onkeyup="javascript:this.value=this.value.replace(/[^\d]/g, &#39;&#39;);" type="text" class="line_text" style="width: 87px;">
+                    <input id="txtArea" name="area" onkeyup="javascript:this.value=this.value.replace(/[^\d]/g, &#39;&#39;);" type="text" class="line_text" style="width: 87px;">
                     <span class="tipinfo"></span>
                     <label style="margin-left: 32px;"><i class="required_x">*</i>户型:</label>
-                    <select id="selectDoorModel" name="selectDoorModel" class="select_line">
+                    <select id="selectDoorModel" name="roomNum" class="select_line">
                       <option value="1">一居室</option>
                       <option value="2">两居室</option>
                       <option value="3">三居室</option>
@@ -350,23 +352,23 @@
                   </div>
                   <div class="form_line">
                     <label>地区:</label>
-                    <select class="select_line" id="selectProvince" name="selectProvince">
+                    <select class="select_line" id="selectProvince" name="province">
                     </select>
                     <label>省/直辖市:</label>
-                    <select class="select_line" id="selectCity" name="selectCity">
+                    <select class="select_line" id="selectCity" name="city">
                     </select>
                     <label>市/地区市:</label>
-                    <select class="select_line" id="selectCountry" name="selectCountry">
+                    <select class="select_line" id="selectCountry" name="region">
                     </select>
                     <label>区</label>
                   </div>
                   <div class="form_line">
                     <label>街道:</label>
-                    <input id="txtStreet" name="txtStreet" type="text" class="line_text">
+                    <input id="txtStreet" name="street" type="text" class="line_text">
                     <span class="tipinfo"></span></div>
                   <div class="form_line">
                     <label>楼座:</label>
-                    <input id="txtGallery" name="txtGallery" type="text" class="line_text">
+                    <input id="txtGallery" name="buildingNo" type="text" class="line_text">
                     <span class="tipinfo"></span></div>
                   <input type="submit" name="submit" value="" opened="false" class="check">
                   <a id="cancel" class="wrong"></a>
@@ -716,7 +718,9 @@
   <script type="text/javascript" src="/script/home/jquery.form.js"></script> 
   <script type="text/javascript" src="/script/home/unityregister.js"></script> 
   <script type="text/javascript" src="/script/home/unitylogin.js"></script> 
-  <script type="text/javascript" src="/script/home/jquery.uploadify.min.js"></script> 
+  <!-- 
+  <script type="text/javascript" src="/script/uploadFile/uploadify.v2.1.4.min.js"></script> 
+   -->
   <script type="text/javascript" src="/script/home/unity.js"></script> 
   <script type="text/javascript" src="/script/home/jia.js"></script> 
   <script type="text/javascript" src="/script/home/index.js"></script> 
@@ -724,8 +728,14 @@
   <script type="text/javascript" src="/script/home/jqueryval"></script> 
   <script type="text/javascript" src="/script/home/unity_init.js"></script> 
   <script type="text/javascript" src="/script/home/popwin.js"></script> 
-  <script type="text/javascript" src="/script/home/dialog_house.js"></script>
   <script type="text/javascript" src="/script/home/pgshare.js"></script>
+  
+  <script type="text/javascript" src="/script/uploadFile/swfobject.js"></script>
+  <script type="text/javascript" src="/script/uploadFile/uploadify.v2.1.4.min.js"></script>
+  <script type="text/javascript" src="/script/uploadFile/fileUploadInit.js"></script>
+  <script type="text/javascript" src="/script/uploadFile/uploadify_zh_CN.js"></script>
+
+  <script type="text/javascript" src="/script/home/picupload.js"></script>
 </div>
 <form id="getEexcelForm" method="post" action="">
   <input type="hidden" name="TextureInfo" id="j-textureInfo" value="">

@@ -113,13 +113,13 @@ public class HouseRestService {
 			}
 		}
 		if(StringUtils.isNotEmpty(areaRange)){
-			String[] split = areaRange.split(",");
+			String[] split = areaRange.split(";");
 			for (String string : split) {
 				houseSearch.getAreaRange().add(string);
 			}
 		}
 		if(StringUtils.isNotEmpty(roomType)){
-			String[] split = roomType.split(",");
+			String[] split = roomType.split(";");
 			for (String string : split) {
 				houseSearch.getRoomType().add(string);
 			}
