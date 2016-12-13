@@ -42,7 +42,7 @@ function createUnityObject(){
 			break;
 		}
 	});
-	u.initPlugin(jQuery("#unityPlayer")[0], "/unity3d/fru.unity3d");
+	u.initPlugin(jQuery("#unityPlayer")[0], "http://139.196.173.139/fru.unity3d");
 }
 
 function LoadUnit(json){
