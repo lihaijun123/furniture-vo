@@ -400,7 +400,7 @@
     
         function setShare(pic, title, summary) {
             jiathis_config.pic = pic,
-                jiathis_config.title = title;
+            jiathis_config.title = title;
             jiathis_config.summary = summary;
         }
         var jiathis_config = {

@@ -14,12 +14,3 @@ $(function(){
 function house_dialogOpen(){
 	Apply3DExperience();
 }
-
-//分享抓图lihaijun
-function SharePicture2(backgroundImageData, imageData) {
-	hideUnity();
-	$("#print_share").show(50);
-	changeBackground(backgroundImageData);
-    var imghtml = "<img style=\"width: " + 590 + "px;height: " + 328 + "px\"  src=\"" + imageData + "\" shareUrl=\"" + imageData + "\"/>";
-    $("#print_shareImgUrl").html("").append(imghtml);
-}

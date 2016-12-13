@@ -35,6 +35,16 @@ function share_dialogOpen(fileId){
      }); 
 }
 
+
+//分享抓图lihaijun
+function SharePicture2(backgroundImageData, imageData) {
+	hideUnity();
+	$("#print_share").show(50);
+	changeBackground(backgroundImageData);
+  var imghtml = "<img style=\"width: " + 590 + "px;height: " + 328 + "px\"  src=\"" + imageData + "\" shareUrl=\"" + imageData + "\"/>";
+  $("#print_shareImgUrl").html("").append(imghtml);
+}
+
 function toShare(type){
 	var url = "";
 	var surl = encodeURIComponent("http://139.196.173.139:8888/index");
