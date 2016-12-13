@@ -269,6 +269,7 @@
             changeBackground(backgroundImageData);
             handle.fn.uploadSharePic("print_shareImgUrl", imageData, "590", "328");
         }
+       
         //弹出商品详情页
         function OpenURLInColorBox(url) {
             handle.fn.openURLInColorBox(url);

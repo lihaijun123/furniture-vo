@@ -29,22 +29,10 @@ function pgShare(data){
 	share_dialogOpen(data);
 }
 
-var share_dialog = null;
 function share_dialogOpen(fileId){
-	alert(fileId);
-	hideUnity();
-	if(share_dialog){
-		share_dialog = null;
-	}
-	$("iframe").attr("src", "/pgshare/" + fileId);
-	share_dialog = $("#share-dialog-listLk").dialog({
-	      resizable: false,
-	      draggable: false,
-	      position: {my: "left top", at: "left top", of: "#cont"},
-	      height:$(".in_top").width() - 500,
-	      width:$(".in_top").width() + 50,
-	      modal: true
-	 });
+	 $.getJSON("/pgshare/" + fileId, function(result){
+		 SharePicture2(result.picUrl, result.picUrl);
+     }); 
 }
 
 function toShare(type){
