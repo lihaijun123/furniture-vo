@@ -14,3 +14,7 @@ $(function(){
 function house_dialogOpen(){
 	Apply3DExperience();
 }
+
+function openShoppingCart(){
+	
+}

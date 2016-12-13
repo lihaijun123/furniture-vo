@@ -46,7 +46,7 @@ function createUnityObject(){
 }
 
 function LoadUnit(json){
-	u.getUnity().SendMessage("control","LoadUnitAssetBundle", json);
+	u.getUnity().SendMessage("control","LoadUnitAssetBundleWeb", json);
 }
 
 function LoadFurnitureItem(json){
