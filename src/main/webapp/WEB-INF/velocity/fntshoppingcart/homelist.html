@@ -1,0 +1,47 @@
+#set($layout="layout/layout_home.html")
+<div class="container">
+<link href="/style/bootstrap.min-3.0.3.css" rel="stylesheet">
+<div class="table-responsive" style="margin-top: 30px;">
+				  <table class="table table-hover">
+				    <caption></caption>
+				    <thead>
+				      <tr>
+				        <th>序号</th>
+				        <th>图片</th>
+				        <th>家具名称</th>
+				        <th>添加时间</th>
+				        <th>操作</th>
+					  </tr>
+				    </thead>
+				    <tbody>
+				      #foreach($!shoppingcart in $!list)
+				      <tr>
+				        <td>$!velocityCount</td>
+				        <td><img src="$!fileSys.url($!shoppingcart.product.picFileSn)" width="50px;" height="50px;"></td>
+				        <td>$!shoppingcart.product.name</td>
+				        <td>$!date.format("yyyy-MM-dd hh:mm:ss", $!shoppingcart.addTime)</td>
+				        <td>
+				            <!-- 
+				        	<ul class="list-inline ">
+					        	<li><a id="del_shoppingcart_" data-toggle="tooltip" data-placement="bottom" sn="$!shoppingcart.encryptSn" title="删除" href="#"><span class="glyphicon glyphicon-trash" ></span></a></li>
+							</ul>
+				             -->
+				        </td>
+					  </tr>
+					  #end
+				    </tbody>
+				  </table>
+				</div>
+</div>
+<script src="/script/bootstrap.min.js"></script>
+<script>
+	$(function(){
+		$("a[id^='del_shoppingcart_']").click(function(){
+				if(window.confirm("是否删除？")){
+					window.location.href = "/fntshoppingcart/delete/" + $(this).attr("sn");
+				} else {
+					//$("body").animate({scrollTop: $("#studentForm").offset().top}, 500);
+				}
+		});
+	});
+</script>

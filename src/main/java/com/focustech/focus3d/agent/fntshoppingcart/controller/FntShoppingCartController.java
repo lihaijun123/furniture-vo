@@ -31,6 +31,18 @@ public class FntShoppingCartController extends CommonController{
 	 * @param modelMap
 	 * @return
 	 */
+	@RequestMapping(value = "/home/list")
+	public String homeList(ModelMap modelMap){
+		List<FntShoppingCartModel> list = shoppingCartService.listAll();
+		modelMap.put("list", list);
+		return "/fntshoppingcart/homelist";
+	}
+	/**
+	 * 
+	 * *
+	 * @param modelMap
+	 * @return
+	 */
 	@RequestMapping(value = "/list")
 	public String list(ModelMap modelMap){
 		List<FntShoppingCartModel> list = shoppingCartService.listByUser();

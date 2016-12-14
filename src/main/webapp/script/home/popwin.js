@@ -16,5 +16,12 @@ function house_dialogOpen(){
 }
 
 function openShoppingCart(){
-	
+	var width = window.innerWidth - 100;
+	var height = window.innerHeight - 250;
+	$.jBox("iframe:http://localhost:7001/fntshoppingcart/home/list", { 
+	    title: "购物车", 
+	    width: width, 
+	    height: height, 
+	    buttons: { '关闭': true } 
+	});
 }

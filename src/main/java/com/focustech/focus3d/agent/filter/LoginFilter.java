@@ -13,10 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.focustech.cief.cop.ws.auth.Auth;
 import com.focustech.cief.cop.ws.auth.AuthHolder;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.model.AgentLogin;
+import com.focustech.focus3d.agent.model.AgentUser;
+import com.focustech.focus3d.agent.user.service.AgentUserService;
 /**
  *
  * *
@@ -53,9 +57,11 @@ public class LoginFilter extends AbstractFilter {
 		, "/rest*"
 		, "/pgshare/*"
 		, "/common/*"
+		, "/fntshoppingcart/home/list"
 	};
 	public static Auth auth = new Auth();
-
+	@Autowired
+	private AgentUserService<AgentUser> userService;
 	/*@Autowired
 	private AgentUserRoleService<AgentUserRole> agentUserRoleService;
 	@Autowired
@@ -72,9 +78,15 @@ public class LoginFilter extends AbstractFilter {
 		String servletPath = request.getServletPath();
 		boolean isPass = false;
 		if(isNotNeedAuthCheckUrl(servletPath, request)){
-			if("/index".equals(servletPath)){
+			if("/index".equals(servletPath) || "/fntshoppingcart/home/list".equals(servletPath)){
 				//首页会话设置用户信息
 				RequestThreadLocal.setLoginInfo(sessinObj);
+				AgentLogin loginInfo = RequestThreadLocal.getLoginInfo();
+				if(loginInfo != null){
+					Long userId = loginInfo.getUserId();
+					AgentUser agentUser = userService.selectBySn(userId, AgentUser.class);
+					req.setAttribute("user", agentUser);
+				}
 			}
 			isPass = true;
 		} else {

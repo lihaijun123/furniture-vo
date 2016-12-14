@@ -37,6 +37,8 @@ under the License.
         <tool class="org.apache.velocity.tools.generic.ResourceTool"/>
         <tool class="org.apache.velocity.tools.generic.SortTool"/>
         <tool class="org.apache.velocity.tools.generic.XmlTool"/>
+        <!--扩展-->
+        <tool class="com.focustech.focus3d.agent.common.velocity.FileSysTool"/>
     </toolbox>
     <toolbox scope="request">
         <tool class="org.apache.velocity.tools.generic.ContextTool"/>
