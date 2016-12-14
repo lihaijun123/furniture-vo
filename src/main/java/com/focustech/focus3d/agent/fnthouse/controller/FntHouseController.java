@@ -1,6 +1,11 @@
 package com.focustech.focus3d.agent.fnthouse.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,30 +61,33 @@ public class FntHouseController extends CommonController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/upload", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/upload", method = RequestMethod.GET)
 	public String upload(ModelMap modelMap){
 		return "/fnthouse/upload";
-	}
+	}*/
 	
 	/**
 	 * *
 	 * @param houseUploadModel
 	 * @param modelMap
 	 * @return
+	 * @throws IOException 
 	 */
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public String upload(FntHouseUploadModel houseUploadModel, ModelMap modelMap){
+	@RequestMapping(value = "/upload", method = RequestMethod.GET)
+	public void upload(FntHouseUploadModel houseUploadModel, ModelMap modelMap, HttpServletResponse response) throws IOException{
 		String buildingName = houseUploadModel.getBuildingName();
 		Long picFileSn = houseUploadModel.getPicFileSn();
-		int status = 1;
+		String status = "";
 		if(StringUtils.isNotEmpty(buildingName) && picFileSn != null){
 			houseUploadModel.setUserId(7L);
 			houseUploadModel.setHouseName(buildingName);
 			houseUploadModel.setHouseFileSn(picFileSn);
 			houseUploadModel.setStatus(1);
 			fntHouseUploadService.insert(houseUploadModel);
+			status = "ok";
 		}
-		modelMap.put("status", status);
-		return "/fnthouse/upload";
+		JSONObject jo = new JSONObject();
+		jo.put("Message", status);
+		ajaxOutput(response, jo.toString());
 	}
 }

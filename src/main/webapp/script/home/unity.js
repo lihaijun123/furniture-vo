@@ -89,7 +89,7 @@ handle.fn = {
         new PCAS("selectProvince=" + pro, "selectCity=" + city, "selectCountry=" +county);
     },
     //初始化上传插件
-    initUploadify: function (id) {
+   /* initUploadify: function (id) {
         $("#" + id).uploadify({
             uploader: "/script/uploadFile/uploadify.swf" + handle.prototype.version,
             script: "http://139.196.173.139:8018/crs/i1/upload?1=1",
@@ -119,7 +119,7 @@ handle.fn = {
                 }
             }
         });
-    },
+    },*/
     //搜索自动补全
     autoComplete: function (id) {
         var $mq = $("#" + id);
@@ -393,11 +393,12 @@ handle.fn = {
         $("select[name='selectRoomType']").val(1);
         $("input[name='txtStreet']").val("");
         $("#file_upload-queue").empty();
+        $("#picFileSn").val("");
         handle.prototype.$newApplySecond.find(".tipinfo").empty();
     },
     //弹出上传户型图
     showApplySecond: function () {
-
+    	
         handle.prototype.$newApplySecond.find(".de_box").empty().append("<a><img src=\"/images/unity_apply/back04.png" + handle.prototype.version + "\"></a>");
         handle.prototype.$newApplySecond.find("#select_upload-queue").html("");
         handle.prototype.$newApplySecond.find(".image_name").html("我的平面户型图.jpg");
@@ -453,24 +454,24 @@ handle.fn = {
             var txtStreet = $("input[name=txtStreet]").val();
             var floor = $("#txtFloor").val();
             var txtGallery = $("#txtGallery").val();
-            var picUrl = $("#uploadMsg").find("img").attr("bigUrl");
+            var picUrl = $("#picFileSn").val();
             var designId = $("input[name='designId']").val();
             var designName = $("input[name='designName']").val();
             var data = {
-                buildinfo: floor, //楼盘
+            	buildingName: floor, //楼盘
                 province: selectProvince,
                 city: selectCity,
-                country: selectCountry,
+                region: selectCountry,
                 street: txtStreet,
-                uploadedPath: picUrl, //上传图片的路径
+                picFileSn: picUrl, //上传图片的路径
                 designId: designId,
                 designName: designName,
-                gallery: txtGallery, //楼座
-                plansType: plansType, //房屋类型（小区房）
+                buildingNo: txtGallery, //楼座
+                type: plansType, //房屋类型（小区房）
                 doormodel: doorModel, //几居室
-                housearea: txtArea //面积
+                area: txtArea //面积
             };
-            $.getJSON("/Unity/Unity/SaveApplicationRender", data, function(result) {
+            $.getJSON("/fnthouse/upload", data, function(result) {
                 $apply.find("input[name=submit]").attr("opened", "false");
                 if (result.Message == "nologin") {
                     handle.fn.showDivLogin();
@@ -490,7 +491,7 @@ handle.fn = {
     //判断是否上传图片
     applicationOps: function() {
         //先判断是否上传图片
-        var b_up = $("div.uploadify-queue-item").length > 0 ? true : false;
+        var b_up = $("#picFileSn").val();
         if (!b_up) {
             $.jBox.tip("请上传户型图");
             return;
@@ -503,29 +504,23 @@ handle.fn = {
             onkeyup: false,
             //设置验证规则   
             rules: {
-                "txtFloor": {
+                "buildingName": {
                     required: true,
                     stringCheck: true,
                     rangelength: [2, 50]
                 },
-                "txtStreet": {
-                    stringCheck: true
-                },
-                "txtGallery": {
+                "street": {
                     stringCheck: true
                 }
             },
             //设置错误信息  
             messages: {
-                "txtFloor": {
+                "buildingName": {
                     required: "请输入楼盘信息",
                     stringCheck: "内容格式不合法",
                     rangelength: "请输入2-50字符"
                 },
-                "txtStreet": {
-                    stringCheck: "内容格式不合法"
-                },
-                "txtGallery": {
+                "street": {
                     stringCheck: "内容格式不合法"
                 }
             },

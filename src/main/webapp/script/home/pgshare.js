@@ -44,13 +44,19 @@ function SharePicture2(backgroundImageData, imageData) {
 	changeBackground(backgroundImageData);
 	var imghtml = "<img style=\"width: " + 590 + "px;height: " + 328 + "px\"  src=\"" + imageData + "\" shareUrl=\"" + imageData + "\"/>";
 	$("#print_shareImgUrl").html("").append(imghtml);
+	$(".jiathis_button_tsina").click(function(){
+		toShare("sina", imageData);
+	});
+	$(".jiathis_button_tqq").click(function(){
+		toShare("qq", imageData);
+	});
 }
 
-function toShare(type){
+function toShare(type, picUrl){
 	var url = "";
 	var surl = encodeURIComponent("http://139.196.173.139:8888/index");
 	var stitle = encodeURIComponent("信利家具");
-	var spic = encodeURIComponent($("#picUrl").val());
+	var spic = encodeURIComponent(picUrl);
 	if(type == "qq"){
 		url = "http://connect.qq.com/widget/shareqq/index.html?url=" + surl + "&desc=" + stitle + "&pics=" + spic + "&source=''&sourceUrl=''";
 	}

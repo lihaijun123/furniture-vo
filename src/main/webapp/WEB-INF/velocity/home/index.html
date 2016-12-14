@@ -142,7 +142,12 @@
               
               <div class="share_to1" onmouseover="setShare(document.getElementById('shareImgUrl').childNodes[0].getAttribute('shareUrl'), document.getElementById('shareTitle').innerHTML, document.getElementById('shareSummary').innerHTML)"> 
                 <!-- JiaThis Button BEGIN -->
-                <div class="jiathis_style_24x24" style="float: left;"> <a class="jiathis_button_tsina" style="float: left;  margin-left: 1px;margin-top: 1px; width: 24px; height: 24px;" title="分享到微博"><span class="jiathis_txt jtico jtico_tsina"></span></a> <a class="jiathis_button_tqq" style="float: left; margin-left: 25px; margin-top: 1px; width: 24px; height: 24px; " title="分享到腾讯微博"><span class="jiathis_txt jtico jtico_tqq"></span></a> <a class="jiathis_button_weixin" style="float: left; margin-left: 25px; margin-top: 1px; width: 24px; height: 24px; " title="分享到微信"><span class="jiathis_txt jtico jtico_weixin"></span></a> </div>
+                <div class="jiathis_style_24x24" style="float: left;"> <a class="jiathis_button_tsina" style="float: left;  margin-left: 1px;margin-top: 1px; width: 24px; height: 24px;" title="分享到微博"><span class="jiathis_txt jtico jtico_tsina"></span></a> <a class="jiathis_button_tqq" style="float: left; margin-left: 25px; margin-top: 1px; width: 24px; height: 24px; " title="分享QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a> 
+                <!-- 
+                <a class="jiathis_button_weixin" style="float: left; margin-left: 25px; margin-top: 1px; width: 24px; height: 24px; display: none;" title="分享到微信">
+                <span class="jiathis_txt jtico jtico_weixin" style="display: none;"></span></a> 
+                 -->
+                </div>
                 
                 <!-- JiaThis Button END --> 
               </div>
@@ -322,7 +327,7 @@
                 <input type="hidden" name="designId" value="556ece48b5ad1d0f90b5cc1a">
                 <input type="hidden" name="designName" value="千年典雅隔世梦">
                 <!-- lihaijun -->
-                <form id="formApply" class="upload_form" action="/fnthouse/upload" method="post">
+                <form id="formApply" class="upload_form">
                   <input type="hidden" id="picFileSn" name="picFileSn"/>
                   <div class="form_line">
                     <label><i class="required_x">*</i>楼盘:</label>
@@ -376,9 +381,9 @@
               </div>
               <!--------------------上传户型图时执行----------------------------->
               <div class="rendering" id="rendering" style="display: none;"> <a class="run_img"></a>
-                <p class="p01">一砖一瓦筑家园，请您耐心等待10分钟！<br>
-                  注意查收短信或邮件通知，<br>
-                  也可关注右侧套入进度或用户中心》方案管理。</p>
+                <p class="p01">提交成功，请您耐心等待！<br>
+                  
+                  也可进入用户中心》方案管理。</p>
               </div>
             </div>
           </div>
@@ -716,11 +721,9 @@
     </div>
   </div>
   <script type="text/javascript" src="/script/home/jquery.form.js"></script> 
+  <script type="text/javascript" src="/script/jquery.validate.min.js"></script> 
   <script type="text/javascript" src="/script/home/unityregister.js"></script> 
   <script type="text/javascript" src="/script/home/unitylogin.js"></script> 
-  <!-- 
-  <script type="text/javascript" src="/script/uploadFile/uploadify.v2.1.4.min.js"></script> 
-   -->
   <script type="text/javascript" src="/script/home/unity.js"></script> 
   <script type="text/javascript" src="/script/home/jia.js"></script> 
   <script type="text/javascript" src="/script/home/index.js"></script> 
