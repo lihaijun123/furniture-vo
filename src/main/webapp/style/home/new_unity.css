@@ -1876,9 +1876,9 @@ input.select_text[type="text"]{
 .select_upload{
     float: left;
     height: 39px;
-    width: 86px;
+    width: 90px;
     background:url("/images/unity_apply/submit.png?v={0}") no-repeat ;
-    margin-top: -7px;
+    margin-top: -0px;
     margin-left: 3px;
     cursor: pointer;
     display: block;
