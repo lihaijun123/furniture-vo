@@ -16,7 +16,7 @@ select:focus {
     clear: both;
 }
 #header {
-    height: 35px;
+    height: 77px;
     border-bottom: 1px solid #8be0ca;
 }
 
@@ -35,7 +35,7 @@ select:focus {
     display: block;
     width: 172px;
     height: 54px;
-    margin-top: -20px;
+    margin-top: -43px;
     background: url("/images/top_footer_all_img.png?v={1}") no-repeat 0 -983px;
 }
 
@@ -190,7 +190,7 @@ select:focus {
     width: 294px;
     height: 536px;
     float: left;
-    background: #8AC8BD;
+    background: #968653;
     position: relative;
     margin-left: 9px;
 }
@@ -806,7 +806,7 @@ ul.history span{
     height: 260px;
     float: left;
     background: url("/images/unity_icon.png?v={0}") no-repeat 0 -294px;
-    margin: 18px 0 0 10px;
+    margin: 5px 0 0 10px;
 }
 .recommend_box{
     position: relative;
@@ -846,7 +846,7 @@ ul.history span{
 .list_box{
     float: left;
     width: 218px;
-    margin: 0 0 0 3px;
+    margin: 0 0 0 -10px;
 }
 .space_img {
     width: 218px;
