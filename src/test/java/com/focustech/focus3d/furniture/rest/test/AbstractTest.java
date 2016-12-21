@@ -30,6 +30,7 @@ public abstract class AbstractTest {
 	private static final Logger log = LoggerFactory.getLogger(AbstractTest.class);
 	protected static String URL_TEST = "http://127.0.0.1:7001";
 	protected static String URL_RELEASE = "http://139.196.173.139:8888";
+	protected static String URL_THIRD = "http://www.xinlijiaju.com";
 	/**
 	 * 
 	 * *

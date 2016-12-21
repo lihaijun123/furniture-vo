@@ -126,7 +126,7 @@ function veUploadify(initJsonValue, uploadFileId){
 		jsonObj["buttonImg"] = initJsonValue.buttonImg;
 	}
 	else {
-		jsonObj["buttonImg"] = "/script/uploadFile/btn02.png";
+		jsonObj["buttonImg"] = "/script/uploadFile/btn03.png";
 	}
 	if(!isEmpty(initJsonValue, "fileDesc") && !isEmpty(initJsonValue, "fileExt")){
 		jsonObj["fileExt"] = initJsonValue.fileExt;

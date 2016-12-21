@@ -1870,7 +1870,8 @@ input.select_text[type="text"]{
     height: 28px;
     background: url("/images/unity_apply/button.png?v={0}") no-repeat ;
     display: block;
-    margin-top: 1px;
+    margin-top: 3px;
+    margin-left:10px;
     cursor: pointer;
 }
 .select_upload{
@@ -1878,8 +1879,8 @@ input.select_text[type="text"]{
     height: 39px;
     width: 90px;
     background:url("/images/unity_apply/submit.png?v={0}") no-repeat ;
-    margin-top: -0px;
-    margin-left: 3px;
+    margin-top: 3px;
+    margin-left: -10px;
     cursor: pointer;
     display: block;
     cursor: pointer;

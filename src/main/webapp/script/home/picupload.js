@@ -4,7 +4,7 @@
 							initJson1.fileExt = "*.jpg;*.png;*.jpeg";
 							initJson1.fileDesc = "*.jpg;*.png;*.jpeg";
 							initJson1.onComplete = picUploadOnComplete;
-							initJson1.buttonText = "户型上传";
+							initJson1.buttonImg = "/script/uploadFile/btn03.png";
 							veUploadify(initJson1, "file_upload1");
 						})
 						function getfile_upload1Id(){
