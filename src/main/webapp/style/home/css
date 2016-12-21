@@ -1908,14 +1908,14 @@ input[type="text"] {
 	position: relative;
 	width: 1280px;
 	height: 77px;
-	padding-top: 20px;
+	padding-top: 17px;
 }
 .all_header .left, #all_head_box .left {
 	display: block;
 	float: left;
 	width: 284px;
 	height: 43px;
-	margin-top: 34px;
+	padding-top: px;
 	background: url("/Content/Images/Top-footer/top_footer_all_img.png?v={1}") no-repeat 0 -1632px
 }
 .all_header .left i, #all_head_box .left i {

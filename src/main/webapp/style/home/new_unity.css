@@ -17,7 +17,6 @@ select:focus {
 }
 #header {
     height: 77px;
-    border-bottom: 1px solid #8be0ca;
 }
 
 
@@ -54,6 +53,7 @@ select:focus {
     margin: 0 auto;
     font-family: Arial, "Microsoft yahei";
     font-size: 12px;
+    margin-top:-11px;
 }
 
 .unity_box {
@@ -212,7 +212,7 @@ ul.tab_menu li {
 
 .tab_box {
     width: 278px;
-    height: 474px;
+    height: 450px;
     clear: both;
     top: 52px;
     position: relative;
@@ -249,7 +249,7 @@ ul.tab_menu .selected {
 }
 .unity_box_right .con_box{
     width: 278px;
-    height: 474px;
+    height: 450px;
     background: #ffffff;
     float: left;
     margin: 0 0 0 8px;
@@ -257,7 +257,7 @@ ul.tab_menu .selected {
 }
 .design{
     width: 278px;
-    height: 474px;
+    height: 450px;
     float: left;
     overflow: hidden;
     position: relative;
@@ -268,7 +268,7 @@ ul.tab_menu .selected {
     display: none;
     background: #E6E9ED;
     width: 278px;
-    height: 475px;
+    height: 450px;
     float:left;
     position: absolute;
 }
@@ -280,7 +280,7 @@ ul.design_list{
 ul.design_list li{
     position: relative;
     width: 278px;
-    height: 474px;
+    height: 503px;
     float: left;
     padding-top: 5px;
 }
@@ -291,7 +291,7 @@ ul.design_list li a {
     padding-top: 0;
 }
 ul.design_list li a.box-01 {
-    height: 33%;
+    height:28%;
 }
 ul.design_list li a.box-02 {
     width: 218px;
@@ -355,7 +355,7 @@ ul.design_list li a .txt-03 i {
     height: 26px;
     position: absolute;
     z-index: 1;
-    top: 443px;
+    top: 416px;
     left: 4px;
     background: url("/images/unity_icon.png?v={0}") no-repeat -2px -564px;
 }
@@ -1005,7 +1005,7 @@ a.see span{
     width: 360px;
     height: 50px;
     float: left;
-    margin: 46px 0 0 460px;
+    margin: 26px 0 0 460px;
 }
 .bottom ul{
     width: 168px;
@@ -1060,8 +1060,8 @@ a.see span{
     height: 330px;
     float: left;
     text-align: center;
-    margin-top: 76px;
-    margin-left: 71px;
+    margin-top: 83px;
+    margin-left: 64px;
     border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -1081,8 +1081,8 @@ a.see span{
     width: 170px;
     height: 30px;
     float: right;
-    margin-right: 50px;
-    margin-top: 53px;
+    margin-right: 67px;
+    margin-top: 33px;
 }
 
 .unity_box .print_share ul.share_list li{
@@ -1698,7 +1698,7 @@ ul.option li i.cur,
     height: 63px;
     line-height: 63px;
     vertical-align: middle;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 ul.apartment{
     width: 550px;
@@ -1714,7 +1714,7 @@ ul.apartment li{
     cursor: pointer;
 }
 .select_content label{
-    color:#31BAFF;
+    color:#ffffff;
     font-family: Arial, "Microsoft YaHei";
     font-size: 14px;
     float: left;
@@ -1752,13 +1752,13 @@ ul.option li{
     float: left;
     margin-left: 15px;
     cursor: pointer;
-    color: #00C6FF;
+    color: #ffffff;
 }
 ul.option li i{
     margin-right: 3px;
 }
 .new_apply_form h4{
-    color: #31BAFF;
+    color: #ffffff;
     float: left;
     display: block;
     font-family: Arial, "Microsoft YaHei";
@@ -1780,12 +1780,14 @@ ul.option li i{
     float: left;
     width: 66px;
     height: 28px;
-    line-height: 28px;
+    line-height: 31px;
     vertical-align: middle;
-    color: #082047;
+    color: #ffffff;
+    
     background: url("/images/unity_apply/down.png?v={0}") no-repeat ;
     font-family: Arial, "Microsoft YaHei";
-    text-align: center;
+    text-align: left;
+    padding-left:11px;
 }
 .province_box{
     position: absolute;
@@ -1966,14 +1968,14 @@ input.select_text[type="text"]{
     background: url("/images/unity_apply/back01.png?v={0}") no-repeat ;
 }
 .record_list .hover p{
-    color: #404C66;
+    color: #ffffff;
 }
 .record_list .hover .use_button{
     background: url("/images/unity_apply/sure01.png?v={0}") no-repeat ;
 }
 .list_image{
     width: 114px;
-    height: 87px;
+    height: 99px;
     padding: 5px;
     background: #E1EBF4;
     display: block;
@@ -1991,7 +1993,6 @@ input.select_text[type="text"]{
     margin-left:7px;
     margin-top: 3px;
     color: #BED9F4;
-    height: 45px;
 }
 .popup_box {
     width: 400px;
@@ -2018,7 +2019,7 @@ input.select_text[type="text"]{
     text-align: center;
     font-family: Arial, "Microsoft YaHei";
     font-size: 14px;
-    margin: 10px 0 0 24px;
+    margin: 4px 0 0 24px;
     cursor: pointer;
 }
 /*上传平面图*/
@@ -2060,12 +2061,12 @@ input.select_text[type="text"]{
     float: left;
 }
 .new_apply_second p{
-    color: #D0EFF7;
+    color: #ffffff;
     line-height: 18px;
 }
 .new_apply_second p span,
 .new_apply_second p a{
-    color: #00C6FF;
+    color: #ffffff;
 }
 .upload_form{
     width: 450px;
@@ -2087,7 +2088,7 @@ input.select_text[type="text"]{
     position: relative;
     font-family: Arial, "Microsoft YaHei";
     float: left;
-    color:#00C6FF;
+    color:#ffffff;
 }
 .form_line label .required_x {
     position: absolute;
@@ -2115,7 +2116,7 @@ input.select_text[type="text"]{
     float: left;
     margin-left: 9px;
     background: none;
-    color:#00C6FF;
+    color:#ffffff;
     border: none;
 }
 .select_line:focus{
@@ -2126,7 +2127,7 @@ input.select_text[type="text"]{
     height: 30px;
     background: url("/images/unity_apply/check.png?v={0}") no-repeat ;
     float: left;
-    margin: 7px 0 0 170px;
+    margin: 3px 0 0 170px;
     cursor: pointer;
 }
 .wrong{
@@ -2134,7 +2135,7 @@ input.select_text[type="text"]{
     height: 30px;
     background: url("/images/unity_apply/wrong.png?v={0}") no-repeat ;
     float: left;
-    margin: 7px 0 0 32px;
+    margin: 3px 0 0 32px;
     cursor: pointer;
 }
 /*上传平面图 end*/
@@ -2778,7 +2779,7 @@ a.wrong_back{
 /*2.05*/
 .loading_loading {
     width: 278px;
-    height: 475px;
+    height: 450px;
     background: #ffffff;
     float: left;
     position: absolute;
@@ -2839,3 +2840,13 @@ label.error {
 a#invitecodeErrorRegister {
     color: #b8c5e8;
 }
+
+
+.guanb{display: block;
+position: relative;
+right: 62px;
+top: 20px;}
+.guanb2{display: block;
+position: relative;
+right: 28px;
+top: 30px;}

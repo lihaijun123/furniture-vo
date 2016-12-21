@@ -139,6 +139,7 @@ function veUploadify(initJsonValue, uploadFileId){
 	if(!isEmpty(initJsonValue, "sizeLimit")){
 		jsonObj["sizeLimit"] = initJsonValue.sizeLimit;
 	}
+	jsonObj["wmode"] = "transparent";
 	jsonObj["onCancel"] = function(){return true;};
 	jsonObj["onError"] = function(event, ID, fileObj, erorObj){
 		if(erorObj.type === "File Size"){
