@@ -94,6 +94,9 @@ $(function(){
 	$("#vecodeId").click(function(){
 		 $(this).attr("src", "/captchas/" + new Date().getTime() + ".jpg");
 	});
+	$("#RegisterRightNow2").click(function(){
+		window.location.href = "http://www.xinlijiaju.com/register.htm";
+	});
 });
 //unity弹窗登录响应
 function Loginresponse(data) {
