@@ -1415,8 +1415,8 @@ label.error span {
 
 }
 .unity_box .login .logo{
-    width: 80px;
-    height: 100px;
+    width: 180px;
+    height: 50px;
     background: url("/images/unity_logo.png?v={0}") no-repeat;
     margin: 40px auto 20px;
 }
