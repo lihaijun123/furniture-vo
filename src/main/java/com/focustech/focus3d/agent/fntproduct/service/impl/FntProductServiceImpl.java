@@ -46,7 +46,7 @@ public class FntProductServiceImpl extends CommonServiceTemplate<FntProductModel
 		setFileInfo(fntProductModel);
 		JSONObject jo = new JSONObject();
 		jo.put("name", fntProductModel.getName());
-		jo.put("price", fntProductModel.getPrice());
+		jo.put("price", fntProductModel.getPrice().toString());
 		jo.put("url", fntProductModel.getModelFileUrl());
 		jo.put("version", fntProductModel.getModelFileVersion());
 		jo.put("picUrl", fntProductModel.getPicFileUrl());

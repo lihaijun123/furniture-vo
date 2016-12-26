@@ -14,19 +14,19 @@ $(function () {
         rules: {
             //用户名验证
             mynamelogin: {
-                required: true,
-                isPhoneOrEmail: true
+                required: true
+                //isPhoneOrEmail: true
             },
             //密码验证
             passwordlogin: {
-                required: true,
-                minlength: 6,
-                maxlength: 20,
-                isPasswordCheck: true
-            },
+                required: true
+                //minlength: 6,
+               // maxlength: 20
+                //isPasswordCheck: true
+            }
 
             //验证码验证
-            verifyCodelogin: {
+            /*verifyCodelogin: {
                 required: true,
                 minlength: 4,
                 maxlength: 4,
@@ -40,25 +40,25 @@ $(function () {
                         }
                     }
                 }
-            }
+            }*/
         },
         messages: {
             mynamelogin: {
-                required: "<span></span>邮箱/手机不能为空",
-                isPhoneOrEmail: "<span></span>请输入邮箱/手机的正确格式",
-                remote: "<span></span>输入的手机/邮箱已存在"
+                required: "<span></span>用户名不能为空",
+                isPhoneOrEmail: "<span></span>请输入用户名正确格式"
+                //remote: "<span></span>输入的手机/邮箱已存在"
             },
             passwordlogin: {
-                required: "<span></span>密码不能为空",
-                minlength: "<span></span>输入的密码不能小于6个字符",
-                maxlength: "<span></span>输入的密码不能大于20个字符",
-                isPasswordCheck: "<span></span>密码至少需使用字母、数字或符号两种以上组合"
+                required: "<span></span>密码不能为空"
+                //minlength: "<span></span>输入的密码不能小于6个字符",
+                //maxlength: "<span></span>输入的密码不能大于20个字符",
+                //isPasswordCheck: "<span></span>密码至少需使用字母、数字或符号两种以上组合"
             },
             verifyCodelogin: {
-                required: "<span></span>验证码不能为空",
-                minlength: "<span></span>验证码不能小于4个字符",
-                maxlength: "<span></span>验证码不能大于4个字符",
-                remote: "<span></span>验证码不正确"
+                required: "<span></span>验证码不能为空"
+               // minlength: "<span></span>验证码不能小于4个字符",
+                //maxlength: "<span></span>验证码不能大于4个字符",
+               // remote: "<span></span>验证码不正确"
             }
         }
     });
@@ -90,7 +90,7 @@ $("input#loginBtn").click(function () {
 
 //unity弹窗登录响应
 function Loginresponse(data) {
-    if (data == "alreadylogin") {
+    if (data.Message == "alreadylogin") {
         HideThisDiv("loginAndRegister");
         return;
     }
@@ -100,7 +100,6 @@ function Loginresponse(data) {
         for (var i = 0; i < msg.length; i++) {
             $("#" + msg[i].key).next().html("<label class=\"error\" ><span></span>" + msg[i].msg + "</label>");
         }
-
         return;
     } else if (data.Message == "locked") {
         alert("您已经输入3次密码，账号暂时锁定，15分钟后重新登录");

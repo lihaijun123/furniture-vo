@@ -16,13 +16,13 @@ import com.focustech.focus3d.furniture.rpc.AbstractRpc;
  *
  */
 public class ProductRestServiceTest extends AbstractRpc{
-	//@Test
+	@Test
 	public void testHouse() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 		qparams.add(new BasicNameValuePair("categoryCode", "沙发"));
 		httpRequest("/rest/product/search", qparams, HttpMethod.POST);
 	}
-	@Test
+	//@Test
 	public void testType() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 		qparams.add(new BasicNameValuePair("id", "272"));
@@ -30,7 +30,7 @@ public class ProductRestServiceTest extends AbstractRpc{
 	}
 	@Override
 	protected String getProtocal() {
-		return URL_THIRD;
+		return URL_TEST;
 	}
 
 }

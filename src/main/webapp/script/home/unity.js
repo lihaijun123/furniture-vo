@@ -1889,7 +1889,7 @@ function time(o, p) {//o为按钮的对象，p为可选，这里是60秒过后�
 
 /*************************************登录begin*********************************************/
 function checkUserName(id) {
-    var myname = document.getElementById(id);
+    /*var myname = document.getElementById(id);
     var regphone = /^1[3|4|5|8][0-9]\d{4,8}$/;
     var regemail = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
     //大小写英文字母、汉字、数字、下划线
@@ -1907,12 +1907,13 @@ function checkUserName(id) {
         $("#" + id + "Error").show();
         $("#" + id + "Error  span").html("用户名输入不正确");
         return false;
-    }
+    }*/
+	return true;
 }
 
 function checkYouPwd(id) {
     //必须含有字母和数字
-    var regpwd = /[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/;
+    /*var regpwd = /[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/;
     var mypassword = document.getElementById(id);
     if (mypassword.value.length < 6 || mypassword.value.length > 20) {
         $("p.sty_txt").hide();
@@ -1925,7 +1926,7 @@ function checkYouPwd(id) {
         $("#" + id + "Error").show();
         $("#" + id + "Error span").html("密码不正确");
         return false;
-    }
+    }*/
     return true;
 }
 
