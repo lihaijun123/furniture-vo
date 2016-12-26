@@ -72,7 +72,7 @@ select:focus {
 .cod01 {
     float: left;
     position: relative;
-    top: 3px;
+    top: 0px;
     margin-left: 5px;
 }
 #verifyCodeError {

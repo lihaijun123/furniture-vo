@@ -53,13 +53,17 @@
                 <!----------------------验证码---------------------------->
                 <div class="captcha" style="display: block">
                   <input type="text" placeholder="输入验证码" name="verifyCodelogin" id="verifyCodelogin" autocomplete="off">
-                  &nbsp;&nbsp;&nbsp;<img class="cod01" style="cursor: pointer" onclick="this.src=/captchas/default.jpg;" src="/captchas/default.jpg"> <span id="verifyCodeloginError"></span> </div>
+                  &nbsp;&nbsp;&nbsp;<img class="cod01" style="cursor: pointer" id="vecodeId"  src="/captchas/default.jpg" height="25px;"> <span id="verifyCodeloginError"></span> </div>
                 <!-----------------------验证码end--------------------------->
-                <div class="controls">
+                <div class="controls" style="display: none;">
                   <input type="checkbox" name="isRememberlogin" id="isRememberlogin" value="1">
                   <span>下次自动登录</span> <a target="blank" href="#">忘记密码？</a> </div>
                 <input id="loginBtn" type="button" name="loginBtn" value="登  录" style="cursor: pointer;">
-                <div class="text"> <a>还不是会员?<span id="RegisterRightNow" style="cursor: pointer;">马上注册</span></a> </div>
+                <div class="text" style="display: none;"> <a>还不是会员?<span id="RegisterRightNow" style="cursor: pointer;">马上注册</span></a> </div>
+                <p class="login_bottom" id="loginMsg" style="color: red"></p>
+                <br>
+                <br>
+                <br>
                 <p class="login_bottom"><img src="/images/unity_login_bottom.png"></p>
               </form>
               

@@ -78,7 +78,7 @@ public class LoginFilter extends AbstractFilter {
 		String servletPath = request.getServletPath();
 		boolean isPass = false;
 		if(isNotNeedAuthCheckUrl(servletPath, request)){
-			if("/index".equals(servletPath) || "/fntshoppingcart/home/list".equals(servletPath)){
+			if("/index".equals(servletPath) || "/fntshoppingcart/home/list".equals(servletPath) || "/common/checkunitystate".equals(servletPath) || "/common/loginAuth/login".equals(servletPath)){
 				//首页会话设置用户信息
 				RequestThreadLocal.setLoginInfo(sessinObj);
 				AgentLogin loginInfo = RequestThreadLocal.getLoginInfo();

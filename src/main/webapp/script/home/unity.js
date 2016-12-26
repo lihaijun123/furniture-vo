@@ -186,6 +186,8 @@ handle.fn = {
     },
     //弹出登陆框
     showDivLogin: function () {
+    	alert();
+    	$("#vecodeId").attr("src", "/captchas/default.jpg");
         hideUnity();
         handle.prototype.$divLogin.show(100).siblings().hide();
         handle.prototype.$divLogin.find(".login_form").show(100);
@@ -286,7 +288,7 @@ handle.fn = {
     },
 
     /************************************申请置入**************************************/
-    //申请置入
+    //申请置入lihaijun
     apply3DExperience: function (key, houseId, sceneId, backHistory) {
         var setData = {
             key: key,
@@ -300,6 +302,7 @@ handle.fn = {
             dataType:"json",
             success: function (data) {
                 if (data.Message == "nologin") {
+                	
                     showLoginBox();
                 }
                 if (data.Message == "errorParas") {

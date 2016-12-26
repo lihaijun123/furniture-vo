@@ -1,5 +1,5 @@
 ﻿//unity弹窗登录
-var actionpath = "/Base/LoginAuth/";
+var actionpath = "/common/loginAuth/";
 var thirdpartpath = "/Base/SinaOAuth/";
 $(function () {
     $("form#login_form").validate({
@@ -73,11 +73,13 @@ $("#RegisterRightNow").click(function () {
     $("form.login_form").hide();
     // $("div.login").hide();
 });
-$("input#loginBtn").click(function () {
+//lihaijun
+$("#loginBtn").click(function () {
     var validate = $("#login_form").valid();
     console.log("validate:" + validate);
     var option = {
-        url: actionpath + "Login",
+        url: actionpath + "login",
+        dataType:"json",
         data: $("form#login_form").serialize(),
         type: 'post',
         success: Loginresponse
@@ -88,6 +90,11 @@ $("input#loginBtn").click(function () {
     }
 });
 
+$(function(){
+	$("#vecodeId").click(function(){
+		 $(this).attr("src", "/captchas/" + new Date().getTime() + ".jpg");
+	});
+});
 //unity弹窗登录响应
 function Loginresponse(data) {
     if (data.Message == "alreadylogin") {
@@ -95,20 +102,22 @@ function Loginresponse(data) {
         return;
     }
     if (data.Message == "error") {
-        var msg = eval(data.Data);
-        console.log(msg);
-        for (var i = 0; i < msg.length; i++) {
+        //var msg = eval(data.Data);
+        //console.log(msg);
+        $("#loginMsg").text(data.Data);
+        /*for (var i = 0; i < msg.length; i++) {
             $("#" + msg[i].key).next().html("<label class=\"error\" ><span></span>" + msg[i].msg + "</label>");
-        }
+        }*/
+        $("#vecodeId").attr("src", "/captchas/" + new Date().getTime() + ".jpg");
         return;
     } else if (data.Message == "locked") {
         alert("您已经输入3次密码，账号暂时锁定，15分钟后重新登录");
     }
     else {
         //登录或者注册成功,隐藏登录窗体，弹出Unity Web Player
-        HideLoginShowUnity("#loginAndRegister", data.Data.key);
+        HideLoginShowUnity("#loginAndRegister", "");
         $("div.all_header").remove();
-        var href = "/Cart/Shoppingcart/Index";
+        /*var href = "/Cart/Shoppingcart/Index";
         var $header = $("#header");
         $header.append("<div class=\"background_bg\"></div>");
         $header.append("<div class=\"all_header\">");
@@ -119,6 +128,7 @@ function Loginresponse(data) {
         $header.find(".all_header").append("<span class=\"sp04\">Hi~[&nbsp;<a href=\"/Customer/UserCenter/Index\" class=\"log_in\">" + data.Data.MemberNickId + "</a>&nbsp;]&nbsp;[&nbsp;<a href=\"/Customer/BaseCustomer/Logout\">退出</a>&nbsp;]&nbsp;<a id=\"check_hasDesign\" style=\"display: none\" href=\"/Unity/Unity/Details\"></a>&nbsp;<a id=\"check_lightMap\" style=\"display: none\" href=\"/Unity/Unity/Details\"></a>&nbsp;&nbsp;&nbsp;|</span>");
         $header.find(".all_header").append("<a class=\"left\" title=\"家+1\" href=\"/\"><i></i></a>");
         CallCricleProcessBar();
+        */
     }
 }
 //============================第三方登录begin==========================================

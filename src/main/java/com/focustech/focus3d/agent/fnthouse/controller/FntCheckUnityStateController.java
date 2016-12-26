@@ -18,7 +18,6 @@ import com.focustech.focus3d.agent.filter.LoginFilter;
 import com.focustech.focus3d.agent.filter.RequestThreadLocal;
 import com.focustech.focus3d.agent.login.service.AgentLoginService;
 import com.focustech.focus3d.agent.model.AgentLogin;
-import com.focustech.focus3d.agent.model.MessageValidate;
 
 /**
  * 
@@ -51,7 +50,8 @@ public class FntCheckUnityStateController extends CommonController{
 	@RequestMapping(value = "/loginAuth/login")
 	public void loginAuth(String mynamelogin, String passwordlogin, String verifyCodelogin, HttpServletRequest req, HttpServletResponse response) throws IOException{
 		AgentLogin loginInfo = RequestThreadLocal.getLoginInfo();
-		String msg = "ok";
+		String msg = "error";
+		String data = "";
 		if(loginInfo != null){
 			msg = "alreadylogin";
 		} else {
@@ -60,7 +60,6 @@ public class FntCheckUnityStateController extends CommonController{
 			String password = passwordlogin;
 			//String smsCode = reqLogin.getSmsCode();
 			String validCode = verifyCodelogin;
-			int status = 0;
 			if(StringUtils.isNotEmpty(loginName) && StringUtils.isNotEmpty(password) && StringUtils.isNotEmpty(validCode)){
 				boolean isTestAccount = true;//isTestAccount(loginName, password, smsCode);
 				if(!isTestAccount){
@@ -72,20 +71,24 @@ public class FntCheckUnityStateController extends CommonController{
 					if(sValidCode.equalsIgnoreCase(validCode)){
 						AgentLogin agentLogin = agentLoginService.select(loginName, password);
 						if(agentLogin != null){
-							status = 1;
 							req.getSession().setAttribute(LoginFilter.SESSION_KEY, agentLogin);
 							RequestThreadLocal.setLoginInfo(agentLogin);
+							msg = "success";
+						} else {
+							data = "用户名或者密码有误";
 						}
 					} else {
-						status = 7;
+						data = "验证码不正确";
 					}
 				} else {
-					status = 6;
 				}
+			} else {
+				data = "请填写用户名和密码";
 			}
 		}
 		JSONObject jo = new JSONObject();
 		jo.put("Message", msg);
+		jo.put("Data", data);
 		ajaxOutput(response, jo.toString());
 	}
 }

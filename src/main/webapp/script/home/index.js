@@ -353,6 +353,7 @@
         }
         //隐藏div
         function HideThisDiv(obj) {
+        	
             $("#shareImgUrl,#print_shareImgUrl").empty();
             $("#jiathis_weixin_share").remove();
             removeBackgroud();
