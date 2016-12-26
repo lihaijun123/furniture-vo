@@ -8,7 +8,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
 
-public class ShoppingCartRestServiceTest extends AbstractTest{
+import com.focustech.focus3d.furniture.rpc.AbstractRpc;
+
+public class ShoppingCartRestServiceTest extends AbstractRpc{
 	@Test
 	public void testAdd() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();

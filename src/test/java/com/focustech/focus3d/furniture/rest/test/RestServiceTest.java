@@ -7,12 +7,14 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
+
+import com.focustech.focus3d.furniture.rpc.AbstractRpc;
 /**
  * *
  * @author lihaijun
  *
  */
-public class RestServiceTest extends AbstractTest{
+public class RestServiceTest extends AbstractRpc{
 	
 	/**
 	 * 收藏

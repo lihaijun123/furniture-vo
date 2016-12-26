@@ -8,12 +8,14 @@ import org.apache.http.message.BasicNameValuePair;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
 
+import com.focustech.focus3d.furniture.rpc.AbstractRpc;
+
 /**
  * *
  * @author lihaijun
  *
  */
-public class ProductRestServiceTest extends AbstractTest{
+public class ProductRestServiceTest extends AbstractRpc{
 	@Test
 	public void testHouse() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
