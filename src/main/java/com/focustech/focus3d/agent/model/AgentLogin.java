@@ -9,7 +9,7 @@ import com.focustech.focus3d.agent.model.ibator.BizAgentLoginCriteria;
  *
  */
 public class AgentLogin extends BizAgentLogin<AgentLogin, BizAgentLoginCriteria> implements CommonModel{
-
+	private String id;
 	private String smsCode;//短信验证码
 	private String validCode;//验证码
 	private String password;
@@ -61,6 +61,14 @@ public class AgentLogin extends BizAgentLogin<AgentLogin, BizAgentLoginCriteria>
 	public void setEncryptSn(String encryptSn) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

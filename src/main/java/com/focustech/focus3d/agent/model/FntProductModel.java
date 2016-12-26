@@ -18,6 +18,12 @@ public class FntProductModel extends FntProduct<FntProductModel, FntProductCrite
 	private String picFileUrl;
 	
 	private String modelFileUrl;
+	
+	private String brandId;
+	
+	private String inventory;
+	
+	private String serial;
 
 	public String getPicFileUrl() {
 		return picFileUrl;
@@ -33,6 +39,34 @@ public class FntProductModel extends FntProduct<FntProductModel, FntProductCrite
 
 	public void setModelFileUrl(String modelFileUrl) {
 		this.modelFileUrl = modelFileUrl;
+	}
+
+	public String getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(String brandId) {
+		this.brandId = brandId;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(String inventory) {
+		this.inventory = inventory;
+	}
+
+	public String getSerial() {
+		return serial;
+	}
+
+	public void setSerial(String serial) {
+		this.serial = serial;
 	}
 	
 }

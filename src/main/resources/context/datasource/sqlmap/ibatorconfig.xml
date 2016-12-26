@@ -20,7 +20,7 @@
 		</daoGenerator>
 
 
-		<table schema="ibatis" tableName="FNT_HOUSE_UPLOAD"
+		<table schema="ibatis" tableName="fnt_product"
 			enableCountByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" enableUpdateByExample="true">
 			<generatedKey column="SN" sqlStatement="select last_insert_id()"

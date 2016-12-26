@@ -1182,12 +1182,19 @@ function showInceptionBox() {
     showApplication();
     $inception.show().siblings().hide();
 }
-//申请体验3D框
+//申请体验3D框lihaijun
 function showApplication() {
-    hideUnity();
-    $('#new_apply').show(80);
-    //$('#new_apply').focus();//lihaijun
-    
+	$.getJSON("/common/checkunitystate", function (result) {
+        handle.prototype.$application.find(".select_upload").attr("opened", "false");
+        if (result.Message == "nologin") {
+            handle.fn.showDivLogin();
+        }
+        if (result.Message == "ok") {
+            hideUnity();
+            $('#new_apply').show(80);
+            //$('#new_apply').focus();//lihaijun
+        }
+    });
 }
 //右键冲突提醒框
 function showConflictTips() {

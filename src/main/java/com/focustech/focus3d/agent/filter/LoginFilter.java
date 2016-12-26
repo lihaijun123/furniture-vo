@@ -83,9 +83,9 @@ public class LoginFilter extends AbstractFilter {
 				RequestThreadLocal.setLoginInfo(sessinObj);
 				AgentLogin loginInfo = RequestThreadLocal.getLoginInfo();
 				if(loginInfo != null){
-					Long userId = loginInfo.getUserId();
-					AgentUser agentUser = userService.selectBySn(userId, AgentUser.class);
-					req.setAttribute("user", agentUser);
+					//Long userId = loginInfo.getUserId();
+					//AgentUser agentUser = userService.selectBySn(userId, AgentUser.class);
+					req.setAttribute("user", loginInfo);
 				}
 			}
 			isPass = true;

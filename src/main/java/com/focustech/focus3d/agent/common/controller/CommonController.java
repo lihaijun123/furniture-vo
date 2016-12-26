@@ -58,11 +58,12 @@ public abstract class CommonController {
 	public void setAuthInfo(ModelMap modelMap){
 		AgentLogin currentLogin = RequestThreadLocal.getLoginInfo();
 		if(currentLogin != null){
-			Long userId = currentLogin.getUserId();
-			List<AgentResource> resourceList = getUserResourceList(userId);
-			modelMap.put("resourceList", resourceList);
-			AgentUser user = agentUserService.selectBySn(userId, AgentUser.class);
-			modelMap.put("user", user);
+			//Long userId = currentLogin.getUserId();
+			//List<AgentResource> resourceList = getUserResourceList(userId);
+			//modelMap.put("resourceList", resourceList);
+			//AgentUser user = agentUserService.selectBySn(userId, AgentUser.class);
+			//modelMap.put("user", user);
+		
 		}
 	}
 	/**

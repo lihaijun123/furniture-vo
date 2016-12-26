@@ -77,7 +77,52 @@ public class LoginController extends CommonController{
 				//验证验证码是否正确
 				String sValidCode = TCUtil.sv(req.getSession().getAttribute("captcha"));
 				if(sValidCode.equalsIgnoreCase(validCode)){
-					AgentLogin agentLogin = agentLoginService.select(loginName);
+					AgentLogin agentLogin = agentLoginService.select(loginName, password);
+					if(agentLogin != null){
+						status = 1;
+						req.getSession().setAttribute(LoginFilter.SESSION_KEY, agentLogin);
+						RequestThreadLocal.setLoginInfo(agentLogin);
+						view = redirect("/index");
+					}
+				} else {
+					status = 7;
+				}
+			} else {
+				status = 6;
+			}
+		}
+		String msg = "";
+		if(status != 1){
+			if(status == 6){
+				msg = "短信验证码有误";
+			} else if(status == 7){
+				msg = "验证码有误";
+			} else {
+				msg = "用户名或者密码错误";
+			}
+			modelMap.addAttribute("message", msg);
+		}
+		return view;
+	}
+/*	@RequestMapping(method = RequestMethod.POST)
+	public String doLogin(AgentLogin reqLogin, ModelMap modelMap, HttpServletRequest req, HttpServletResponse response){
+		String view = "/login";
+		String loginName = reqLogin.getLoginName();
+		String password = reqLogin.getPassword();
+		//String smsCode = reqLogin.getSmsCode();
+		String validCode = reqLogin.getValidCode();
+		int status = 0;
+		if(StringUtils.isNotEmpty(loginName) && StringUtils.isNotEmpty(password) && StringUtils.isNotEmpty(validCode)){
+			boolean isTestAccount = true;//isTestAccount(loginName, password, smsCode);
+			MessageValidate messageValidate = null;
+			if(!isTestAccount){
+				//messageValidate = messageValidateService.selectByMobilePhone(loginName, smsCode);
+			}
+			if(isTestAccount){
+				//验证验证码是否正确
+				String sValidCode = TCUtil.sv(req.getSession().getAttribute("captcha"));
+				if(sValidCode.equalsIgnoreCase(validCode)){
+					AgentLogin agentLogin = agentLoginService.select(loginName, password);
 					if(agentLogin != null){
 						boolean isValidate = agentLogin.getPassword().equals(MD5Util.MD5Encode(password, ""));
 						if(isValidate){
@@ -85,14 +130,14 @@ public class LoginController extends CommonController{
 							if(status == 1){
 								req.getSession().setAttribute(LoginFilter.SESSION_KEY, agentLogin);
 								RequestThreadLocal.setLoginInfo(agentLogin);
-								/*List<AgentResource> agentResources = getUserResourceList();
+								List<AgentResource> agentResources = getUserResourceList();
 								if(ListUtils.isNotEmpty(agentResources)){
-								}*/
+								}
 								view = redirect("/index");
 								//删除短信验证码
-								/*if(messageValidate != null){
+								if(messageValidate != null){
 									messageValidateService.setStatus(messageValidate, 0);
-								}*/
+								}
 								Integer loginTimes = TCUtil.iv(agentLogin.getLoginTimes());
 								agentLogin.setLoginTimes(++ loginTimes);
 								agentLogin.setLastLoginTime(new Date());
@@ -123,7 +168,7 @@ public class LoginController extends CommonController{
 		}
 		return view;
 	}
-	/**
+*/	/**
 	 * 是否测试账号
 	 * *
 	 * @param loginName

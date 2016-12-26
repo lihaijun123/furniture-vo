@@ -13,7 +13,7 @@ import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.common.constant.FntProductType;
 import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
-import com.focustech.focus3d.agent.fntproduct.dao.FntProductDao;
+import com.focustech.focus3d.agent.fntproduct.dao.FntProductRemoteDaoImpl;
 import com.focustech.focus3d.agent.fntproduct.service.FntProductService;
 import com.focustech.focus3d.agent.model.FntProductModel;
 import com.focustech.focus3d.agent.service.impl.CommonServiceTemplate;
@@ -26,7 +26,7 @@ import com.focustech.focus3d.agent.service.impl.CommonServiceTemplate;
 @Service
 public class FntProductServiceImpl extends CommonServiceTemplate<FntProductModel> implements FntProductService<FntProductModel> {
 	@Autowired
-	private FntProductDao productDao;
+	private FntProductRemoteDaoImpl productDao;
 	@Override
 	public CommonDao getDao() {
 		return productDao;

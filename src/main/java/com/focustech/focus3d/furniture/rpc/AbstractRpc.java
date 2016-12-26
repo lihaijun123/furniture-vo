@@ -38,7 +38,8 @@ public abstract class AbstractRpc {
 	 * @param qparams
 	 * @return
 	 */
-	protected String httpRequest(String url, List<NameValuePair> qparams, HttpMethod httpMethod) {
+	public String httpRequest(String url, List<NameValuePair> qparams, HttpMethod httpMethod) {
+		url = getProtocal() + url;
 		if(httpMethod.equals(HttpMethod.GET)){
 			return getRequest(url, qparams);
 		} else if(httpMethod.equals(HttpMethod.POST)){

@@ -24,8 +24,8 @@ import com.focustech.focus3d.agent.model.FntProductModel;
  *
  */
 @Repository
-public class FntProductDao extends CommonDao {
-	private static final Logger log = LoggerFactory.getLogger(FntProductDao.class);
+public class FntProductDaoImpl extends CommonDao implements IFntProductDao{
+	private static final Logger log = LoggerFactory.getLogger(FntProductDaoImpl.class);
 	/**
 	 * 
 	 * *

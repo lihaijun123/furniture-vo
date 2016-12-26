@@ -12,8 +12,7 @@ $(function(){
     	rules: {
     		loginName:{
     			required: true,
-    			maxlength: 11,
-    			isMobile:true
+    			maxlength: 40
     		},
     		password:{
 	    		required: true,
@@ -27,9 +26,9 @@ $(function(){
     	},
     	messages: {
     		loginName:{
-				required: "请输入您的手机号",
+				required: "请输入您的用户名",
 				maxlength: "请输入{0}个字以内",
-				isMobile:"请输入正确的手机号"
+				isMobile:"请输入正确的用户名"
 			},
 			password: {
 	    		required: "请输入您的密码",

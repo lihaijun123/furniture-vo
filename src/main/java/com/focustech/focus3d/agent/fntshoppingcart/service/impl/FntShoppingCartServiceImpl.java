@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.filter.RequestThreadLocal;
-import com.focustech.focus3d.agent.fntproduct.dao.FntProductDao;
+import com.focustech.focus3d.agent.fntproduct.dao.FntProductRemoteDaoImpl;
 import com.focustech.focus3d.agent.fntshoppingcart.dao.FntShoppingCartDao;
 import com.focustech.focus3d.agent.fntshoppingcart.service.FntShoppingCartService;
 import com.focustech.focus3d.agent.model.AgentLogin;
@@ -27,7 +27,7 @@ public class FntShoppingCartServiceImpl extends CommonServiceTemplate<FntShoppin
 	@Autowired
 	private FntShoppingCartDao shoppingCartDao;
 	@Autowired
-	private FntProductDao productDao;
+	private FntProductRemoteDaoImpl productDao;
 
 	@Override
 	public CommonDao getDao() {
