@@ -63,6 +63,7 @@ select:focus {
     clear: both;
     margin-left: 30px;
     float: left;
+    background:#fff;
 }
 .bg_bg {
     overflow: hidden;
@@ -1533,6 +1534,7 @@ label.error span {
     margin-bottom: 22px;
     float: left;
     margin-left: 260px;
+    margin-top:10px;
 }
 
 .unity_box .text{
@@ -1562,7 +1564,7 @@ label.error span {
     cursor: pointer;
 }
 .unity_box .text a{
-    color: #b8c5e8;
+    color: #ffffff;
     float: left;
     display: inline;
 }
@@ -2846,7 +2848,13 @@ a#invitecodeErrorRegister {
 position: relative;
 right: 62px;
 top: 20px;}
+
 .guanb2{display: block;
 position: relative;
 right: 28px;
 top: 30px;}
+
+.guanb3{display: block;
+position: relative;
+right: 50px;
+top:-142px;}

@@ -41,9 +41,13 @@
         <div class="bg_bg"> 
           <!--------------------------------登录注册框begin------------------------------------------>
           <div id="loginAndRegister" class="share_mask" style="display: none">
-            <div class="login">
-              <div class="close" onclick="HideThisDiv('loginAndRegister')"></div>
+          
+            <div class="login">  
+            <p style="height:45px;"></p>            
               <div class="logo"></div>
+              <!--------------close按钮------------------> 
+              <span class="close" type="button" value="关闭分享框" onclick="HideThisDiv('share')"><p class="guanb3"><img src="../images/unity_apply/guanbi.png"></p></span> 
+              <!--------------close按钮end------------------>
               <!--------------------------------unity登录框--------------------------------------->
               <form class="login_form" name="login_form" id="login_form" style="display: block">
                 <div class="control"> <i class="user_name"></i>
@@ -67,12 +71,12 @@
                   <input type="checkbox" name="isRememberlogin" id="isRememberlogin" value="1">
                   <span>下次自动登录</span> <a target="blank" href="#">忘记密码？</a> </div>
                 <input id="loginBtn" type="button" name="loginBtn" value="登  录" style="cursor: pointer;">
-                <div class="text"> <a>还不是会员?<span id="RegisterRightNow2" style="cursor: pointer;">马上注册</span></a> </div>
+                <div class="text"> <a>还不是会员?<span id="RegisterRightNow2" style="cursor: pointer;"> 马上注册</span></a> </div>
                 <p class="login_bottom" id="loginMsg" style="color: red"></p>
                 <br>
                 <br>
                 <br>
-                <p class="login_bottom"><img src="/images/unity_login_bottom.png"></p>
+                <p class="login_bottom"><!--<img src="/images/unity_login_bottom.png">--></p>
               </form>
               
               <!-------------------------------unity登录end----------------------------------------> 
