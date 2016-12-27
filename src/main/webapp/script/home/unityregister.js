@@ -14,10 +14,10 @@ $(function () {
         rules: {
             //用户名验证
             myname: {
-                required: true,
-                isPhoneOrEmail: true,
+                required: true
+                //isPhoneOrEmail: true,
                 //validate远程验证
-                remote: {
+                /*remote: {
                     url: sendpath + 'CheckUserName',
                     type: 'get',
                     data: {
@@ -25,28 +25,27 @@ $(function () {
                             return $("#myname").val();
                         }
                     }
-                }
+                }*/
             },
             //密码验证
             password: {
                 required: true,
-                minlength: 6,
-                maxlength: 20,
-                isPasswordCheck: true
+                minlength: 3,
+                maxlength: 20
+                //isPasswordCheck: true
             },
             //确认密码验证
             confirmPwd: {
-                required: true
-                ,
+                required: true,
                 equalTo: '#password'
             },
             //验证码验证
-            identifycode: {
+            verifyCodeReg: {
                 required: true,
-                minlength: 6,
-                maxlength: 6,
+                minlength: 4,
+                maxlength: 4
                 //validate远程验证
-                remote: {
+                /*remote: {
                     url: sendpath + 'ValidateVerifyCode',
                     type: 'get',
                     data: {
@@ -59,20 +58,20 @@ $(function () {
                             else return "email";
                         }
                     }
-                }
+                }*/
             }
         },
         messages: {
             myname: {
-                required: "<span></span>邮箱/手机不能为空",
-                isPhoneOrEmail: "<span></span>请输入邮箱/手机的正确格式",
-                remote: "<span></span>输入的手机/邮箱已存在"
+                required: "<span></span>用户名不能为空"
+                //isPhoneOrEmail: "<span></span>请输入用户名",
+                //remote: "<span></span>输入的手机/邮箱已存在"
             },
             password: {
                 required: "<span></span>密码不能为空",
-                minlength: "<span></span>输入的密码不能小于6个字符",
-                maxlength: "<span></span>输入的密码不能大于20个字符",
-                isPasswordCheck: "<span></span>密码至少需使用字母、数字或符号两种以上组合"
+                minlength: "<span></span>输入的密码不能小于3个字符",
+                maxlength: "<span></span>输入的密码不能大于20个字符"
+               // isPasswordCheck: "<span></span>密码至少需使用字母、数字或符号两种以上组合"
             },
             confirmPwd: {
                 required: "<span></span>确认密码不能为空",
@@ -80,9 +79,9 @@ $(function () {
             },
             identifycode: {
                 required: "<span></span>验证码不能为空",
-                minlength: "<span></span>验证码不能小于6个字符",
-                maxlength: "<span></span>验证码不能大于6个字符",
-                remote: "<span></span>验证码不正确"
+                minlength: "<span></span>验证码不能小于4个字符",
+                maxlength: "<span></span>验证码不能大于4个字符"
+                //remote: "<span></span>验证码不正确"
             }
         }
     });

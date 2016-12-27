@@ -50,9 +50,9 @@
   <span class="sp02"> <a href="#"><b class="img"></b>收藏夹</a>&nbsp;&nbsp;&nbsp;|</span> 
   <span class="sp03"> <a href="#"><b class="img"></b>&nbsp;购物车</a><a href="#" class="No">0</a>&nbsp;&nbsp;&nbsp;| </span> 
   #if($!user)
-  <span class="sp04">Hi~[&nbsp;$!user.loginName&nbsp;]&nbsp;&nbsp;[&nbsp;<a href="logout">退出</a>&nbsp;]&nbsp;&nbsp;&nbsp;|</span> <a class="left" title="家+1" href="#"><i></i></a> 
+  <span class="sp04">Hi~[&nbsp;$!user.loginName&nbsp;]&nbsp;&nbsp;[&nbsp;<a href="#" id="logoutId">退出</a>&nbsp;]&nbsp;&nbsp;&nbsp;|</span> <a class="left" title="" href="#"><i></i></a> 
   #else
-  <span class="sp04">Hi~[&nbsp; <a href="/login" class="log_in">登录</a> &nbsp;]&nbsp;&nbsp;[&nbsp;<a href="/register">注册</a>&nbsp;]&nbsp;&nbsp;&nbsp;|</span> <a class="left" title="家+1" href="#"><i></i></a> 
+  <span class="sp04">Hi~[&nbsp; <a href="/login" class="log_in">登录</a> &nbsp;]&nbsp;&nbsp;[&nbsp;<a href="/register">注册</a>&nbsp;]&nbsp;&nbsp;&nbsp;|</span> <a class="left" title="" href="#"><i></i></a> 
   #end
   </div>
   <div class="unity_suspension" style="display: none;">

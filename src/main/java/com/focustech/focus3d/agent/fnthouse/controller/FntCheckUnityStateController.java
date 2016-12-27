@@ -1,13 +1,18 @@
 package com.focustech.focus3d.agent.fnthouse.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +23,7 @@ import com.focustech.focus3d.agent.filter.LoginFilter;
 import com.focustech.focus3d.agent.filter.RequestThreadLocal;
 import com.focustech.focus3d.agent.login.service.AgentLoginService;
 import com.focustech.focus3d.agent.model.AgentLogin;
+import com.focustech.focus3d.furniture.rpc.FntRpc;
 
 /**
  * 
@@ -30,6 +36,7 @@ import com.focustech.focus3d.agent.model.AgentLogin;
 public class FntCheckUnityStateController extends CommonController{
 	@Autowired
 	private AgentLoginService<AgentLogin> agentLoginService;
+	private FntRpc fntRpc = new FntRpc();
 	/**
 	 * 
 	 * *
@@ -53,6 +60,7 @@ public class FntCheckUnityStateController extends CommonController{
 		String msg = "error";
 		String data = "";
 		String userId = "";
+		String userName = "";
 		if(loginInfo != null){
 			msg = "alreadylogin";
 		} else {
@@ -89,11 +97,28 @@ public class FntCheckUnityStateController extends CommonController{
 		}
 		if(loginInfo != null){
 			userId = TCUtil.sv(loginInfo.getUserId());
+			userName = loginInfo.getLoginName();
 		}
 		JSONObject jo = new JSONObject();
 		jo.put("Message", msg);
 		jo.put("Data", data);
 		jo.put("userId", userId);
+		jo.put("userName", userName);
 		ajaxOutput(response, jo.toString());
 	}
+	/**
+	 * *
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/logout")
+	public void logout(HttpServletRequest req, HttpServletResponse response) throws IOException{
+		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+		String result = fntRpc.httpRequest("/shopping_logout.htm", qparams, HttpMethod.GET);
+		req.getSession().removeAttribute(LoginFilter.SESSION_KEY);
+		JSONObject jo = new JSONObject();
+		jo.put("Message", "ok");
+		ajaxOutput(response, jo.toString());
+	}
+	
 }

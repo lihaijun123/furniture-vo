@@ -46,7 +46,7 @@
             <p style="height:45px;"></p>            
               <div class="logo"></div>
               <!--------------close按钮------------------> 
-              <span class="close" type="button" value="关闭分享框" onclick="HideThisDiv('share')"><p class="guanb3"><img src="../images/unity_apply/guanbi.png"></p></span> 
+              <span class="close" type="button" value="关闭分享框" onclick="HideThisDiv('share')"><p class="guanb3"><img src="/images/unity_apply/guanbi.png"></p></span> 
               <!--------------close按钮end------------------>
               <!--------------------------------unity登录框--------------------------------------->
               <form class="login_form" name="login_form" id="login_form" style="display: block">
@@ -65,7 +65,8 @@
                 <!----------------------验证码---------------------------->
                 <div class="captcha" style="display: block">
                   <input type="text" placeholder="输入验证码" name="verifyCodelogin" id="verifyCodelogin" autocomplete="off">
-                  &nbsp;&nbsp;&nbsp;<img class="cod01" style="cursor: pointer" id="vecodeId"  src="/captchas/default.jpg" height="25px;"> <span id="verifyCodeloginError"></span> </div>
+                  &nbsp;&nbsp;&nbsp;<img class="cod01" style="cursor: pointer" id="vecodeId"  src="/captchas/default.jpg" height="25px;"> <span id="verifyCodeloginError"></span> 
+                </div>
                 <!-----------------------验证码end--------------------------->
                 <div class="controls" style="display: none;">
                   <input type="checkbox" name="isRememberlogin" id="isRememberlogin" value="1">
@@ -83,7 +84,7 @@
               <!--------------------------------unity注册框--------------------------------------->
               <form class="register_form" id="register_form" style="display: none">
                 <div class="control"> <i class="user_name"></i>
-                  <input type="text" placeholder="邮箱/手机" name="myname" id="myname">
+                  <input type="text" placeholder="用户名" name="myname" id="myname">
                   <!-----------------------错误提醒--------------------------------->
                   <label> </label>
                   <!------------------------错误提醒end--------------------------------> 
@@ -101,14 +102,12 @@
                   <!-----------------------错误提醒end---------------------------------> 
                 </div>
                 <!--验证码-->
-                <div class="captcha"> 
-                  <!--8.21修改-->
-                  
-                  <input type="text" placeholder="输入验证码" name="identifycode" id="identifycode">
-                  <!--8.21修改-->
-                  <input type="button" name="getverifycodebtn" id="getverifycodebtn" class="again" value="发送验证码">
-                  <label> <a id="invitecodeErrorRegister"></a> </label>
+                <!----------------------验证码---------------------------->
+                <div class="captcha" style="display: block">
+                  <input type="text" placeholder="输入验证码" name="verifyCodeReg" id="verifyCodeReg" autocomplete="off">
+                  &nbsp;&nbsp;&nbsp;<img class="cod01" style="cursor: pointer" id="vecodeIdReg"  src="/captchas/default.jpg" height="25px;"> <span id="verifyCodeloginError"></span> 
                 </div>
+                <!-----------------------验证码end--------------------------->
                 <div class="controls">
                   <input type="checkbox" checked="checked" name="IsAgree" id="IsAgree" value="1">
                   <span>阅读并同意协议</span> </div>

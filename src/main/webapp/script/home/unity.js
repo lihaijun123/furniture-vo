@@ -1563,12 +1563,12 @@ function VerifyMyname(name) {
     //console.log("result:" + result);
     if (result == 0) {
         $("#" + name + "Error").show();
-        $("#" + name + "Error span").html("请输入您的有效手机号或邮箱");
+        $("#" + name + "Error span").html("请输入您的用户名");
         return false;
     }
     if (result == 2) {
         $("#" + name + "Error").show();
-        $("#" + name + "Error span").html("不支持用户名注册,只支持邮箱或手机号注册");
+        $("#" + name + "Error span").html("请输入您的用户名");
         return false;
     } else {
         $("#" + name + "tips").hide();
@@ -1796,7 +1796,7 @@ function sendMessage(o) {
                 return;
             } else if (result == 2 || result == 0) {
                 $("#identifycodeError").show();
-                $("#identifycodeError span").html("请填写正确的手机号或邮箱");
+                $("#identifycodeError span").html("请填写正确的用户名");
                 return;
             }
         }
