@@ -71,16 +71,18 @@ public class FntProductRemoteDaoImpl extends CommonDao implements IFntProductDao
 					String goods_brand_id = TCUtil.svjo(item, "goods_brand_id");
 					String goods_brand_name = TCUtil.svjo(item, "goods_brand_name");
 					FntProductModel fntProductModel = findById(dbList, goods_id);
-					fntProductModel.setPicFileUrl(goods_photo);
-					fntProductModel.setName(goods_name);
-					fntProductModel.setCategoryName(goods_class_name);
-					fntProductModel.setCategoryCode(goods_class_id);
-					fntProductModel.setPrice(new BigDecimal(goods_price));
-					fntProductModel.setBrand(goods_brand_name);
-					fntProductModel.setBrandId(goods_brand_id);
-					fntProductModel.setInventory(goods_inventory);
-					fntProductModel.setSerial(goods_serial);
-					returnList.add(fntProductModel);
+					if(fntProductModel != null){
+						fntProductModel.setPicFileUrl(goods_photo);
+						fntProductModel.setName(goods_name);
+						fntProductModel.setCategoryName(goods_class_name);
+						fntProductModel.setCategoryCode(goods_class_id);
+						fntProductModel.setPrice(new BigDecimal(goods_price));
+						fntProductModel.setBrand(goods_brand_name);
+						fntProductModel.setBrandId(goods_brand_id);
+						fntProductModel.setInventory(goods_inventory);
+						fntProductModel.setSerial(goods_serial);
+						returnList.add(fntProductModel);
+					}
 				}
 			}
 		}
@@ -104,15 +106,20 @@ public class FntProductRemoteDaoImpl extends CommonDao implements IFntProductDao
 	private FntProductModel findById(List<FntProductModel> list, String productId){
 		for (FntProductModel fntProductModel : list) {
 			String id = fntProductModel.getProductId();
+			//家具有模型数据
 			if(StringUtils.isNotEmpty(productId) && productId.equals(id)){
 				Long modelFileSn = fntProductModel.getModelFileSn();
 				if(modelFileSn != null){
 					fntProductModel.setModelFileUrl(TCUtil.sv(FileManageUtil.getFileURL(modelFileSn)));
+				} else {
+					//无模型数据，需要过滤掉
+					return null;
 				}
 				return fntProductModel;
 			}
 		}
-		return null;
+		//画，地板没有模型数据
+		return new FntProductModel();
 	}
 	/**
 	 * 
