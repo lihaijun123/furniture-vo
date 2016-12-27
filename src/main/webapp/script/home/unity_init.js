@@ -45,6 +45,10 @@ function createUnityObject(){
 	u.initPlugin(jQuery("#unityPlayer")[0], "http://139.196.173.139/fru.unity3d");
 }
 
+function loginCallBackToUnity(userId){
+	u.getUnity().SendMessage("control","LoginSuccess", userId);
+}
+
 function LoadUnit(json){
 	u.getUnity().SendMessage("control","LoadUnitAssetBundleWeb", json);
 }

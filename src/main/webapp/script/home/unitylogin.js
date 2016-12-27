@@ -102,6 +102,7 @@ $(function(){
 function Loginresponse(data) {
     if (data.Message == "alreadylogin") {
         HideThisDiv("loginAndRegister");
+        loginCallBackToUnity(data.userId);
         return;
     }
     if (data.Message == "error") {
@@ -120,6 +121,7 @@ function Loginresponse(data) {
         //登录或者注册成功,隐藏登录窗体，弹出Unity Web Player
         HideLoginShowUnity("#loginAndRegister", "");
         $("div.all_header").remove();
+        loginCallBackToUnity(data.userId);
         /*var href = "/Cart/Shoppingcart/Index";
         var $header = $("#header");
         $header.append("<div class=\"background_bg\"></div>");

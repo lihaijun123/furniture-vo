@@ -52,6 +52,7 @@ public class FntCheckUnityStateController extends CommonController{
 		AgentLogin loginInfo = RequestThreadLocal.getLoginInfo();
 		String msg = "error";
 		String data = "";
+		String userId = "";
 		if(loginInfo != null){
 			msg = "alreadylogin";
 		} else {
@@ -69,10 +70,10 @@ public class FntCheckUnityStateController extends CommonController{
 					//验证验证码是否正确
 					String sValidCode = TCUtil.sv(req.getSession().getAttribute("captcha"));
 					if(sValidCode.equalsIgnoreCase(validCode)){
-						AgentLogin agentLogin = agentLoginService.select(loginName, password);
-						if(agentLogin != null){
-							req.getSession().setAttribute(LoginFilter.SESSION_KEY, agentLogin);
-							RequestThreadLocal.setLoginInfo(agentLogin);
+						loginInfo = agentLoginService.select(loginName, password);
+						if(loginInfo != null){
+							req.getSession().setAttribute(LoginFilter.SESSION_KEY, loginInfo);
+							RequestThreadLocal.setLoginInfo(loginInfo);
 							msg = "success";
 						} else {
 							data = "用户名或者密码有误";
@@ -86,9 +87,13 @@ public class FntCheckUnityStateController extends CommonController{
 				data = "请填写用户名和密码";
 			}
 		}
+		if(loginInfo != null){
+			userId = TCUtil.sv(loginInfo.getUserId());
+		}
 		JSONObject jo = new JSONObject();
 		jo.put("Message", msg);
 		jo.put("Data", data);
+		jo.put("userId", userId);
 		ajaxOutput(response, jo.toString());
 	}
 }
