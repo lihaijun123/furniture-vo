@@ -63,6 +63,7 @@ handle.prototype.$bombBox.find(".bomb_close").unbind("click").click(function() {
 });
 //右侧产品清单点击事件
 $("div.unity_box_right .list").eq(0).click(function () {
+	handle.prototype.isLoadedProList = true;
     if (handle.prototype.isLoadedProList) {
         handle.fn.lazyLoadProductList();
     } else {
@@ -934,6 +935,7 @@ handle.fn = {
     //延迟加载产品列表
     lazyLoadProductList: function () {
         var data = handle.prototype.lazyProData;
+        data.Message = "ok";
         if (typeof(data.Message) == "undefined") {
             return;
         }
