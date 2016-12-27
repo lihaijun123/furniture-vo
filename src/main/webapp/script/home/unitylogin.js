@@ -122,18 +122,17 @@ function Loginresponse(data) {
         HideLoginShowUnity("#loginAndRegister", "");
         $("div.all_header").remove();
         loginCallBackToUnity(data.userId);
-        /*var href = "/Cart/Shoppingcart/Index";
+        var href = "";
         var $header = $("#header");
         $header.append("<div class=\"background_bg\"></div>");
         $header.append("<div class=\"all_header\">");
-        var helpUrl = ZJiaJu_config.url.help || "http://www.jiajia1.com/Content/Help/Center";
+        var helpUrl = "#";
         $header.find(".all_header").append("<span class=\"sp01\"><a href=\"" + helpUrl + "\"><b class=\"img\"></b>帮助中心</a></span> " +
-            "<span class=\"sp02\"><a href=\"/Customer/MyCollection/Index\"><b class=\"img\"></b>收藏夹&nbsp;&nbsp;&nbsp;</a>|</span> ");
-        $header.find(".all_header").append("<span class=\"sp03\"><a href=\"" + href + "\"><b class=\"img\"></b>购物车</a><a href=\"" + href + "\" class=\"No\">" + data.Data.ShoppingCartCount + "</a>&nbsp;&nbsp;&nbsp;|</span>");
-        $header.find(".all_header").append("<span class=\"sp04\">Hi~[&nbsp;<a href=\"/Customer/UserCenter/Index\" class=\"log_in\">" + data.Data.MemberNickId + "</a>&nbsp;]&nbsp;[&nbsp;<a href=\"/Customer/BaseCustomer/Logout\">退出</a>&nbsp;]&nbsp;<a id=\"check_hasDesign\" style=\"display: none\" href=\"/Unity/Unity/Details\"></a>&nbsp;<a id=\"check_lightMap\" style=\"display: none\" href=\"/Unity/Unity/Details\"></a>&nbsp;&nbsp;&nbsp;|</span>");
-        $header.find(".all_header").append("<a class=\"left\" title=\"家+1\" href=\"/\"><i></i></a>");
+            "<span class=\"sp02\"><a href=\"#\"><b class=\"img\"></b>收藏夹&nbsp;&nbsp;&nbsp;</a>|</span> ");
+        $header.find(".all_header").append("<span class=\"sp03\"><a href=\"" + href + "\"><b class=\"img\"></b>购物车</a><a href=\"" + href + "\" class=\"No\">" + 0 + "</a>&nbsp;&nbsp;&nbsp;|</span>");
+        $header.find(".all_header").append("<span class=\"sp04\">Hi~[&nbsp;<a href=\"#\" class=\"log_in\">" + 0 + "</a>&nbsp;]&nbsp;[&nbsp;<a href=\"#\">退出</a>&nbsp;]&nbsp;<a id=\"check_hasDesign\" style=\"display: none\" href=\"#\"></a>&nbsp;<a id=\"check_lightMap\" style=\"display: none\" href=\"#\"></a>&nbsp;&nbsp;&nbsp;|</span>");
+        $header.find(".all_header").append("<a class=\"left\" title=\"信利\" href=\"/\"><i></i></a>");
         CallCricleProcessBar();
-        */
     }
 }
 //============================第三方登录begin==========================================
