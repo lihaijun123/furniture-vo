@@ -1542,6 +1542,7 @@ label.error span {
     height: 26px;
     margin-left: 260px;
     float: left;
+    margin-top:-7px;
 }
 .unity_box .q_login{
     width: 90px;
@@ -2857,4 +2858,4 @@ top: 30px;}
 .guanb3{display: block;
 position: relative;
 right: 50px;
-top:-142px;}
+top:-110px;}
