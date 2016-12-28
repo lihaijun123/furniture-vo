@@ -301,7 +301,6 @@ handle.fn = {
             dataType:"json",
             success: function (data) {
                 if (data.Message == "nologin") {
-                	
                     showLoginBox();
                 }
                 if (data.Message == "errorParas") {

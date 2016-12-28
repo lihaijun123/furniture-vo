@@ -25,7 +25,7 @@ public class ProductTypeRestServiceTest extends AbstractRpc{
 	
 	@Override
 	protected String getProtocal() {
-		return URL_TEST;
+		return URL_RELEASE;
 	}
 
 }

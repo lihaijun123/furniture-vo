@@ -14,13 +14,15 @@ public class ShoppingCartRestServiceTest extends AbstractRpc{
 	@Test
 	public void testAdd() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
-		qparams.add(new BasicNameValuePair("userId", "KNAoeKUyUAUR"));
-		qparams.add(new BasicNameValuePair("furnitureId", "DqoeAUpKyyey"));
-		httpRequest(getProtocal() + "/rest/shoppingcart/add", qparams, HttpMethod.POST);
+		qparams.add(new BasicNameValuePair("productId", "272"));
+		qparams.add(new BasicNameValuePair("count", "1"));
+		qparams.add(new BasicNameValuePair("price", "1100"));
+		qparams.add(new BasicNameValuePair("gsp", ""));
+		httpRequest("/rest/shoppingcart/add", qparams, HttpMethod.POST);
 	}
 
 	@Override
 	protected String getProtocal() {
-		return URL_RELEASE;
+		return URL_TEST;
 	}
 }

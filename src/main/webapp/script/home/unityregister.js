@@ -140,7 +140,11 @@ function registerresponse(data) {
         }*/
         return;
     } else {
-        $("div.login").hide();
+        //$("div.login").hide();
+    	 var $divLogin = $("#loginAndRegister");
+    	 $divLogin.show(80).siblings().show();
+    	 $divLogin.find(".login_form").hide();
+    	 $divLogin.find(".register_form").hide();
         //加载登录版头
         $("div.all_header").remove();
         var href = "";

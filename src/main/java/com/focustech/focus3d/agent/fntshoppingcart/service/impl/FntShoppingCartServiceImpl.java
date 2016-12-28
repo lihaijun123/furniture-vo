@@ -21,7 +21,7 @@ import com.focustech.focus3d.agent.service.impl.CommonServiceTemplate;
  * @author lihaijun
  *
  */
-@Service
+//@Service
 public class FntShoppingCartServiceImpl extends CommonServiceTemplate<FntShoppingCartModel> implements FntShoppingCartService<FntShoppingCartModel>{
 	
 	@Autowired
