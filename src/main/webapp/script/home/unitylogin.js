@@ -95,9 +95,6 @@ $(function(){
 	$("img[id^='vecodeId']").click(function(){
 		 $(this).attr("src", "/captchas/" + new Date().getTime() + ".jpg");
 	});
-	$("#RegisterRightNow2").click(function(){
-		window.location.href = "http://www.xinlijiaju.com/register.htm";
-	});
 	$("#logoutId").click(function(){
 		doLogout();
 	});

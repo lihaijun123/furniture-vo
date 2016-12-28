@@ -1,6 +1,6 @@
 ﻿//验证码倒计时
 var wait = 60; //时间
-var sendpath = '/Customer/BaseCustomer/';
+var sendpath = '/common/';
 $(function () {
     $("form#register_form").validate({
         //错误显示
@@ -107,11 +107,18 @@ $(function () {
     });
 });
 
+$(function(){
+	$("img[id^='vecodeIdReg']").click(function(){
+		$(this).attr("src", "/captchas/" + new Date().getTime() + ".jpg");
+	});
+});
+
 //unity弹窗注册
 function ajaxSubmit() {
     var validate = $("form#register_form").valid();
     var option = {
-        url: sendpath + '/Register',
+        url: sendpath + '/register',
+        dataType:"json",
         data: $("form#register_form").serialize(),
         type: 'post',
         success: registerresponse
@@ -124,24 +131,28 @@ function ajaxSubmit() {
 //弹窗注册后响应
 function registerresponse(data) {
     if (data.Message === "error") {
-        var msg = eval(data.Data);
-        console.log(msg);
-        for (var i = 0; i < msg.length; i++) {
+        //var msg = eval(data.Data);
+        //console.log(msg);
+    	 $("#regMsg").text(data.Data);
+    	 $("#vecodeIdReg").attr("src", "/captchas/" + new Date().getTime() + ".jpg");
+       /* for (var i = 0; i < msg.length; i++) {
             $("#" + msg[i].key).next().html("<label class=\"error\" ><span></span>" + msg[i].msg + "</label>");
-        }
-
+        }*/
         return;
     } else {
         $("div.login").hide();
         //加载登录版头
         $("div.all_header").remove();
-        var href = "/Cart/Shoppingcart/Index";
+        var href = "";
         var $header = $("#header");
         $header.append("<div class=\"all_header\">");
-        $header.find(".all_header").append("<span class=\"sp01\"><a href=\"/Centent/Help/Index\"><b class=\"img\"></b>帮助中心</a></span> <span class=\"sp02\"><a href=\"/Customer/MyCollection/Index\"><b class=\"img\"></b>收藏夹&nbsp;&nbsp;&nbsp;</a>|</span> ");
+        $header.find(".all_header").append("<span class=\"sp01\"><a href=\"\"><b class=\"img\"></b>帮助中心</a></span> <span class=\"sp02\"><a href=\"\"><b class=\"img\"></b>收藏夹&nbsp;&nbsp;&nbsp;</a>|</span> ");
         $header.find(".all_header").append("<span class=\"sp03\"><a href=\"" + href + "\"><b class=\"img\"></b>购物车</a><a href=\"" + href + "\" class=\"No\">0</a>&nbsp;&nbsp;&nbsp;|</span>");
-        $header.find(".all_header").append("<span class=\"sp04\">Hi~[&nbsp;<a href=\"/Customer/UserCenter/Index\" class=\"log_in\">" + data.Data.NickId + "</a>&nbsp;]&nbsp;[&nbsp;<a href=\"/Customer/BaseCustomer/Logout\">退出</a>&nbsp;]&nbsp;<a id=\"check_hasDesign\" style=\"display: none\" href=\"/Unity/Unity/Details\"></a>&nbsp;<a id=\"check_lightMap\" style=\"display: none\" href=\"/Unity/Unity/Details\"></a>&nbsp;&nbsp;&nbsp;|</span>");
-        $header.find(".all_header").append("<a class=\"left\" title=\"智家居\" href=\"/\"></a>");
+        $header.find(".all_header").append("<span class=\"sp04\">Hi~[&nbsp;<a href=\"/Customer/UserCenter/Index\" class=\"log_in\">" + data.userName + "</a>&nbsp;]&nbsp;[&nbsp;<a href=\"#\" id=\"logoutId\">退出</a>&nbsp;]&nbsp;<a id=\"check_hasDesign\" style=\"display: none\" href=\"\"></a>&nbsp;<a id=\"check_lightMap\" style=\"display: none\" href=\"\"></a>&nbsp;&nbsp;&nbsp;|</span>");
+        $header.find(".all_header").append("<a class=\"left\" title=\"\" href=\"/\"></a>");
+        $("#logoutId").bind("click", function(){
+        	doLogout();
+        });
         showUnity();
     }
     //console.log(data);

@@ -187,8 +187,6 @@ handle.fn = {
     },
     //弹出登陆框
     showDivLogin: function () {
-    	alert();
-    	$("#vecodeId").attr("src", "/captchas/default.jpg");
         hideUnity();
         handle.prototype.$divLogin.show(100).siblings().hide();
         handle.prototype.$divLogin.find(".login_form").show(100);
@@ -1556,7 +1554,7 @@ $(function () {
 
 /***********************************注册begin**********************************************/
 
-var sendpath = "/Customer/BaseCustomer/";
+var sendpath = "/common";
 function VerifyMyname(name) {
     $("#" + name + "tips").hide();
     var result = check();

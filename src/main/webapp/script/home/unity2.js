@@ -1094,7 +1094,7 @@ function custom_alert(output_msg, title_msg, callback)
 
 //unity登陆框
 function showLoginBox() {
-	$("#vecodeId").attr("src", "/captchas/" + new Date().getTime() + ".jpg");
+	$("img[id^='vecodeId'").attr("src", "/captchas/" + new Date().getTime() + ".jpg");
 	$("#loginMsg").text("");
     var $divLogin = $("#loginAndRegister");
     hideUnity();

@@ -110,6 +110,7 @@ public class FntCheckUnityStateController extends CommonController{
 	 * @param response
 	 * @throws IOException
 	 */
+	
 	@RequestMapping(value = "/logout")
 	public void logout(HttpServletRequest req, HttpServletResponse response) throws IOException{
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
@@ -119,5 +120,51 @@ public class FntCheckUnityStateController extends CommonController{
 		jo.put("Message", "ok");
 		ajaxOutput(response, jo.toString());
 	}
+	/**
+	 * *
+	 * @param req
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/register")
+	public void register(String myname, String password, String confirmPwd, String verifyCodeReg, HttpServletRequest req, HttpServletResponse response) throws IOException{
+		String msg = "error";
+		String data = "";
+		String userId = "";
+		String userName = "";
+		AgentLogin loginInfo = null;
+		if(StringUtils.isNotEmpty(myname) && StringUtils.isNotEmpty(password) && StringUtils.isNotEmpty(confirmPwd) && StringUtils.isNotEmpty(verifyCodeReg)){
+			if(password.equals(confirmPwd)){
+				String sValidCode = TCUtil.sv(req.getSession().getAttribute("captcha"));
+				if(sValidCode.equalsIgnoreCase(verifyCodeReg)){
+					/*List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+					String result = fntRpc.httpRequest("/shopping_logout.htm", qparams, HttpMethod.GET);*/
+					loginInfo = new AgentLogin();
+					loginInfo.setUserId(1L);
+					loginInfo.setLoginName(myname);
+					req.getSession().setAttribute(LoginFilter.SESSION_KEY, loginInfo);
+					RequestThreadLocal.setLoginInfo(loginInfo);
+					msg = "ok";
+				} else {
+					data = "验证码不正确";
+				}
+			} else {
+				data = "两次密码输入不一致";
+			}
+		} else {
+			data = "用户名、密码、验证码不能为空";
+		}
+		if(loginInfo != null){
+			userId = TCUtil.sv(loginInfo.getUserId());
+			userName = loginInfo.getLoginName();
+		}
+		JSONObject jo = new JSONObject();
+		jo.put("Message", msg);
+		jo.put("Data", data);
+		jo.put("userId", userId);
+		jo.put("userName", userName);
+		ajaxOutput(response, jo.toString());
+	}
+	
 	
 }
