@@ -81,6 +81,7 @@ public class FntProductRemoteDaoImpl extends CommonDao implements IFntProductDao
 						fntProductModel.setBrandId(goods_brand_id);
 						fntProductModel.setInventory(goods_inventory);
 						fntProductModel.setSerial(goods_serial);
+						fntProductModel.setSn(TCUtil.lv(goods_id));
 						returnList.add(fntProductModel);
 					}
 				}
