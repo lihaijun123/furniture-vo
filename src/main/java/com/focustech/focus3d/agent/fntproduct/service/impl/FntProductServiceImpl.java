@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.focustech.cief.filemanage.common.utils.FileManageUtil;
-import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.common.constant.FntProductType;
 import com.focustech.focus3d.agent.dao.CommonDao;
