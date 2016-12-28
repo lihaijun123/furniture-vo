@@ -51,7 +51,7 @@ public class FntProductServiceImpl extends CommonServiceTemplate<FntProductModel
 		jo.put("version", fntProductModel.getModelFileVersion());
 		jo.put("picUrl", fntProductModel.getPicFileUrl());
 		jo.put("type", FntProductType.getNameEnByCode(fntProductModel.getType()));
-		jo.put("id", fntProductModel.getSn());
+		jo.put("id", TCUtil.sv(fntProductModel.getSn()));
 		return jo;
 	}
 	/**

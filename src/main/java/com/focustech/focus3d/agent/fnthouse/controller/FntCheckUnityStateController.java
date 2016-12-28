@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.focustech.common.utils.MD5Util;
 import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.common.controller.CommonController;
@@ -137,14 +139,23 @@ public class FntCheckUnityStateController extends CommonController{
 			if(password.equals(confirmPwd)){
 				String sValidCode = TCUtil.sv(req.getSession().getAttribute("captcha"));
 				if(sValidCode.equalsIgnoreCase(verifyCodeReg)){
-					/*List<NameValuePair> qparams = new ArrayList<NameValuePair>();
-					String result = fntRpc.httpRequest("/shopping_logout.htm", qparams, HttpMethod.GET);*/
-					loginInfo = new AgentLogin();
-					loginInfo.setUserId(1L);
-					loginInfo.setLoginName(myname);
-					req.getSession().setAttribute(LoginFilter.SESSION_KEY, loginInfo);
-					RequestThreadLocal.setLoginInfo(loginInfo);
-					msg = "ok";
+					List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+					qparams.add(new BasicNameValuePair("username", myname));
+					qparams.add(new BasicNameValuePair("password", password));
+					qparams.add(new BasicNameValuePair("email", ""));
+					String result = fntRpc.httpRequest("/service/users/register.htm", qparams, HttpMethod.POST);
+					if(StringUtils.isNotEmpty(result)){
+						JSONObject resultJo = JSONObject.fromObject(result);
+						String code = TCUtil.svjo(resultJo, "code");
+						if("注册成功".equals(code)){
+							/*loginInfo = new AgentLogin();
+							loginInfo.setUserId(1L);
+							loginInfo.setLoginName(myname);
+							req.getSession().setAttribute(LoginFilter.SESSION_KEY, loginInfo);
+							RequestThreadLocal.setLoginInfo(loginInfo);*/
+						}
+						msg = code;
+					}
 				} else {
 					data = "验证码不正确";
 				}
@@ -154,15 +165,15 @@ public class FntCheckUnityStateController extends CommonController{
 		} else {
 			data = "用户名、密码、验证码不能为空";
 		}
-		if(loginInfo != null){
+		/*if(loginInfo != null){
 			userId = TCUtil.sv(loginInfo.getUserId());
 			userName = loginInfo.getLoginName();
-		}
+		}*/
 		JSONObject jo = new JSONObject();
 		jo.put("Message", msg);
 		jo.put("Data", data);
-		jo.put("userId", userId);
-		jo.put("userName", userName);
+		jo.put("userId", "");
+		jo.put("userName", "");
 		ajaxOutput(response, jo.toString());
 	}
 	

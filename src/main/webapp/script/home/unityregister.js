@@ -130,7 +130,7 @@ function ajaxSubmit() {
 }
 //弹窗注册后响应
 function registerresponse(data) {
-    if (data.Message === "error") {
+    if (data.Message != "注册成功") {
         //var msg = eval(data.Data);
         //console.log(msg);
     	 $("#regMsg").text(data.Data);
