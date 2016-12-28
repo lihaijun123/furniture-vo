@@ -34,4 +34,6 @@ public interface FntHouseService<T> extends ICommonService<T> {
 	public JSONObject serialize(T fntHouseModel);
 	
 	public JSONObject serialize(long houseId);
+	
+	public List<T> list(boolean isRecommend);
 }

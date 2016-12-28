@@ -14,6 +14,7 @@ import com.focustech.focus3d.agent.dao.CommonDao;
 import com.focustech.focus3d.agent.fnthouse.dao.FntHouseDao;
 import com.focustech.focus3d.agent.fnthouse.service.FntHouseService;
 import com.focustech.focus3d.agent.model.FntHouseModel;
+import com.focustech.focus3d.agent.model.ibator.FntHouseCriteria;
 import com.focustech.focus3d.agent.service.impl.CommonServiceTemplate;
 import com.focustech.focus3d.furniture.restful.search.FntHouseSearch;
 /**
@@ -86,6 +87,12 @@ public class FntHouseServiceImpl extends CommonServiceTemplate<FntHouseModel> im
 	public JSONObject serialize(long houseId) {
 		FntHouseModel houseModel = selectBySn(houseId, FntHouseModel.class);
 		return serialize(houseModel);
+	}
+	@Override
+	public List<FntHouseModel> list(boolean isRecommend) {
+		FntHouseCriteria criteria = new FntHouseCriteria();
+		criteria.createCriteria().andIsRecommendEqualTo(isRecommend ? 1 : 0);
+		return selectByCriteria(criteria, FntHouseModel.class);
 	}
 
 }
