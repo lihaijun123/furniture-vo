@@ -14,6 +14,7 @@ public class ShoppingCartRestServiceTest extends AbstractRpc{
 	@Test
 	public void testAdd() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+		qparams.add(new BasicNameValuePair("userId", "32794"));
 		qparams.add(new BasicNameValuePair("productId", "272"));
 		qparams.add(new BasicNameValuePair("count", "1"));
 		qparams.add(new BasicNameValuePair("price", "1100"));

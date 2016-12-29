@@ -39,6 +39,7 @@ public class ShoppingCartRestService {
 	@POST
 	@Path("add")
 	public String add(
+			@FormParam("userId") String userId,
 			@FormParam("productId") String productId,
 			@FormParam("count") String count,
 			@FormParam("price") String price,
@@ -47,14 +48,14 @@ public class ShoppingCartRestService {
 		int status = 0;
 		String message = "";
 		count = "1";
-		if(StringUtils.isNotEmpty(productId)){
+		if(StringUtils.isNotEmpty(productId) && StringUtils.isNotEmpty(userId)){
 			List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+			qparams.add(new BasicNameValuePair("userid", userId));
 			qparams.add(new BasicNameValuePair("id", productId));
-			qparams.add(new BasicNameValuePair("count ", count));
-			qparams.add(new BasicNameValuePair("price ", price));
-			qparams.add(new BasicNameValuePair("gsp ", gsp));
-			//String result = fntRpc.httpRequest("/service/add_goods_cart.htm?id=272&count=1&price=1100&gsp=", qparams, HttpMethod.POST);
-			String result = fntRpc.httpRequest("/add_goods_cart.htm", qparams, HttpMethod.POST);
+			qparams.add(new BasicNameValuePair("count", count));
+			qparams.add(new BasicNameValuePair("price", price));
+			qparams.add(new BasicNameValuePair("gsp", gsp));
+			String result = fntRpc.httpRequest("/service/product/add_cart.htm", qparams, HttpMethod.GET);
 			JSONObject jo = JSONObject.fromObject(result);
 			if(jo.isEmpty()){
 				status = 2;
