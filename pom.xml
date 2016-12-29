@@ -156,7 +156,11 @@
 		    <artifactId>resteasy-spring</artifactId>
 		    <version>3.0.11.Final</version>
 		</dependency>
-		
+		<dependency>
+		    <groupId>poi</groupId>
+		    <artifactId>poi-2.5.1-final</artifactId>
+		    <version>20040804</version>
+		</dependency>
   </dependencies>
    <build>
 

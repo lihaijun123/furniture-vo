@@ -25,7 +25,7 @@ import com.focustech.focus3d.furniture.restful.constant.ContentType;
  * @author lihaijun
  *
  */
-@Service
+//@Service
 @Path("/rest/productcate")
 @Produces(ContentType.APPLICATION_JSON_UTF_8)
 public class ProductCategoryRestService {

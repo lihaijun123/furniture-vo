@@ -21,6 +21,7 @@ import com.focustech.focus3d.agent.fntfavorite.service.FntFavoriteService;
 import com.focustech.focus3d.agent.fntproduct.service.FntProductService;
 import com.focustech.focus3d.agent.model.FntFavoriteModel;
 import com.focustech.focus3d.agent.model.FntProductModel;
+import com.focustech.focus3d.furniture.restful.common.RestMethodDesc;
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
 
 /**
@@ -29,6 +30,7 @@ import com.focustech.focus3d.furniture.restful.constant.ContentType;
  * @author lihaijun
  *
  */
+@RestMethodDesc("收藏服务")
 @Service
 @Path("/rest/favorite")
 @Produces(ContentType.APPLICATION_JSON_UTF_8)
@@ -45,8 +47,9 @@ public class FavoriteRestService {
 	 * @param targetType
 	 * @return
 	 */
+	@RestMethodDesc("保存收藏")
 	@POST
-	@Path("/save")
+	@Path("save")
 	public String save(@FormParam("userId") String userId, @FormParam("targetId") String targetId){
 		int status = 0;
 		String message = "";
@@ -82,8 +85,9 @@ public class FavoriteRestService {
 	 * @param targetType
 	 * @return
 	 */
+	@RestMethodDesc("获取用户收藏列表")
 	@GET
-	@Path("/list/{userId}")
+	@Path("list/{userId}")
 	public String list(@PathParam("userId") String userId){
 		JSONArray jary = getList(userId);
 		return jary.toString();
@@ -94,8 +98,9 @@ public class FavoriteRestService {
 	 * @param targetType
 	 * @return
 	 */
+	@RestMethodDesc("获取用户收藏列表")
 	@POST
-	@Path("/list")
+	@Path("list")
 	public String listByPost(@FormParam("userId") String userId){
 		JSONArray jary = getList(userId);
 		return jary.toString();

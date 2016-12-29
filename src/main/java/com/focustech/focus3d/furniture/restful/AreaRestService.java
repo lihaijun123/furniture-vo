@@ -18,7 +18,7 @@ import com.focustech.focus3d.furniture.restful.constant.ProvinceCityConst;
  * @author lihaijun
  *
  */
-@Service
+//@Service
 @Path("/rest/area")
 @Produces(ContentType.APPLICATION_JSON_UTF_8)
 public class AreaRestService {

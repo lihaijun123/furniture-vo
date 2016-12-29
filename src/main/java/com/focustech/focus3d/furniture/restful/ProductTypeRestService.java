@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
+import com.focustech.focus3d.furniture.restful.common.RestMethodDesc;
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
 import com.focustech.focus3d.furniture.rpc.FntRpc;
 
@@ -27,13 +28,14 @@ import com.focustech.focus3d.furniture.rpc.FntRpc;
  * @author lihaijun
  *
  */
+@RestMethodDesc("家具产品类型服务")
 @Service
 @Path("/rest/product-type")
 @Produces(ContentType.APPLICATION_JSON_UTF_8)
 public class ProductTypeRestService {
 	
 	private FntRpc fntRpc = new FntRpc();
-	
+	@RestMethodDesc("家具产品类型列表")
 	@POST
 	@Path("list")
 	public String searchByPost(@FormParam("productId") String productId) {

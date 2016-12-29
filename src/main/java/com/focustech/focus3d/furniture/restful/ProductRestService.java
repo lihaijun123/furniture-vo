@@ -1,19 +1,22 @@
 package com.focustech.focus3d.furniture.restful;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.StringUtils;
@@ -21,7 +24,9 @@ import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.fntproduct.controller.FntProductSearch;
 import com.focustech.focus3d.agent.fntproduct.service.FntProductService;
 import com.focustech.focus3d.agent.model.FntProductModel;
+import com.focustech.focus3d.furniture.restful.common.RestMethodDesc;
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
+import com.focustech.focus3d.furniture.rpc.FntRpc;
 
 /**
  * 
@@ -30,21 +35,16 @@ import com.focustech.focus3d.furniture.restful.constant.ContentType;
  * @author lihaijun
  * 
  */
+@RestMethodDesc("家具产品服务")
 @Service
 @Path("/rest/product")
 @Produces(ContentType.APPLICATION_JSON_UTF_8)
 public class ProductRestService {
 	@Autowired
 	private FntProductService<FntProductModel> fntProductService;
-
-	@GET
-	@Path("{name}")
-	public String hello(@PathParam("name") final String name){
-		JSONObject jo = new JSONObject();
-		jo.put("lihaijun", "lhj");
-		return jo.toString();
-	}
-
+	private FntRpc fntRpc = new FntRpc();
+	
+	@RestMethodDesc("查询家具产品")
 	@GET
 	@Path("search")
 	public String searchByGet(
@@ -57,7 +57,7 @@ public class ProductRestService {
 			) {
 		return searchData(keyWord, categoryCode, price, type, pageNow, pageSize);
 	}
-
+	@RestMethodDesc("查询家具产品")
 	@POST
 	@Path("search")
 	public String searchByPost(
@@ -69,6 +69,22 @@ public class ProductRestService {
 			@FormParam("type") String type
 			) {
 		return searchData(keyWord, categoryCode, price, type, pageNow, pageSize);
+	}
+	@RestMethodDesc("获取家具产品价格和库存")
+	@POST
+	@Path("gsp-get")
+	public String getGsp(
+			@FormParam("productId") String productId, 
+			@FormParam("gsp") String gsp
+			) {
+		if(StringUtils.isNotEmpty(productId) && StringUtils.isNotEmpty(gsp)){
+			List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+			qparams.add(new BasicNameValuePair("id", productId));
+			qparams.add(new BasicNameValuePair("gsp", gsp));
+			String result = fntRpc.httpRequest("/load_goods_gsp.htm", qparams, HttpMethod.POST);
+			return result;
+		}
+		return (new JSONObject()).toString();
 	}
 	/**
 	 * *

@@ -19,6 +19,7 @@ import com.focustech.common.utils.StringUtils;
 import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.fnthouse.service.FntHouseService;
 import com.focustech.focus3d.agent.model.FntHouseModel;
+import com.focustech.focus3d.furniture.restful.common.RestMethodDesc;
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
 import com.focustech.focus3d.furniture.restful.search.FntHouseSearch;
 
@@ -28,6 +29,7 @@ import com.focustech.focus3d.furniture.restful.search.FntHouseSearch;
  * @author lihaijun
  *
  */
+@RestMethodDesc("户型服务")
 @Service
 @Path("/rest/house")
 @Produces(ContentType.APPLICATION_JSON_UTF_8)
@@ -44,6 +46,7 @@ public class HouseRestService {
 	 * @param roomType
 	 * @return
 	 */
+	@RestMethodDesc("查询户型")
 	@GET
 	@Path("search")
 	public String searchByGet(
@@ -69,6 +72,7 @@ public class HouseRestService {
 	 * @param roomType
 	 * @return
 	 */
+	@RestMethodDesc("查询户型")
 	@POST
 	@Path("search")
 	public String searchByPost(

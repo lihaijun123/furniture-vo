@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,6 +21,7 @@ import com.focustech.focus3d.agent.fntcase.service.FntCaseService;
 import com.focustech.focus3d.agent.fnthouse.service.FntHouseService;
 import com.focustech.focus3d.agent.model.FntCaseModel;
 import com.focustech.focus3d.agent.model.FntHouseModel;
+import com.focustech.focus3d.furniture.restful.common.RestMethodDesc;
 import com.focustech.focus3d.furniture.restful.constant.ContentType;
 import com.focustech.focus3d.furniture.restful.search.FntCaseSearch;
 
@@ -31,6 +31,7 @@ import com.focustech.focus3d.furniture.restful.search.FntCaseSearch;
  * @author lihaijun
  *
  */
+@RestMethodDesc("案例服务")
 @Service
 @Path("/rest/case")
 @Produces(ContentType.APPLICATION_JSON_UTF_8)
@@ -46,8 +47,9 @@ public class CaseRestService {
 	 * @param caseData
 	 * @return
 	 */
+	@RestMethodDesc("保存案例")
 	@POST
-	@Path("/save")
+	@Path("save")
 	public String save(@FormParam("userId") String userId, @FormParam("houseId") String houseId, @FormParam("data") String caseData){
 		int status = 0;
 		String message = "";
@@ -86,8 +88,9 @@ public class CaseRestService {
 	 * @param userId
 	 * @return
 	 */
+	@RestMethodDesc("搜索案例")
 	@POST
-	@Path("/search")
+	@Path("search")
 	public String search(
 			@FormParam("userId") String userId, 
 			@FormParam("houseName") String houseName,
@@ -130,14 +133,5 @@ public class CaseRestService {
 		caseSearch.addPageInfo(rvJo);
 		rvJo.put("list", jary);
 		return rvJo.toString();
-	}
-	
-	@GET
-	@Path("/test")
-	public String test(){
-		JSONObject jo = new JSONObject();
-		jo.put("userId", EncryptUtil.encode(11L));
-		jo.put("houseId", EncryptUtil.encode(100000L));
-		return jo.toString();
 	}
 }

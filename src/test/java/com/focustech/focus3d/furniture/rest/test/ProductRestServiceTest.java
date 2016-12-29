@@ -16,7 +16,7 @@ import com.focustech.focus3d.furniture.rpc.AbstractRpc;
  *
  */
 public class ProductRestServiceTest extends AbstractRpc{
-	@Test
+	//@Test
 	public void testHouse() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 		qparams.add(new BasicNameValuePair("categoryCode", "沙发"));
@@ -28,9 +28,16 @@ public class ProductRestServiceTest extends AbstractRpc{
 		qparams.add(new BasicNameValuePair("id", "272"));
 		httpRequest("/service/product/goodspecs.htm", qparams, HttpMethod.POST);
 	}
+	@Test
+	public void testGsp() {
+		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
+		qparams.add(new BasicNameValuePair("productId", "272"));
+		qparams.add(new BasicNameValuePair("gsp", "1,3"));
+		httpRequest("/rest/product/gsp-get", qparams, HttpMethod.POST);
+	}
 	@Override
 	protected String getProtocal() {
-		return URL_RELEASE;
+		return URL_TEST;
 	}
 
 }

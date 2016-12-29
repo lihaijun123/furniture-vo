@@ -15,6 +15,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.StringUtils;
+import com.focustech.focus3d.furniture.restful.common.RestMethodDesc;
 import com.focustech.focus3d.furniture.rpc.FntRpc;
 /**
  * 
@@ -22,6 +23,7 @@ import com.focustech.focus3d.furniture.rpc.FntRpc;
  * @author lihaijun
  *
  */
+@RestMethodDesc("购物车服务")
 @Service
 @Path("/rest/shoppingcart")
 public class ShoppingCartRestService {
@@ -36,6 +38,7 @@ public class ShoppingCartRestService {
 	 * @return
 	 * @throws Exception
 	 */
+	@RestMethodDesc("添加产品到购物车")
 	@POST
 	@Path("add")
 	public String add(
