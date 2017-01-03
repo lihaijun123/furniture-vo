@@ -1,6 +1,7 @@
 package com.focustech.focus3d.agent.fnthouse.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.focustech.common.utils.StringUtils;
+import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.common.controller.CommonController;
+import com.focustech.focus3d.agent.filter.RequestThreadLocal;
 import com.focustech.focus3d.agent.fnthouse.service.FntHouseService;
 import com.focustech.focus3d.agent.fnthouseupload.service.FntHouseUploadService;
 import com.focustech.focus3d.agent.model.FntHouseModel;
@@ -79,11 +82,35 @@ public class FntHouseController extends CommonController {
 		Long picFileSn = houseUploadModel.getPicFileSn();
 		String status = "";
 		if(StringUtils.isNotEmpty(buildingName) && picFileSn != null){
-			houseUploadModel.setUserId(7L);
+			
+			Long sn = RequestThreadLocal.getLoginInfo().getSn();
+			houseUploadModel.setUserId(sn);
 			houseUploadModel.setHouseName(buildingName);
 			houseUploadModel.setHouseFileSn(picFileSn);
 			houseUploadModel.setStatus(1);
-			fntHouseUploadService.insert(houseUploadModel);
+			//fntHouseUploadService.insert(houseUploadModel);
+			FntHouseModel fntHouseModel = new FntHouseModel();
+			fntHouseModel.setName(TCUtil.sv(houseUploadModel.getHouseName()));
+			fntHouseModel.setPicFileSn(TCUtil.lv(houseUploadModel.getPicFileSn()));
+			fntHouseModel.setStatus(4);
+			fntHouseModel.setBuildingName(TCUtil.sv(houseUploadModel.getBuildingName()));
+			fntHouseModel.setType(TCUtil.iv(houseUploadModel.getType()));
+			BigDecimal area = houseUploadModel.getArea();
+			if(area != null){
+				fntHouseModel.setArea(area);
+			}
+			fntHouseModel.setRoomNum(TCUtil.iv(houseUploadModel.getRoomNum()));
+			fntHouseModel.setLivingRoomNum(TCUtil.iv(houseUploadModel.getLivingRoomNum()));
+			fntHouseModel.setProvince(TCUtil.sv(houseUploadModel.getProvince()));
+			fntHouseModel.setCity(TCUtil.sv(houseUploadModel.getCity()));
+			fntHouseModel.setStreet(TCUtil.sv(houseUploadModel.getStreet()));
+			fntHouseModel.setIsRecommend(0);
+			try {
+				fntHouseService.insert(fntHouseModel);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			status = "ok";
 		}
 		JSONObject jo = new JSONObject();
