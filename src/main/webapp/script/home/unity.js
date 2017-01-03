@@ -1247,7 +1247,7 @@ handle.fn.floorSearch = function (dataset) {
                 	var url = $(this).attr("apartmentModelUrl");
                 	var version = $(this).attr("version");
                 	var houseId = $(this).attr("houseId");
-                	var rv = '{"url":"' + url + '","version":' + version + '","id":"' + houseId + '"}';
+                	var rv = '{"url":"' + url + '","version":' + version + ',"id":"' + houseId + '"}';
                 	LoadUnit(rv);
                 });
             }
