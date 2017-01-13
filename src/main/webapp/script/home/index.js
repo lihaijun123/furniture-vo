@@ -20,14 +20,7 @@
         });
     };
    	*/
-    //jbox 提醒配置
-    jBoxConfig.tipDefaults = {
-        timeout: 1000 /* 提示显示多少毫秒后自动关闭,必须是大于0的整数 */
-    };
-    $.jBox.setDefaults(jBoxConfig);
-    if ("-1" != "-1") {
-        CallCricleProcessBar();
-    }
+
     //CallCricleProcessBar();
     //检测浏览器
     // var jqcbrowser = jQuery.checkBrowserPlugin;
