@@ -16,7 +16,7 @@ import com.focustech.focus3d.furniture.rpc.AbstractRpc;
  *
  */
 public class ProductRestServiceTest extends AbstractRpc{
-	//@Test
+	@Test
 	public void testHouse() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 		qparams.add(new BasicNameValuePair("categoryCode", "沙发"));
