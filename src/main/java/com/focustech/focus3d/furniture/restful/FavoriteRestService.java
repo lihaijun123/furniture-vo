@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.focustech.common.utils.EncryptUtil;
 import com.focustech.common.utils.StringUtils;
+import com.focustech.common.utils.TCUtil;
 import com.focustech.focus3d.agent.fntfavorite.service.FntFavoriteService;
 import com.focustech.focus3d.agent.fntproduct.service.FntProductService;
 import com.focustech.focus3d.agent.model.FntFavoriteModel;
@@ -50,11 +51,15 @@ public class FavoriteRestService {
 	@RestMethodDesc("保存收藏")
 	@POST
 	@Path("save")
-	public String save(@FormParam("userId") String userId, @FormParam("targetId") String targetId){
+	public String save(
+			@FormParam("userId") String userId, 
+			@FormParam("targetId") String targetId,
+			@FormParam("type") String type
+			){
 		int status = 0;
 		String message = "";
 		if(StringUtils.isNotEmpty(userId) && StringUtils.isNotEmpty(targetId)){
-			int targetType = 1;//默认家具
+			int targetType = TCUtil.iv(type);//默认家具
 			try {
 				Long userIdDecode = EncryptUtil.decode(userId);
 				Long targetIdDecode = EncryptUtil.decode(targetId);

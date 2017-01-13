@@ -62,8 +62,8 @@ $(function(){
 	$("a[id^='recommendLink_'").click(function(){
 		var url = $(this).attr("url");
     	var version = $(this).attr("v");
-    	var houseId = $(this).attr("sv");
-    	var rv = '{"url":"' + url + '","version":' + version + '","id":"' + houseId + '"}';
+    	var houseId = $(this).attr("sn");
+    	var rv = '{"url":"' + url + '","version":' + version + ',"id":"' + houseId + '"}';
     	LoadUnit(rv);
 	});
 });

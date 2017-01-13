@@ -71,6 +71,7 @@ public class FntHouseDao extends CommonDao {
 				condition.append(" and city='").append(city).append("'");
 			}
 		}
+		condition.append(" and status=3 ");
 		if(StringUtils.isNotEmpty(keyWord)){
 			condition.append(" and name like '%").append(keyWord).append("%'");
 		}
