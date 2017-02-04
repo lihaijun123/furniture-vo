@@ -17,10 +17,16 @@ select:focus {
 }
 #header {
     height: 77px;
+    width:100%;
+    background:#192644;
 }
+.all_header{display: block;
 
-
-
+    width: 1200px;
+    height: 77px;
+    line-height:50px;
+    padding-top:15px;   
+    }
 .all_header .left, #all_head_box .left {
     display: block;
     float: left;
@@ -28,7 +34,11 @@ select:focus {
     height: 43px;
     margin-top: 34px;
     background: url("/images/top_footer_all_img.png?v={1}") no-repeat 0 -1632px;
+    
 }
+
+.all_header span{float:right;color:#fff;padding:0px 10px;}
+.all_header span a{color:#fff;}
 
 .all_header .left i, #all_head_box .left i {
     display: block;
@@ -428,7 +438,7 @@ a.scroll_right_cur {
     width: 278px;
     height: 42px;
     background: url("/images/unity_icon.png?v={0}") no-repeat -3px -156px;
-    margin-top: 432px;
+    margin-top: 407px;
     box-shadow: 0 1px 2px #1A2428;
     -webkit-box-shadow: 0 1px 2px #1A2428;
     -moz-box-shadow: 0 1px 2px #1A2428;
@@ -738,6 +748,7 @@ ul.history span{
 .his_de{
     width: 142px;
     height: 114px;
+    background:#ff6600;
     float: left;
     position: relative;
     margin-top: 10px;
