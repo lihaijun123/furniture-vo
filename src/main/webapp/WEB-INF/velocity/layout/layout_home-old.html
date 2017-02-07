@@ -1,0 +1,140 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+<title>信利家居 - 3D在线家装设计</title>
+<meta name="viewport" content="width=device-width">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="/script/html5shiv.min.js"></script>
+      <script src="/script/respond.min.js"></script>
+    <![endif]-->
+    
+  <link href="/style/home/css" type="text/css" rel="stylesheet">
+  <link href="/style/home/css1" type="text/css" rel="stylesheet">
+  <link href="/style/home/new_unity.css" type="text/css" rel="stylesheet">
+  <link href="/style/home/new-loading.css" type="text/css" rel="stylesheet">
+  
+  
+  
+  
+<script src="/script/home/jquery"></script>
+<script type="text/javascript">
+        //服务器端StorageServer地址
+        storageServers = 'http://cdn.jiajia1.com/Storage1/';
+        //cdn服务器地址
+        cdnServerUrl = 'http://cdn.jiajia1.com';
+        //Web版本号
+       var webVersion = 'V1.2.9';
+        var solrUrl = "http://10.6.6.79:8080/solr/floor";
+    </script>
+
+<style type="text/css">
+<!--
+.bottomFloat {
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	right: 0;
+}
+-->
+</style>
+
+<link href="/style/home/jiathis_share.css" type="text/css" rel="stylesheet" >
+
+</head>
+<body>
+<div id="header" style="position: static">
+  <div class="all_header">   
+  <span class="sp01"> <a href="#" target="_blank"> <b class="img"></b>帮助中心</a></span> 
+  <span class="sp02"> <a href="#"><b class="img"></b>收藏夹</a>&nbsp;&nbsp;&nbsp;|</span> 
+  <span class="sp03"> <a href="#"><b class="img"></b>&nbsp;购物车</a><a href="#" class="No">0</a>&nbsp;&nbsp;&nbsp;| </span> 
+  #if($!user)
+  <span class="sp04">Hi~[&nbsp;$!user.loginName&nbsp;]&nbsp;&nbsp;[&nbsp;<a href="#" id="logoutId">退出</a>&nbsp;]&nbsp;&nbsp;&nbsp;|</span> <a class="left" title="" href="#"><i></i></a> 
+  #else
+  <span class="sp04">Hi~[&nbsp; <a href="/login" class="log_in">登录</a> &nbsp;]&nbsp;&nbsp;[&nbsp;<a href="/register">注册</a>&nbsp;]&nbsp;&nbsp;&nbsp;|</span> <a class="left" title="" href="#"><i></i></a> 
+  #end
+  </div>
+  <div class="unity_suspension" style="display: none;">
+    <div class="right_item">
+      <div class="separate"></div>
+      <ul>
+        <li class="history_box" style="background: none;">
+          <div class="history_icon"></div>
+        </li>
+        <li style="background: none;"><span style="display: none; margin-top: 3px;">套入进度</span>
+          <div class="loading_icon"></div>
+        </li>
+        <li style="background: none;"><span style="display: none; margin-top: 3px;">预加载进度建设中</span>
+          <div class="reload_icon"></div>
+        </li>
+        <li style="background: none;"><span style="display: none; margin-top: 3px;">我要反馈建设中</span><a class="feed_back"></a></li>
+      </ul>
+    </div>
+    <div class="_to_top"> <a href="#" class="unity_top"><span>返回顶部</span></a> </div>
+  </div>
+  <div class="browse_history"> <a class="his_title"></a>
+    <ul class="history">
+      <li>
+        <p>
+        <!--  <a href="#">千年典雅隔世梦</a><span>2016/12/7</span>
+        </p>
+        <div class="his_de"><a class="No_txt">01</a>-->
+        <a href="#">
+        <!-- 
+        
+        <img style="width: 142px;height: 114px" src="/images/2b7470813729449c945781d830e065c5.jpg_142x114.jpg">
+         -->
+        </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-----------loadingBar---------------->
+  <div class="loading-box" style="display: none">
+    <div class="loading-01"> <a class="load-close"></a>
+      <div class="load-in-01"></div>
+      <div class="load-in-02"></div>
+      <div class="load-in-03" id="load-01">
+        <div class="load-doc-top">
+          <p class="text">1</p>
+          <p class="doc"><span class="cur"></span><span></span><span></span></p>
+        </div>
+        <div class="load-doc-text"></div>
+        <div class="load-doc-left"><span class="left"></span><span class="right"></span></div>
+        <div class="load-doc-right"><span></span></div>
+      </div>
+    </div>
+    <div class="loading-02">
+      <ul>
+        <li>
+          <p class="p-01">毛坯房制作<i></i></p>
+          <div id="makeApartment"> </div>
+        </li>
+        <li>
+          <div class="lin"><span class="left"></span><span class="middle"></span><span class="right"></span></div>
+        </li>
+        <li>
+          <p class="p-01">设计方案置入<i></i></p>
+          <div id="applyArrange"> </div>
+        </li>
+        <li>
+          <div class="lin"><span class="left"></span><span class="middle"></span><span class="right"></span></div>
+        </li>
+        <li>
+          <p class="p-01">设计方案渲染<i></i></p>
+          <div id="applyRender"> </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-----------loadingBar----------------> 
+  
+</div>
+<!--center begin-->
+  $screen_content	
+<!--center end-->
+
+</body>
+</html>

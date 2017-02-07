@@ -19,7 +19,7 @@ public class ProductRestServiceTest extends AbstractRpc{
 	@Test
 	public void testHouse() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
-		qparams.add(new BasicNameValuePair("categoryCode", "沙发"));
+		qparams.add(new BasicNameValuePair("categoryCode", "墙纸"));
 		httpRequest("/rest/product/search", qparams, HttpMethod.POST);
 	}
 	//@Test
@@ -28,7 +28,7 @@ public class ProductRestServiceTest extends AbstractRpc{
 		qparams.add(new BasicNameValuePair("id", "272"));
 		httpRequest("/service/product/goodspecs.htm", qparams, HttpMethod.POST);
 	}
-	@Test
+	//@Test
 	public void testGsp() {
 		List<NameValuePair> qparams = new ArrayList<NameValuePair>();
 		qparams.add(new BasicNameValuePair("productId", "272"));
@@ -37,7 +37,7 @@ public class ProductRestServiceTest extends AbstractRpc{
 	}
 	@Override
 	protected String getProtocal() {
-		return URL_TEST;
+		return URL_RELEASE;
 	}
 
 }

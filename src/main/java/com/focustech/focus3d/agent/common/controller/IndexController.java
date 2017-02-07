@@ -22,12 +22,18 @@ import com.focustech.focus3d.agent.model.FntHouseModel;
 public class IndexController extends CommonController{
 	@Autowired
 	private FntHouseService<FntHouseModel> houseService;
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap modelMap){
-		//String userResourceOfFirst = getUserResourceOfFirst();
-		//return redirect(userResourceOfFirst);
 		List<FntHouseModel> recommendHouseList = houseService.list(true);
 		modelMap.put("recommendHouseList", recommendHouseList);
 		return "/home/index";
+	}
+	
+	@RequestMapping(value="/old", method = RequestMethod.GET)
+	public String oldIndex(ModelMap modelMap){
+		List<FntHouseModel> recommendHouseList = houseService.list(true);
+		modelMap.put("recommendHouseList", recommendHouseList);
+		return "/home/index-old";
 	}
 }

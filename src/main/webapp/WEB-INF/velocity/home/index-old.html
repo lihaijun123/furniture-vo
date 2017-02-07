@@ -1,4 +1,4 @@
-﻿#set($layout="layout/layout_home.html")
+﻿#set($layout="layout/layout_home-old.html")
 <link href="/script/uploadFile/uploadify.css" type="text/css" rel="stylesheet" />
 <style type="text/css">
 	#file_uploadUploader{width: 7%;height: 25px;}
@@ -13,10 +13,14 @@
 <link href="/style/home/new-loading.css" rel="stylesheet" type="text/css">
 <!--showRight显示右侧悬浮层，默认为不显示，noFix为版头不固定，默认为固定-->
 
-    <div class="float_l rf">
-         <div class="float_l kj">
-         
-                       <div class="unity_box">
+
+<div id="body">
+  <div class="unity_content">
+    <div id="content"> 
+      <!--unity_nav-->
+      <div class="unity_nav"> <span></span> <a href="#">首页</a>&gt;<a href="#">方案列表</a>&gt;<a>千年典雅隔世梦</a> </div>
+      <div class="clear"></div>
+      <div class="unity_box">
         <div id="operateTips" class="operate_tips" style=" display:none"> <span class="operate_close" onclick="javascript: document.getElementById(&#39;operateTips&#39;).style.display = &#39;none&#39;;"></span>
           <p>如果您已经安装过unity插件，但是更新浏览器后，又出现了下载插件的提示，这是由于此时您需要重新启用NPAPI插件才能运行unity。<a title="点击查看如何启用" href="#" target="_blank">点击查看如何启用 </a>。</p>
           <div class="none_tips"></div>
@@ -487,36 +491,155 @@
           </div>
         </div>
       </div>
-        
-        
-         </div>
-         <div class="float_l qh">
-         <p class="qh_01"><img src="/images/new/4.png" width="212" height="20" alt=""/></p>
-         <p class="bt"><a href="#">设计理念</a>|<a href="#">产品清单</a></p>
-         <div class="rzt">
-         <p class="text-center zt_01"><img src="/images/new/6.png" width="222" height="150" alt=""/></p>
-         <p class="text-center mar-t20"><a href="#" class="zt_02">千年典雅隔世</a></p>
-         <div class="mar_c"><a href="#" class="zt_03">古典-中性</a></div>
-          <p class="text-center"><img src="/images/new/8.png" width="188" height="28" alt=""/></p>
-         
-         <p class="text-center mar-t"><img src="/images/new/7.png" width="212" height="124" alt=""/></p>
-         
-         
-         </div>
-         
-         
-         
-         </div>
-         <div class="clr"></div>
-         <div class="pro_list">
-           <ul>
-              <li><img src="/images/new/3.png" width="227" height="138" alt=""/><a href="#">香溪群20栋B1古曲</a><p><span class="float_l">设计师:Bora</span><span class="float_r"><i class="glyphicon glyphicon-eye-open"></i> 304 <i class="glyphicon glyphicon-heart"></i> 0</span><div class="clr"></div></p></li>
-               <li><img src="/images/new/3.png" width="227" height="138" alt=""/><a href="#">香溪群20栋B1古曲</a><p><span class="float_l">设计师:Bora</span><span class="float_r"><i class="glyphicon glyphicon-eye-open"></i> 304 <i class="glyphicon glyphicon-heart"></i> 0</span><div class="clr"></div></p></li>
-                <li><img src="/images/new/3.png" width="227" height="138" alt=""/><a href="#">香溪群20栋B1古曲</a><p><span class="float_l">设计师:Bora</span><span class="float_r"><i class="glyphicon glyphicon-eye-open"></i> 304 <i class="glyphicon glyphicon-heart"></i> 0</span><div class="clr"></div></p></li>
-                 <li><img src="/images/new/3.png" width="227" height="138" alt=""/><a href="#">香溪群20栋B1古曲</a><p><span class="float_l">设计师:Bora</span><span class="float_r"><i class="glyphicon glyphicon-eye-open"></i> 304 <i class="glyphicon glyphicon-heart"></i> 0</span><div class="clr"></div></p></li>
-                  <li><img src="/images/new/3.png" width="227" height="138" alt=""/><a href="#">香溪群20栋B1古曲</a><p><span class="float_l">设计师:Bora</span><span class="float_r"><i class="glyphicon glyphicon-eye-open"></i> 304 <i class="glyphicon glyphicon-heart"></i> 0</span><div class="clr"></div></p></li>
-           </ul>
+      <!---------------tab-------------------------->
+      <div class="unity_box_right">
+      <img src="/images/huabian.png">
+        <div class="concept"></div>
+        <div class="list"></div>
+        <div class="con_box">
+          <div class="design">
+            <div class="scroll"> <a class="scroll_left"></a>
+              <div class="design_round">
+                <ul>
+                  <li class="selected"></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
+              <a class="scroll_right"></a> </div>
+            <ul class="design_list">
+              <li style="display: list-item;"> <a class="box-01"><img src="/images/b6b9c24f18cf45ee8cbacc845062cbac.jpg"></a> <a class="box-01"><span class="txt-01">千年典雅隔世梦</span><span class="txt-02">古典-中性</span><span class="txt-03"><i>by</i><i>Shadow</i></span></a><a class="box-01"><img src="/images/f4fd5265b2d3439586b3e1cd44245b19.jpg"></a> </li>
+              <li style="display: none;"> <a>
+              <!-- 
+              <img src="/images/61e7e6372b3d4330849a308a36a57ac7.jpg"> 
+               -->
+              </a> <a><img src="/images/4fdb3301b5634edaa779f16a9519d8fe.jpg"> </a> <a>
+              <!-- 
+              <img src="/images/4590b21779e94aeea195d254f2c48a97.jpg"> 
+               -->
+              </a> </li>
+              <li style="display: none;"> <a class="box-01"><img src="/images/5aebe145aed04d84aee67e6d48220da2.jpg"></a> <a class="box-02">这个风格，从简单到繁杂、从整体到局部，精雕细琢、镶花刻金都给人一丝不苟的印象。它一方面保留了材质、色彩的大致风格，让人感受到传统的历史痕迹与浑厚的文化底蕴。同时又摒弃了过于复杂的肌理和装饰，简化了线条。它打破古典主义的框架，将怀古的浪漫情怀与现代人对生活的需求相结合，兼容华贵典雅与时尚现代，反映出后工业时代个性化的美学观点和文化品位。</a> </li>
+              <li class="text-img" style="display: none;"> <a><img src="/images/92dddb11fcee4de683c49141713de114.jpg"></a> <a class="txt-01">现代都市人对返璞归真生活的向往，若寄寓在家居中，相信现代古典风格的装修再适合不过。这个风格把高雅的古典情趣和潇洒而精巧的现代手法融合，展现鲜明的时候气息的同时复活了古典主义的精魂。家具虽然是沉重的颜色，但是整体搭配起来却是一如既往的舒适轻松，营造出充满人性的亲和感。</a> </li>
+              <li class="text-img" style="display: none;"> <a><img src="/images/77abf9f0cc04457f9a66a30a99bd5ce0.jpg"></a> <a class="txt-01">新古典风格卧室崇尚一如既往的舒适，且总是给人一种复古的情怀。居住在这种风格的卧室，不仅能提高人们的生活质量，还给人带来愉悦快乐的舒适心情。整个空间没有复杂的割断，没有五颜六色的炫目感。窗边开辟出一个阅读空间，可享受阳光的沐浴，温馨至此，浪漫犹存。</a> </li>
+            </ul>
+            <!--如果两张图加标题就用第一个li  如果只是一张图片就用第二个li   如果一个图片加一段话语就用第三个li  如果有描述的图片就用第四个li--> 
+            
+          </div>
+          <div class="pro_list" style="display: none"> 
+            
+            <!--加入购物车提示-->
+            <div class="addCar" id="addCartTipMsg">加入购物城成功</div>
+            <!--加入购物车提示-->
+            
+            <div class="add_cart"> <a id="add_cart"></a>
+              <p> 已选<span style="font-size: 12px;color: #ffffff">0</span>件<br>
+                <span>¥0.00元</span> </p>
+            </div>
+            <div class="pro_head">
+              <input id="selectAll" type="checkbox">
+              <label>全选</label>
+              <a>方案总价：<span></span>元</a> </div>
+            <ul class="expmenu">
+            </ul>
+          </div>
+          <!--2.05 正在加载中-->
+          <div class="loading_loading"><a class="imgs"><img src="/images/loading.gif" alt=""></a><a class="txt">玩命加载中...</a></div>
+          <!--2.05 正在加载中--> 
+        </div>
       </div>
-         </div>
-         
+      <!---------------tab_end-------------------------->
+      <div class="recommend">
+        <div class="recommend_box">
+          <div class="recommend_arrow"> <a class="arr_left"></a> <a class="arr_right"></a> </div>
+          <ul class="recommend_list">
+			#foreach($!recommendHouse in $!recommendHouseList)
+            <li sid="$!recommendHouse.encryptSn">
+              <div class="triangle"></div>
+              <div class="list_box">
+                <div class="space_img">
+                  <div class="mask"><a href="#"><img src="$!fileSys.url($!recommendHouse.picFileSn)"></a><span>餐厅</span></div>
+                  <a id="recommendLink_$!recommendHouse.encryptSn" url="$!fileSys.url($!recommendHouse.ModelFileSn)" v="$!recommendHouse.modelFileVersion" sn="$!recommendHouse.encryptSn"><img src="$!fileSys.url($!recommendHouse.picFileSn)"></a> </div>
+                <a class="title">$!recommendHouse.name</a> <a class="prize">¥ 11312.00</a> <span class="separate_line"></span> <a class="designer">设计师：<span>Shadow</span></a> <a class="like">0<span></span></a> <a class="see">73<span></span></a> </div>
+            </li>
+            #end
+          </ul>
+        </div>
+        <div class="recommend_round">
+          <ul>
+            <li class="hover"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bottom">
+        <ul>
+          <li><a href="#" target="_blank">关于我们</a></li>
+          <li><a href="#" target="_blank">招聘信息</a></li>
+          <li><a href="#">信利</a></li>
+        </ul>
+        <p> <a href="#">www.xinligroup.com</a>Copyright © 2016 信利集团. All rights reserved<a href="#">苏 ICP 备 19566804247 号</a></p>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/script/home/jquery.form.js"></script> 
+  <script type="text/javascript" src="/script/jquery.validate.min.js"></script> 
+  <script type="text/javascript" src="/script/home/unitylogin.js"></script> 
+  <script type="text/javascript" src="/script/home/unityregister.js"></script> 
+  <script type="text/javascript" src="/script/home/unity.js"></script> 
+  <script type="text/javascript" src="/script/home/jia.js"></script> 
+  <script type="text/javascript" src="/script/home/unity2.js"></script> 
+  <script type="text/javascript" src="/script/home/index.js"></script> 
+  <script type="text/javascript" src="/script/home/jqueryval"></script> 
+  <script type="text/javascript" src="/script/home/unity_init.js"></script> 
+  <script type="text/javascript" src="/script/home/popwin.js"></script> 
+  <script type="text/javascript" src="/script/home/pgshare.js"></script>
+  
+  <script type="text/javascript" src="/script/uploadFile/swfobject.js"></script>
+  <script type="text/javascript" src="/script/uploadFile/uploadify.v2.1.4.min.js"></script>
+  <script type="text/javascript" src="/script/uploadFile/fileUploadInit.js"></script>
+  <script type="text/javascript" src="/script/uploadFile/uploadify_zh_CN.js"></script>
 
+  <script type="text/javascript" src="/script/home/picupload.js"></script>
+</div>
+<form id="getEexcelForm" method="post" action="">
+  <input type="hidden" name="TextureInfo" id="j-textureInfo" value="">
+</form>
+<div id="cboxOverlay" style="display: none;"></div>
+<div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;">
+  <div id="cboxWrapper">
+    <div>
+      <div id="cboxTopLeft" style="float: left;"></div>
+      <div id="cboxTopCenter" style="float: left;"></div>
+      <div id="cboxTopRight" style="float: left;"></div>
+    </div>
+    <div style="clear: left;">
+      <div id="cboxMiddleLeft" style="float: left;"></div>
+      <div id="cboxContent" style="float: left;">
+        <div id="cboxTitle" style="float: left;"></div>
+        <div id="cboxCurrent" style="float: left;"></div>
+        <button type="button" id="cboxPrevious"></button>
+        <button type="button" id="cboxNext"></button>
+        <button id="cboxSlideshow"></button>
+        <div id="cboxLoadingOverlay" style="float: left;"></div>
+        <div id="cboxLoadingGraphic" style="float: left;"></div>
+      </div>
+      <div id="cboxMiddleRight" style="float: left;"></div>
+    </div>
+    <div style="clear: left;">
+      <div id="cboxBottomLeft" style="float: left;"></div>
+      <div id="cboxBottomCenter" style="float: left;"></div>
+      <div id="cboxBottomRight" style="float: left;"></div>
+    </div>
+  </div>
+  <div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div>
+</div>
+<div id="AutocompleteContainter_2a298" style="position: absolute; z-index: 9999; top: 231px; left: 0px;">
+  <div class="autocomplete-w1">
+    <div class="autocomplete" id="Autocomplete_2a298" style="display: none; width: 260px; max-height: 300px;"></div>
+  </div>
+</div>

@@ -103,17 +103,12 @@ $(function(){
 function doLogout(){
 	$.getJSON(logout, "", function(result) {
 		loginCallBackToUnity("");
-		$("div.all_header").remove();
+		$("#all_header2").remove();
         var href = "";
-        var $header = $("#header");
-        $header.append("<div class=\"background_bg\"></div>");
-        $header.append("<div class=\"all_header\">");
+        var $header = $("#header2");
+        $header.append("<div class='dh float_l' id='all_header2'>");
         var helpUrl = "#";
-        $header.find(".all_header").append("<span class=\"sp01\"><a href=\"" + helpUrl + "\"><b class=\"img\"></b>帮助中心</a></span> " +
-            "<span class=\"sp02\"><a href=\"#\"><b class=\"img\"></b>收藏夹&nbsp;&nbsp;&nbsp;</a>|</span> ");
-        $header.find(".all_header").append("<span class=\"sp03\"><a href=\"" + href + "\"><b class=\"img\"></b>购物车</a><a href=\"" + href + "\" class=\"No\">" + 0 + "</a>&nbsp;&nbsp;&nbsp;|</span>");
-        $header.find(".all_header").append("<span class=\"sp04\">Hi~[&nbsp;<a href=\"http://www.xinlijiaju.com/user/login.htm\" class=\"log_in\">登录</a>&nbsp;]&nbsp;[&nbsp;<a href=\"http://www.xinlijiaju.com/register.htm\">注册</a>&nbsp;]&nbsp;<a id=\"check_hasDesign\" style=\"display: none\" href=\"#\"></a>&nbsp;<a id=\"check_lightMap\" style=\"display: none\" href=\"#\"></a>&nbsp;&nbsp;&nbsp;|</span>");
-        $header.find(".all_header").append("<a class=\"left\" title=\"信利\" href=\"/\"><i></i></a>");
+        $header.find("#all_header2").append("<a href='#'>购物车0</a> | <a href='#'>收藏夹</a> | <a href='#'>帮助中心</a> | <a href='#'>套入我家</a> | <a href='#'>分享</a> | <a href='/login'>[登陆]</a>");
 	});
 }
 //unity弹窗登录响应
@@ -138,18 +133,14 @@ function Loginresponse(data) {
     else {
         //登录或者注册成功,隐藏登录窗体，弹出Unity Web Player
         HideLoginShowUnity("#loginAndRegister", "");
-        $("div.all_header").remove();
+        $("#all_header2").remove();
         loginCallBackToUnity(data.userId);
         var href = "";
-        var $header = $("#header");
-        $header.append("<div class=\"background_bg\"></div>");
-        $header.append("<div class=\"all_header\">");
+        var $header = $("#header2");
+        $header.append("<div class='dh float_l' id='all_header2'>");
         var helpUrl = "#";
-        $header.find(".all_header").append("<span class=\"sp01\"><a href=\"" + helpUrl + "\"><b class=\"img\"></b>帮助中心</a></span> " +
-            "<span class=\"sp02\"><a href=\"#\"><b class=\"img\"></b>收藏夹&nbsp;&nbsp;&nbsp;</a>|</span> ");
-        $header.find(".all_header").append("<span class=\"sp03\"><a href=\"" + href + "\"><b class=\"img\"></b>购物车</a><a href=\"" + href + "\" class=\"No\">" + 0 + "</a>&nbsp;&nbsp;&nbsp;|</span>");
-        $header.find(".all_header").append("<span class=\"sp04\">Hi~[&nbsp;<a href=\"#\" class=\"log_in\">" + data.userName + "</a>&nbsp;]&nbsp;[&nbsp;<a href=\"#\" id=\"logoutId\">退出</a>&nbsp;]&nbsp;<a id=\"check_hasDesign\" style=\"display: none\" href=\"#\"></a>&nbsp;<a id=\"check_lightMap\" style=\"display: none\" href=\"#\"></a>&nbsp;&nbsp;&nbsp;|</span>");
-        $header.find(".all_header").append("<a class=\"left\" title=\"信利\" href=\"/\"><i></i></a>");
+        $header.find("#all_header2").append("hi[&nbsp;" + data.userName + "&nbsp;]");
+        $header.find("#all_header2").append("| <a href='#'>购物车0</a> | <a href='#'>收藏夹</a> | <a href='#'>帮助中心</a> | <a href='#'>套入我家</a> | <a href='#'>分享</a> | <a href='#' id='logoutId'>[退出]</a>");
         $("#logoutId").bind("click", function(){
         	doLogout();
         });

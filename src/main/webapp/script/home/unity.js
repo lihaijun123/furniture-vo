@@ -2,6 +2,7 @@
 //unity操作处理函数
 /*引用 /Scripts/Base/common.js 
           /Scripts/Unity/casamia.js*/
+
 var handle = {};
 var loadedTimer;
 handle.prototype = {
@@ -16,8 +17,8 @@ handle.prototype = {
     $collect: $("#collect"),
     $inception: $("#inception"),
     $expmenu: $("div.unity_box_right ul.expmenu"),
-    version: GetWebVersion(""),
-    solrUrl: solrUrl,
+    version: "",
+    solrUrl: "",
     recordTimes: 1,//用来记录一次加载失败
     isLoadedProList: false, //用来记录是否已经加载右侧的产品列表
     isLoadedProListDone:false,//用来记录是否已经加载完成右侧的产品列表

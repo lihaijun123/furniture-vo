@@ -1438,6 +1438,7 @@ label.error span {
     width: 450px;
     float: left;
 }
+
 .unity_box .control{
     width: 450px;
     height: 26px;
@@ -1452,7 +1453,7 @@ label.error span {
 }
 .unity_box .captcha,
 .unity_box .controls{
-    width: 310px;
+    width: 350px;
     height: auto;
     padding-left: 260px;
     line-height: 26px;

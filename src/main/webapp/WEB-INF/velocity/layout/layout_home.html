@@ -1,140 +1,84 @@
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>信利家居 - 3D在线家装设计</title>
 
-<title>信利家居 - 3D在线家装设计</title>
-<meta name="viewport" content="width=device-width">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="/script/html5shiv.min.js"></script>
-      <script src="/script/respond.min.js"></script>
-    <![endif]-->
+    <!-- Bootstrap -->
+    <link href="/style/bootstrap.min-3.0.3.css" rel="stylesheet">
+    <link href="/style/style-new.css" rel="stylesheet">
     
-  <link href="/style/home/css" type="text/css" rel="stylesheet">
-  <link href="/style/home/css1" type="text/css" rel="stylesheet">
-  <link href="/style/home/new_unity.css" type="text/css" rel="stylesheet">
-  <link href="/style/home/new-loading.css" type="text/css" rel="stylesheet">
-  
-  
-  
-  
-<script src="/script/home/jquery"></script>
-<script type="text/javascript">
-        //服务器端StorageServer地址
-        storageServers = 'http://cdn.jiajia1.com/Storage1/';
-        //cdn服务器地址
-        cdnServerUrl = 'http://cdn.jiajia1.com';
-        //Web版本号
-       var webVersion = 'V1.2.9';
-        var solrUrl = "http://10.6.6.79:8080/solr/floor";
-    </script>
+	<link href="/style/home/css" type="text/css" rel="stylesheet">
+  	<link href="/style/home/css1" type="text/css" rel="stylesheet">
+  	<link href="/style/home/new_unity.css" type="text/css" rel="stylesheet">
+    <link href="/style/home/new-loading.css" rel="stylesheet" type="text/css">
 
-<style type="text/css">
-<!--
-.bottomFloat {
-	position: absolute;
-	z-index: 1;
-	bottom: 0;
-	right: 0;
-}
--->
-</style>
-
-<link href="/style/home/jiathis_share.css" type="text/css" rel="stylesheet" >
-
-</head>
-<body>
-<div id="header" style="position: static">
-  <div class="all_header">   
-  <span class="sp01"> <a href="#" target="_blank"> <b class="img"></b>帮助中心</a></span> 
-  <span class="sp02"> <a href="#"><b class="img"></b>收藏夹</a>&nbsp;&nbsp;&nbsp;|</span> 
-  <span class="sp03"> <a href="#"><b class="img"></b>&nbsp;购物车</a><a href="#" class="No">0</a>&nbsp;&nbsp;&nbsp;| </span> 
-  #if($!user)
-  <span class="sp04">Hi~[&nbsp;$!user.loginName&nbsp;]&nbsp;&nbsp;[&nbsp;<a href="#" id="logoutId">退出</a>&nbsp;]&nbsp;&nbsp;&nbsp;|</span> <a class="left" title="" href="#"><i></i></a> 
-  #else
-  <span class="sp04">Hi~[&nbsp; <a href="/login" class="log_in">登录</a> &nbsp;]&nbsp;&nbsp;[&nbsp;<a href="/register">注册</a>&nbsp;]&nbsp;&nbsp;&nbsp;|</span> <a class="left" title="" href="#"><i></i></a> 
-  #end
-  </div>
-  <div class="unity_suspension" style="display: none;">
-    <div class="right_item">
-      <div class="separate"></div>
-      <ul>
-        <li class="history_box" style="background: none;">
-          <div class="history_icon"></div>
-        </li>
-        <li style="background: none;"><span style="display: none; margin-top: 3px;">套入进度</span>
-          <div class="loading_icon"></div>
-        </li>
-        <li style="background: none;"><span style="display: none; margin-top: 3px;">预加载进度建设中</span>
-          <div class="reload_icon"></div>
-        </li>
-        <li style="background: none;"><span style="display: none; margin-top: 3px;">我要反馈建设中</span><a class="feed_back"></a></li>
-      </ul>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="head">
+    <p class="float_l"><img src="/images/new/logo.png" width="249" height="87" alt=""/></p>
+    <div id="header2">
+    <div class="dh float_l" id="all_header2">
+    #if($!user)
+    hi[&nbsp;$!user.loginName&nbsp;] | <a href="#">购物车0</a> | <a href="#">收藏夹</a> | <a href="#">帮助中心</a> | <a href="#">套入我家</a> | <a href="#">分享</a> | <a href="#" id="logoutId">[退出]</a>
+    #else
+    <a href="#">购物车0</a> | <a href="#">收藏夹</a> | <a href="#">帮助中心</a> | <a href="#">套入我家</a> | <a href="#">分享</a> | <a href="/login">[登陆]</a><a href="/register">[注册]</a> |
+    #end
     </div>
-    <div class="_to_top"> <a href="#" class="unity_top"><span>返回顶部</span></a> </div>
-  </div>
-  <div class="browse_history"> <a class="his_title"></a>
-    <ul class="history">
-      <li>
-        <p>
-        <!--  <a href="#">千年典雅隔世梦</a><span>2016/12/7</span>
-        </p>
-        <div class="his_de"><a class="No_txt">01</a>-->
-        <a href="#">
-        <!-- 
-        
-        <img style="width: 142px;height: 114px" src="/images/2b7470813729449c945781d830e065c5.jpg_142x114.jpg">
-         -->
-        </a>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <!-----------loadingBar---------------->
-  <div class="loading-box" style="display: none">
-    <div class="loading-01"> <a class="load-close"></a>
-      <div class="load-in-01"></div>
-      <div class="load-in-02"></div>
-      <div class="load-in-03" id="load-01">
-        <div class="load-doc-top">
-          <p class="text">1</p>
-          <p class="doc"><span class="cur"></span><span></span><span></span></p>
-        </div>
-        <div class="load-doc-text"></div>
-        <div class="load-doc-left"><span class="left"></span><span class="right"></span></div>
-        <div class="load-doc-right"><span></span></div>
-      </div>
     </div>
-    <div class="loading-02">
-      <ul>
-        <li>
-          <p class="p-01">毛坯房制作<i></i></p>
-          <div id="makeApartment"> </div>
-        </li>
-        <li>
-          <div class="lin"><span class="left"></span><span class="middle"></span><span class="right"></span></div>
-        </li>
-        <li>
-          <p class="p-01">设计方案置入<i></i></p>
-          <div id="applyArrange"> </div>
-        </li>
-        <li>
-          <div class="lin"><span class="left"></span><span class="middle"></span><span class="right"></span></div>
-        </li>
-        <li>
-          <p class="p-01">设计方案渲染<i></i></p>
-          <div id="applyRender"> </div>
-        </li>
-      </ul>
+    <div class="cleafix"></div>
     </div>
+    <div class="clr"></div>
+  <div class="zj">      
+         <div class=" float_l lf">让每个人都能轻松拥有他们梦想的家，依托独有的人工智能设计系统，整套方案可通过VR技术向用户提供极致的沉浸式互动体验。<p class="dblj"><a href="#">关于我们</a> | <a href="#">招聘信息</a> | <a href="#">信利</a></p></div>
+			
+			
+			 $screen_content	
+			
+			
+			
+         <div class="clr"></div>
+        <div class="fot">
+  <p class="text-center">www.xinligroup.com Copyright @2016信得集团 All rights reserned<br>
+苏ICP 备19566804247号</p>
+  </div> 
   </div>
-  <!-----------loadingBar----------------> 
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+ 
+    
+	<script src="/script/home/jquery"></script>
+    
+    
+ <script type="text/javascript" src="/script/home/jquery.form.js"></script> 
+  <script type="text/javascript" src="/script/jquery.validate.min.js"></script> 
+  <script type="text/javascript" src="/script/home/unitylogin.js"></script> 
+  <script type="text/javascript" src="/script/home/unityregister.js"></script> 
+  <script type="text/javascript" src="/script/home/unity.js"></script> 
+  <script type="text/javascript" src="/script/home/jia.js"></script> 
+  <script type="text/javascript" src="/script/home/unity2.js"></script> 
+  <script type="text/javascript" src="/script/home/index.js"></script> 
+  <script type="text/javascript" src="/script/home/jqueryval"></script> 
+  <script type="text/javascript" src="/script/home/unity_init.js"></script> 
+  <script type="text/javascript" src="/script/home/popwin.js"></script> 
+  <script type="text/javascript" src="/script/home/pgshare.js"></script>
   
-</div>
-<!--center begin-->
-  $screen_content	
-<!--center end-->
+  <script type="text/javascript" src="/script/uploadFile/swfobject.js"></script>
+  <script type="text/javascript" src="/script/uploadFile/uploadify.v2.1.4.min.js"></script>
+  <script type="text/javascript" src="/script/uploadFile/fileUploadInit.js"></script>
+  <script type="text/javascript" src="/script/uploadFile/uploadify_zh_CN.js"></script>
 
-</body>
+  <script type="text/javascript" src="/script/home/picupload.js"></script>
+  
+  
+  </body>
 </html>
