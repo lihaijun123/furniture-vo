@@ -1211,11 +1211,11 @@ handle.fn.floorSearch = function (dataset) {
                         smallImgUrl, itemData[i].Floor, Math.floor(parseFloat(itemData[i].Area)), itemData[i].Rooms, itemData[i].Saloons, itemData[i].PicId, bigImgUrl, itemData[i].ApartmentId, itemData[i].ApartmentModelUrl, itemData[i].version, itemData[i].Id);
                 }
                 $first.find("ul.record_list").empty().css("margin-left", "0px").append(li);
-                $("#btnRecordLeft").css("background", "url('/Content/Images/Unity/unity_apply/left.png')");
+                $("#btnRecordLeft").css("background", "url('/images/unity_apply/left.png')");
                 if (len <= 4) {
-                    $("#btnRecordRight").css("background", "url('/Content/Images/Unity/unity_apply/right_dark.png')");
+                    $("#btnRecordRight").css("background", "url('/images/unity_apply/right_dark.png')");
                 } else {
-                    $("#btnRecordRight").css("background", "url('/Content/Images/Unity/unity_apply/right.png')");
+                    $("#btnRecordRight").css("background", "url('/images/unity_apply/right.png')");
                 }
                 fnchangeRecordList();
                 //户型图鼠标移到效果并添加对应的事件
@@ -1407,8 +1407,8 @@ var fnchangeRecordList = function () {
         leftBtn: "btnRecordLeft", //左移动按钮ID
         rightBtn: "btnRecordRight", //右移动按钮ID
         marginleft: 10, //额外移动边距
-        defendRightBgImg: "url('/Content/Images/Unity/unity_apply/right_dark.png')", //不能向右移动的图片
-        allowLeftBgImg: "url('/Content/Images/Unity/unity_apply/left_dark.png')", //可以向左移动的图片
+        defendRightBgImg: "url('/images/unity_apply/right_dark.png')", //不能向右移动的图片
+        allowLeftBgImg: "url('/images/unity_apply/left_dark.png')", //可以向左移动的图片
         showLength: 4 //内容框显示元素的个数
     });
 };
@@ -1968,3 +1968,291 @@ setInterval(function() {
     $(".download .arrow_arrow").animate({ "marginTop": "55px" },500).animate({ "marginTop": "40px" },500);
 }, 1000);
 /*unity插件图片箭头 end*/
+
+(function ($) {
+    /*
+    滑动插件封装(目前功能单调，具体样式要自己调)
+    v1.0版
+    */
+   //左右滑动
+   $.fn.ZJiaJuControlSwitch = function (options) {
+       options = $.extend({
+           leftBtn: "", //左移动按钮
+           rightBtn: "", //右移动按钮
+           marginleft: 24, //额外移动边距
+           showLength: 5, //内容框显示元素的个数
+           defendRightBgImg: null,
+           allowLeftBgImg: null
+       }, options || {});
+       var s = "#";
+       var contain = $(this);
+       var rLeft = $(s + options.leftBtn);
+       var rRight = $(s + options.rightBtn);
+       var initRightBgImg = rRight.css("background");
+       var initLeftBgImg = rLeft.css("background");
+       var liList = contain.find("li");
+        
+       var allowLeftBgImg = options.allowLeftBgImg;
+       var defendRightBgImg = options.defendRightBgImg;
+       //右移动
+       rRight.unbind().click(function () {
+           var len = liList.length - options.showLength;
+           if (len <= 0) {
+               return false;
+           }
+           var liWidth = liList.width() + options.marginleft;
+           var liWidths = -len * liWidth + "px";
+           var liWidthLen = -(len - 1) * liWidth + "px";
+           if (!contain.is(":animated")) {
+               if (contain.css("margin-left") == liWidths) {
+                   contain.stop();
+               }
+               else {
+                   contain.animate({ marginLeft: "-=" + liWidth });
+                   rRight.css({ "background": initRightBgImg, "background-image": initRightBgImg });
+                   if (allowLeftBgImg != null && allowLeftBgImg != "") {
+                       rLeft.css({ "background": allowLeftBgImg, "background-image": allowLeftBgImg });
+                   }
+               }
+               if (contain.css("margin-left") == liWidthLen) {
+                   if (defendRightBgImg != null && defendRightBgImg != "") {
+                       rRight.css({ "background": defendRightBgImg, "background-image": defendRightBgImg });
+                   }
+                   if (allowLeftBgImg != null && allowLeftBgImg != "") {
+                       rLeft.css({ "background": allowLeftBgImg, "background-image": allowLeftBgImg });
+                   }
+                 
+               }
+           }
+       });
+       //向左移动
+       rLeft.unbind().click(function () {
+           var liWidth = liList.width();
+           if (liList.length <= 0) {
+               return false;
+           }
+           var addWidth = liWidth + options.marginleft;
+           var negWidth = "-" + addWidth + "px";
+           if (!contain.is(":animated")) {
+               if (contain.css("margin-left") == liWidth) {
+
+               }
+               if (contain.css("margin-left") == "0px") {
+                   contain.stop();
+               } else {
+                   contain.animate({ marginLeft: "+=" + addWidth });
+                   if (allowLeftBgImg != null && allowLeftBgImg != "") {
+                       rLeft.css({ "background": allowLeftBgImg, "background-image": allowLeftBgImg });
+                   }
+                   rRight.css({ "background": initRightBgImg, "background-image": options.initRightBgImg });
+               }
+               if (contain.css("margin-left") == negWidth) {
+                   if (options.allowLeftBgImg != null && options.allowLeftBgImg != "") {
+                       rLeft.css({ "background": initLeftBgImg, "background-image": initLeftBgImg });
+                       rRight.css({ "background": initRightBgImg, "background-image": options.initRightBgImg });
+                   }
+               }
+           }
+       });
+   };
+
+       /*改变省市区背景颜色更换*/
+   $.fn.ZJiaJuAreaHover = function () {
+           return this.each(function () {
+               var selObject = $(this);//获取当前对象
+               selObject.hover(
+                   function () {
+                       selObject.find(".btn_c").addClass("btn_c_h");
+                   },
+                   function () {
+                       selObject.find(".btn_c").removeClass("btn_c_h");
+                    
+                   }
+               );
+           });
+       };
+
+   //上下滑动
+   $.fn.ZJiaJuControlUpDownSwitch = function (options) {
+       options = $.extend({
+           leftBtn: "",  //左移动按钮
+           rightBtn: "", //右移动按钮
+           marginleft: 0,//额外移动边距
+           showLength: 1//内容框显示元素的个数
+       }, options);
+       var s = "#";
+       var contain = $(this);
+       var rUp = $(s + options.leftBtn);
+       var rDown = $(s + options.rightBtn);
+       var liList = contain.find("li");
+       //向上移动
+       rUp.click(function () {
+           var len = liList.length - options.showLength;
+           if (len <= 0) return false;
+           var liHeight = liList.height() + options.marginleft;
+           var liHeights = -len * liHeight + "px";
+           var liHeightLen = -(len - 1) * liHeight + "px";
+           if (!contain.is(":animated")) {
+               if (contain.css("margin-top") == liHeights) {
+                   contain.stop();
+               }
+               else {
+                   contain.animate({ marginTop: "-=" + liHeight });
+               }
+               if (contain.css("margin-top") == liHeightLen) {
+               }
+           }
+       });
+       //向下移动
+       rDown.click(function () {
+           var liHeight = liList.height();
+           if (liList.length <= 0) return false;
+           var addWidth = liHeight + options.marginleft;
+           var negWidth = "-" + addWidth + "px";
+           if (!contain.is(":animated")) {
+               if (contain.css("margin-top") == "0px") {
+                   contain.stop();
+               } else {
+                   contain.animate({ marginTop: "+=" + addWidth });
+               }
+               if (contain.css("margin-top") == negWidth) {
+               }
+           }
+       });
+   };
+
+   //拖拽
+   $.fn.ZJiaJuDrag = function() {
+       var isMove = 0;
+       var mouseLeft = 0;
+       var mouseTop = 0;
+       return $(this).bind("mousemove", function (e) {
+           if (isMove == 1) {
+               $(this).offset({ top: e.pageY - mouseLeft, left: e.pageX - mouseTop });
+           }
+       }).bind("mousedown", function (e) {
+           isMove = 1;
+           var offset = $(this).offset();
+           mouseLeft = e.pageX - offset.left;
+           mouseTop = e.pageY - offset.top;
+       }).bind("mouseup", function () {
+           isMove = 0;
+       }).bind("mouseout", function () {
+           isMove = 0;
+       });
+   };
+
+   //ZJiaJu 信息提醒框
+   //定义整个msgbox对象
+   $.ZJiaJuMsgBox = $.ZJiaJuMsgBox || {};
+   //定义默认属性值
+   $.ZJiaJuMsgBox.defaults = {
+       icon: 'ok', //图标(ok:成功信息,no:错误信息,warn:警告,clear:什么都没有)
+       i18n: false, //是否使用国际化:如果是,message指定为code,否则message为要显示的值
+       message: '', //同上
+       timeOut: 3000, //多长时间之后消失
+       beforeHide: null //消失前执行的方法
+   };
+   $.ZJiaJuMsgBox.show = function (p) {
+       p = $.extend({}, $.ZJiaJuMsgBox.defaults, p || {});
+
+       var f = {
+           show: function () {
+               var msgbox;
+               var isFirst = true;        //是否是第一次显示
+               if ($('.msgbox_layout_wrap').length > 0) {
+                   msgbox = $('.msgbox_layout_wrap')[0];
+                   isFirst = false;
+               } else {
+                   msgbox = $(f.getHtml());
+                 //  f.loadCss("http://cdn.jiajia1.com/Content/msgbox/msgbox.css");
+               }
+               //设置top
+               $('.msgbox_layout_wrap', msgbox).css('top', f.getTop() + 'px');
+               //设置文本
+               f.setText(f.getMessage(), msgbox);
+               //设置图标
+               f.setIcon(f.getStyle(), msgbox);
+               //添加事件
+               f.addEvent();
+
+               //显示
+               f.render(msgbox, isFirst);
+           },
+           //load css
+           loadCss:function(url) {
+               var fileref = document.createElement('link');
+               fileref.setAttribute("rel", "stylesheet");
+               fileref.setAttribute("type", "text/css");
+               fileref.setAttribute("href", url);
+               document.getElementsByTagName("head")[0].appendChild(fileref);
+           },
+           getMessage: function () {
+               if (p.i18n) {
+                   var message_ = $.util.getMessage(p.message);
+                   if (!message_ || "" == message_)
+                       message_ = p.message;
+
+                   return message_;
+               }
+               return p.message;
+           },
+           getStyle: function () {
+               var class_;
+               if (p.icon != 'ok' && p.icon != 'no' && p.icon != 'warn' && p.icon != 'clear') {
+                   class_ = "icon_clear";
+               } else {
+                   class_ = "icon_" + p.icon;
+               }
+
+               return class_;
+           },
+           getHtml: function () {
+               var html = [];
+               html.push('<div class="msgbox_layout_wrap" id="m_mgbox" style="">');
+               html.push('     <span class="msgbox_layout" style="z-index: 10000;">');
+               html.push('         <span class="" id="iconSpan"></span>');
+               html.push('         <span id="txtPan"></span>');
+               html.push('         <span class="icon_end"></span>');
+               html.push('     </span>');
+               html.push('</div>');
+
+               return html.join("");
+           },
+           getTop: function () {
+               //可视区域高度
+               var viewHeight = $(window).height();
+               return viewHeight - 27;
+           },
+           setText: function (text, msgbox) {
+               var icon = $('#txtPan', $(msgbox));
+               icon.html(text);
+           },
+           setIcon: function (iconStyle, msgbox) {
+               var icon = $('#iconSpan', $(msgbox));
+               var className = icon.attr('class');
+               icon.removeClass(className);
+               icon.addClass(iconStyle);
+           },
+           addEvent: function () {
+               var inerval = setInterval(function () {
+                   if (p.beforeHide) {
+                       p.beforeHide();
+                   }
+                   $('#m_mgbox').hide();
+                   clearTimeout(inerval);
+               }, p.timeOut);
+           },
+           render: function (msgbox, isFirst) {
+               if (isFirst) {
+                   $('body').append(msgbox);
+               } else {
+                   $(msgbox).show();
+               }
+           }
+       }
+
+       f.show();
+   }
+
+})(jQuery);

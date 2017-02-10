@@ -82,7 +82,7 @@ public class FntHouseDao extends CommonDao {
 				if(area.length == 2){
 					String areaS = area[0];
 					String areaE = area[1];
-					condition.append("( area >").append(areaS).append(" and area <").append(areaE).append(")");
+					condition.append("( area >=").append(areaS).append(" and area <=").append(areaE).append(")");
 					if(i < areaRange.size() - 1){
 						condition.append(" or ");
 					}
